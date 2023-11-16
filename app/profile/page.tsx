@@ -1,8 +1,5 @@
 import Container from "@/components/ui/container";
-import {
-  ServerAuthProvider,
-  getTenantFromCookies,
-} from "@/auth/server-auth-provider";
+import { ServerAuthProvider } from "@/auth/server-auth-provider";
 import {
   Card,
   CardContent,
@@ -19,7 +16,6 @@ import { RadiusForm } from "./RadiusForm";
 import { TRadius } from "@/types/common";
 import { Metadata } from "next";
 import { AllowNotificationsButton } from "./AllowNotifications";
-import { cookies } from "next/headers";
 import { getUser } from "../actions/actions";
 
 export const metadata: Metadata = {

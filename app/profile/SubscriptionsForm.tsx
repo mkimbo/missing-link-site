@@ -59,6 +59,7 @@ function SubscriptionsForm({
       });
     }
   }, [data]);
+  console.log(userId, "user");
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-6">

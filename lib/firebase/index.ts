@@ -31,13 +31,13 @@ export const serverDB = firebaseAdmin.firestore();
 export const serverRTDB = firebaseAdmin.database();
 export const admin = firebaseAdmin;
 
-export const getUser = async (id: string) => {
-  try {
-    const res = await fetch(`/api/users/${id}`, {
-      method: "GET",
-    });
-    return res;
-  } catch (error) {
-    console.log("error fetching user", error);
-  }
-};
+// export const getUser = async (id: string) => {
+//   try {
+//     const res = await fetch(`/api/users/${id}`, {
+//       method: "GET",
+//     });
+//     return res;
+//   } catch (error) {
+//     console.log("error fetching user", error);
+//   }
+// };
