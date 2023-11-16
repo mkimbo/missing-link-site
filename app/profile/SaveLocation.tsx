@@ -42,6 +42,8 @@ export function SaveLocation({ enabledLocation }: TButtonProps) {
       const geohash = getGeoHash(position);
       await mutate({
         id: user?.uid!,
+        email: user?.email!,
+        photoUrl: user?.photoURL!,
         geohash: geohash,
         lat: geoPosition?.coords?.latitude,
         lng: geoPosition?.coords?.longitude,

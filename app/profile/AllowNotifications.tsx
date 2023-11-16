@@ -32,6 +32,8 @@ export function AllowNotificationsButton() {
     if (fcm_token) {
       await mutate({
         id: user?.uid!,
+        email: user?.email!,
+        photoUrl: user?.photoURL!,
         notificationToken: fcm_token,
         enabledNotifications: true,
       });
