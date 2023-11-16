@@ -390,7 +390,12 @@ export const getUser = async (): Promise<User | null> => {
       .collection(process.env.FIREBASE_FIRESTORE_USER_COLLECTION!)
       .doc(tenant?.uid!)
       .get();
-    if (!user.exists) return Promise.resolve(null);
+    if (!user.exists)
+      return {
+        id: tenant?.uid,
+        email: tenant?.email,
+        photoUrl: tenant?.photoURL,
+      } as User;
     return Promise.resolve(user.data() as User);
   } catch (error) {
     console.log("error fetching user", error);
