@@ -25,11 +25,14 @@ export const metadata: Metadata = {
 
 export default async function Profile() {
   const user = await getUser();
+  if (!user || !user.email) {
+    return null;
+  }
   const extractUsername = (email: string) => {
-    const atIndex = email.indexOf("@");
+    const atIndex = email?.indexOf("@");
     if (atIndex !== -1) {
-      const name = email.slice(0, atIndex);
-      return name.charAt(0).toUpperCase() + name.slice(1);
+      const name = email?.slice(0, atIndex);
+      return name.charAt(0).toUpperCase() + name?.slice(1);
     }
     return email;
   };
