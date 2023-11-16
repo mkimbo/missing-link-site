@@ -37,9 +37,9 @@ export default function AlertsList() {
       snapshot?.forEach(function (childSnapshot) {
         const notification: TSaveNotification = childSnapshot.val();
         //get all notifications that match the tenant id
-        console.log("notification", notification);
+        // console.log("notification", notification);
         notification?.notifiedUsers?.forEach((notified) => {
-          console.log("notification", notification);
+          console.log(notified.userId, "notification", user?.uid);
           if (notified.userId === user?.uid) {
             notificationsArray = [...notificationsArray, notification];
           }
@@ -68,7 +68,7 @@ export default function AlertsList() {
       setNotificationsLoaded(true);
     });
   }, [user, db]);
-  Array.from([1, 1]);
+
   return (
     <Tabs defaultValue="all" className="w-full lg:w-6/12 px-4 pt-4 mx-auto">
       <TabsList className="grid w-full grid-cols-4">
