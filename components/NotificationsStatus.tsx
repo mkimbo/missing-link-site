@@ -75,6 +75,7 @@ function NotificationsStatus() {
           size="icon"
           className="mr-2"
           aria-label="Notifications"
+          onClick={() => router.push("/alerts")}
         >
           <Bell className="h-6 w-6" />
           <span className="sr-only">Notifications</span>

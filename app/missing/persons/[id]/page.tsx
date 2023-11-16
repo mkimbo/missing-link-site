@@ -175,7 +175,7 @@ export default async function MissingPerson({ params }: Props) {
             <CardContent className="text-center">
               <div className="mb-2">{`If you have any info please contact ${data?.secondaryContact}. You can also report to the nearest police station or directly on this platform by clicking the button below.`}</div>
               <SightingDialog
-                type="motor"
+                type="person"
                 missingItem={{ ...data!, id: params.id }}
                 creatorId={`${data?.createdBy}`}
               />
@@ -191,7 +191,7 @@ export default async function MissingPerson({ params }: Props) {
               />
               {tenant?.uid === data?.createdBy && (
                 <MarkAsFoundButton
-                  type="bike"
+                  type="person"
                   found={data?.found}
                   itemId={params.id!}
                 />
