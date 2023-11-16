@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 
 export default async function Profile() {
   const user = await getUser();
-  if (!user || !user.email) {
+  if (!user || !user?.email) {
     return null;
   }
   const extractUsername = (email: string) => {
