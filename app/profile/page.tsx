@@ -147,14 +147,14 @@ export default async function Profile() {
 
 // Generate customized metadata based on user cookies
 // https://nextjs.org/docs/app/building-your-application/optimizing/metadata
-export async function generateMetadata(): Promise<Metadata> {
-  const tokens = await getTenantFromCookies(cookies);
+// export async function generateMetadata(): Promise<Metadata> {
+//   const tokens = await getTenantFromCookies(cookies);
 
-  if (!tokens) {
-    return {};
-  }
+//   if (!tokens) {
+//     return {};
+//   }
 
-  return {
-    title: `${tokens.email} | next-firebase-auth-edge example`,
-  };
-}
+//   return {
+//     title: `${tokens.email} | next-firebase-auth-edge example`,
+//   };
+// }
