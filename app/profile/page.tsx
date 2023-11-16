@@ -17,6 +17,7 @@ import { TRadius } from "@/types/common";
 import { Metadata } from "next";
 import { AllowNotificationsButton } from "./AllowNotifications";
 import { getUser } from "../actions/actions";
+import { SaveLocation } from "./SaveLocation";
 
 export const metadata: Metadata = {
   title: "Profile",
@@ -123,18 +124,7 @@ export default async function Profile() {
                   alertRadius={(user?.alertRadius.toString() as TRadius) ?? "3"}
                 />
               ) : (
-                <div className="flex items-center justify-between space-x-2">
-                  <Label
-                    htmlFor="necessary"
-                    className="flex flex-col space-y-1"
-                  >
-                    <span>GeoLocation</span>
-                    <span className="font-normal leading-snug text-muted-foreground">
-                      Your location is necessary for this application to work.
-                    </span>
-                  </Label>
-                  <Switch id="necessary" />
-                </div>
+                <SaveLocation enabledLocation={user?.enabledLocation} />
               )}
             </CardContent>
           </Card>
