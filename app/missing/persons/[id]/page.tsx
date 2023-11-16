@@ -61,16 +61,16 @@ export async function generateMetadata({
   return {
     title: found ? fullname : fullname,
     description: lastSeenDescription,
-    // metadataBase: new URL("https://amber-alerts.vercel.app"),
+    // metadataBase: new URL("${process.env.NEXT_PUBLIC_URL!}"),
     alternates: {
-      canonical: `https://amber-alerts.vercel.app/persons/${params.id}`,
+      canonical: `${process.env.NEXT_PUBLIC_URL!}/missing/persons/${params.id}`,
     },
     openGraph: {
       title: fullname + " is missing",
       description: lastSeenDescription,
       type: "article",
       publishedTime: lastSeenDate,
-      url: `https://amber-alerts.vercel.app/persons/${params.id}`,
+      url: `${process.env.NEXT_PUBLIC_URL!}/missing/persons/${params.id}`,
       images: [
         {
           url: ogImage,
@@ -183,7 +183,9 @@ export default async function MissingPerson({ params }: Props) {
 
             <CardFooter className="flex flex-col">
               <ShareButtons
-                url={`https://amber-alerts.vercel.app/persons/${params.id}`}
+                url={`${process.env.NEXT_PUBLIC_URL!}/missing/persons/${
+                  params.id
+                }`}
                 title={data?.fullname!}
                 description={data?.lastSeenDescription!}
               />

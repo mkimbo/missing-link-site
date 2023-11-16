@@ -45,7 +45,8 @@ function BloodAppealSuccess({ data }: Props) {
             </div>
           )}
           <ShareButtons
-            url={`https://amber-alerts.vercel.app/blood-donation-requests/${id}`}
+            url={`${process.env
+              .NEXT_PUBLIC_URL!}/blood-donation-requests/${id}`}
             title={shareTitle}
             description={shareDescription}
           />

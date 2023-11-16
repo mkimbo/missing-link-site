@@ -65,7 +65,7 @@ export async function generateMetadata({
     title: found ? make + " " + model : make + " " + model,
     description: lastSeenDescription,
     alternates: {
-      canonical: `https://amber-alerts.vercel.app/bikes/${params.id}`,
+      canonical: `${process.env.NEXT_PUBLIC_URL!}/missing/bikes/${params.id}`,
     },
     openGraph: {
       title: "A " + make + " " + model + " was stolen",
@@ -73,7 +73,7 @@ export async function generateMetadata({
       type: "article",
       siteName: "Missing Link",
       publishedTime: lastSeenDate,
-      url: `https://amber-alerts.vercel.app/bikes/${params.id}`,
+      url: `${process.env.NEXT_PUBLIC_URL!}/missing/bikes/${params.id}`,
       images: [
         {
           url: ogImage,
@@ -172,7 +172,9 @@ export default async function MissingBike({ params }: Props) {
 
             <CardFooter className="flex flex-col">
               <ShareButtons
-                url={`https://amber-alerts.vercel.app/persons/${params.id}`}
+                url={`${process.env.NEXT_PUBLIC_URL!}/missing/bikes/${
+                  params.id
+                }`}
                 title={`${bike?.make} ${bike?.model}`}
                 description={bike?.lastSeenDescription!}
               />

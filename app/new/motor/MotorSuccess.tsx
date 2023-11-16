@@ -47,7 +47,7 @@ function MotorSuccess({ data }: Props) {
             </div>
           )}
           <ShareButtons
-            url={`https://amber-alerts.vercel.app/${url}`}
+            url={`${process.env.NEXT_PUBLIC_URL!}/${url}`}
             title={shareTitle}
             description={shareDescription}
           />

@@ -88,9 +88,9 @@ export async function generateMetadata({
     title:
       fullname + " urgently needs " + bloodGroup + " blood at " + hospitalName,
     description: requestDescription,
-    // metadataBase: new URL("https://amber-alerts.vercel.app"),
+    // metadataBase: new URL("${process.env.NEXT_PUBLIC_URL!}"),
     alternates: {
-      canonical: `https://amber-alerts.vercel.app/persons/${params.id}`,
+      canonical: `${process.env.NEXT_PUBLIC_URL!}/blood-appeal/${params.id}`,
     },
     openGraph: {
       title:
@@ -101,7 +101,7 @@ export async function generateMetadata({
         hospitalName,
       description: requestDescription,
       type: "article",
-      url: `https://amber-alerts.vercel.app/persons/${params.id}`,
+      url: `${process.env.NEXT_PUBLIC_URL!}/blood-appeal/${params.id}`,
       images: [
         {
           url: ogImage,
@@ -197,7 +197,9 @@ export default async function BloodAppeal({ params }: Props) {
 
             <CardContent className="text-center">
               <ShareButtons
-                url={`https://amber-alerts.vercel.app/blood-appeal/${params.id}`}
+                url={`${process.env.NEXT_PUBLIC_URL!}/blood-appeal/${
+                  params.id
+                }`}
                 title={`${data?.fullname} + " urgently needs " + ${data?.bloodGroup} + " blood at " + ${data?.hospitalName}`}
                 description={
                   data?.requestDescription ??

@@ -8,23 +8,6 @@ export async function generateStaticParams() {
   return [{}];
 }
 
-// export default function Home() {
-//   return (
-//     <div>
-//       <div>
-//         <span>Home</span>
-//         <Badge>Static</Badge>
-//       </div>
-//       <Card>
-//         <Link href="/profile">
-//           <h2>You are logged in</h2>
-//           <Button style={{ marginBottom: 0 }}>Go to profile page</Button>
-//         </Link>
-//       </Card>
-//     </div>
-//   );
-// }
-
 /**
  * v0 by Vercel.
  * @see https://v0.dev/t/0W13RkH

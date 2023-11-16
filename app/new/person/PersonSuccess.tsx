@@ -45,7 +45,7 @@ function PersonSuccess({ data }: Props) {
             </div>
           )}
           <ShareButtons
-            url={`https://amber-alerts.vercel.app/persons/${id}`}
+            url={`${process.env.NEXT_PUBLIC_URL!}/missing/persons/${id}`}
             title={shareTitle}
             description={shareDescription}
           />

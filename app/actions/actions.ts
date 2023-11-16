@@ -59,7 +59,7 @@ export const markPersonFound = zact(markAsFound)(async (input) => {
   await docRef.update({
     found: true,
   });
-  const url = `/persons/${input.itemId}`;
+  const url = `/missing/persons/${input.itemId}`;
   revalidatePath(url);
   return {
     success: true,
@@ -75,10 +75,10 @@ export const markMotorFound = zact(markAsFound)(async (input) => {
     found: true,
   });
   if (input.type === "vehicle") {
-    revalidatePath(`/vehicles${input.itemId}`);
+    revalidatePath(`/missing/vehicles${input.itemId}`);
   }
   if (input.type === "bike") {
-    revalidatePath(`/bikes${input.itemId}`);
+    revalidatePath(`/missing/bikes${input.itemId}`);
   }
   return {
     success: true,
@@ -95,7 +95,7 @@ export const savePersonSighting = zact(saveSightingSchema)(async (input) => {
   await docRef.update({
     sightings: admin.firestore.FieldValue.arrayUnion(input),
   });
-  const url = `/persons/${input.itemId}`;
+  const url = `/missing/persons/${input.itemId}`;
   revalidatePath(url);
   //notify case owner
   const caseOwner = await serverDB
@@ -106,7 +106,9 @@ export const savePersonSighting = zact(saveSightingSchema)(async (input) => {
     title: doc.data()?.fullname,
     body: `has been sighted around ${input?.sightingLocation?.toLowerCase()}`,
     icon: doc.data()?.images[0],
-    click_action: `https://amber-alerts.vercel.app/persons/${input.itemId}`,
+    click_action: `${process.env.NEXT_PUBLIC_URL!}/missing/persons/${
+      input.itemId
+    }`,
     type: "sighting" as TAlertType,
   };
   const tokenData = [
@@ -141,7 +143,7 @@ export const saveMotorSighting = zact(saveSightingSchema)(async (input) => {
   await docRef.update({
     sightings: admin.firestore.FieldValue.arrayUnion(input),
   });
-  const url = `/vehicles/${input.itemId}`;
+  const url = `/missing/vehicles/${input.itemId}`;
   revalidatePath(url);
   //notify case owner
   const caseOwner = await serverDB
@@ -152,7 +154,9 @@ export const saveMotorSighting = zact(saveSightingSchema)(async (input) => {
     title: doc.data()?.licencePlate,
     body: `has been sighted around ${input?.sightingLocation?.toLowerCase()}`,
     icon: doc.data()?.images[0],
-    click_action: `https://amber-alerts.vercel.app/vehicles/${input.itemId}`,
+    click_action: `${process.env.NEXT_PUBLIC_URL!}/missing/vehicles/${
+      input.itemId
+    }`,
     type: "sighting" as TAlertType,
   };
   const tokenData = [
@@ -182,13 +186,13 @@ export const saveAlert = zact(savePersonAlertSchema)(async (data) => {
     .collection(process.env.FIREBASE_FIRESTORE_MISSING_PERSONS!)
     .doc(docID)
     .set(data);
-  revalidatePath("/persons");
+  revalidatePath("/missing/persons");
   const center = [Number(data.geoloc.lat), Number(data.geoloc.lng)];
   const notification = {
     title: data.fullname,
     body: "has just been reported missing in your area",
     icon: data.images[0],
-    click_action: `https://amber-alerts.vercel.app/persons/${docID}`,
+    click_action: `${process.env.NEXT_PUBLIC_URL!}/missing/persons/${docID}`,
     type: "person" as TAlertType,
   };
   const successfullyNotified = await sendNotifications({
@@ -236,12 +240,12 @@ export const saveMotorAlert = zact(saveMotorAlertSchema)(async (data) => {
     .set(data);
   let action = "";
   if (data.motorType === "vehicle") {
-    revalidatePath("/vehicles");
-    action = `https://amber-alerts.vercel.app/vehicles/${docID}`;
+    revalidatePath("/missing/vehicles");
+    action = `${process.env.NEXT_PUBLIC_URL!}/missing/vehicles/${docID}`;
   }
   if (data.motorType === "bike") {
-    revalidatePath("/bikes");
-    action = `https://amber-alerts.vercel.app/bikes/${docID}`;
+    revalidatePath("/missing/bikes");
+    action = `${process.env.NEXT_PUBLIC_URL!}/missing/bikes/${docID}`;
   }
   const center = [Number(data.geoloc.lat), Number(data.geoloc.lng)];
   const notification = {
@@ -657,14 +661,17 @@ export const getStatus = async () => {
   const tenant = await getTenantFromCookies(cookies);
   if (tenant?.email != null) {
     try {
-      const response = await fetch("http://localhost:3000/api/status", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        // next: { revalidate: 60 },
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_URL!}/api/status`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          // next: { revalidate: 60 },
+        }
+      );
       console.log(await response.json(), "data");
       const resp = await response.json();
       return resp as User;

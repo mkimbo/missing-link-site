@@ -23,7 +23,7 @@ import { cookies } from "next/headers";
 import { getUser } from "../actions/actions";
 
 export const metadata: Metadata = {
-  title: "Profile | Missing Link",
+  title: "Profile",
   description: "Manage your profile settings",
 };
 
