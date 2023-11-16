@@ -391,11 +391,11 @@ export const getUser = async (): Promise<User | null> => {
       .doc(tenant?.uid!)
       .get();
     if (!user.exists)
-      return {
+      return Promise.resolve({
         id: tenant?.uid,
         email: tenant?.email,
         photoUrl: tenant?.photoURL,
-      } as User;
+      } as User);
     return Promise.resolve(user.data() as User);
   } catch (error) {
     console.log("error fetching user", error);

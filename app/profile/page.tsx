@@ -121,7 +121,9 @@ export default async function Profile() {
               {user?.enabledLocation ? (
                 <RadiusForm
                   userId={user?.id!}
-                  alertRadius={(user?.alertRadius.toString() as TRadius) ?? "3"}
+                  alertRadius={
+                    (user?.alertRadius?.toString() as TRadius) ?? "3"
+                  }
                 />
               ) : (
                 <SaveLocation enabledLocation={user?.enabledLocation} />
