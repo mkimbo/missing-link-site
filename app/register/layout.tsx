@@ -5,6 +5,5 @@ export default function RegisterLayout({
 }: {
   children: React.ReactNode;
 }) {
-  /* @ts-expect-error https://github.com/vercel/next.js/issues/43537 */
   return <ServerAuthProvider>{children}</ServerAuthProvider>;
 }
