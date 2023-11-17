@@ -22,6 +22,7 @@ export default function AlertsList() {
   );
   const [personList, setPersonList] = useState<TSaveNotification[]>([]);
   const [motorsList, setMotorsList] = useState<TSaveNotification[]>([]);
+  const [bloodAppeals, setBloodAppeals] = useState<TSaveNotification[]>([]);
 
   const [sightingsList, setSightingsList] = useState<TSaveNotification[]>([]);
 
@@ -49,6 +50,9 @@ export default function AlertsList() {
       const persons = notificationsArray?.filter(
         (notification) => notification.resourceType === "person"
       );
+      const bloodAppeals = notificationsArray?.filter(
+        (notification) => notification.resourceType === "bloodAppeal"
+      );
       const motors = notificationsArray?.filter(
         (notification) =>
           notification.resourceType === "vehicle" ||
@@ -58,6 +62,7 @@ export default function AlertsList() {
         (notification) => notification.resourceType === "sighting"
       );
       setPersonList(persons);
+      setBloodAppeals(bloodAppeals);
       setMotorsList(motors);
       setSightingsList(sightings);
       setNotificationList(notificationsArray);
@@ -72,12 +77,12 @@ export default function AlertsList() {
   return (
     <Tabs defaultValue="all" className="w-full lg:w-6/12 px-4 pt-4 mx-auto">
       <TabsList className="grid w-full grid-cols-4">
-        <TabsTrigger value="all">All</TabsTrigger>
         <TabsTrigger value="persons">Persons</TabsTrigger>
         <TabsTrigger value="motors">Motors</TabsTrigger>
         <TabsTrigger value="sightings">Sightings</TabsTrigger>
+        <TabsTrigger value="bloodAppeals">Medical</TabsTrigger>
       </TabsList>
-      <TabsContent value="all">
+      <TabsContent value="persons">
         {!notificationsLoaded &&
           notificationList.length === 0 &&
           Array.from([1, 2, 3, 4, 5, 6, 7, 8, 9]).map((itm: any) => {
@@ -88,17 +93,6 @@ export default function AlertsList() {
               ></Skeleton>
             );
           })}
-        {notificationList.length > 0 && (
-          <>
-            {notificationList.map((notification) => {
-              return (
-                <AlertCard key={notification.id} notification={notification} />
-              );
-            })}
-          </>
-        )}
-      </TabsContent>
-      <TabsContent value="persons">
         {personList.length > 0 && (
           <>
             {personList.map((notification) => {
@@ -109,6 +103,7 @@ export default function AlertsList() {
           </>
         )}
       </TabsContent>
+
       <TabsContent value="motors">
         {motorsList.length > 0 && (
           <>
@@ -124,6 +119,17 @@ export default function AlertsList() {
         {sightingsList.length > 0 && (
           <>
             {sightingsList.map((notification) => {
+              return (
+                <AlertCard key={notification.id} notification={notification} />
+              );
+            })}
+          </>
+        )}
+      </TabsContent>
+      <TabsContent value="bloodAppeals">
+        {bloodAppeals.length > 0 && (
+          <>
+            {bloodAppeals.map((notification) => {
               return (
                 <AlertCard key={notification.id} notification={notification} />
               );

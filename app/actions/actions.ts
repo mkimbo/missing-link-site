@@ -125,6 +125,30 @@ export const savePersonSighting = zact(saveSightingSchema)(async (input) => {
     tokenData,
     notification
   );
+
+  const notifiedList = [];
+  for (const user of successfullyNotified) {
+    //const distanceInKm = geofire.distanceBetween(center, [user.lat, user.lng]);
+    notifiedList.push({
+      userId: user.userId,
+      distance: 0,
+      points: 0, // TODO: calculate points based on distance
+      redeemed: false,
+      seen: false,
+    });
+  }
+
+  await saveNotification({
+    content: `${doc.data()?.fullname} has been sighted`,
+    ownerId: input.sightedBy,
+    resourceId: doc.id,
+    resourceType: "sighting",
+    createdAt: Date.now(),
+    image: "",
+    lat: input.geoloc.lat,
+    lng: input.geoloc.lng,
+    notifiedUsers: notifiedList,
+  });
   return {
     success: true,
     ownerNotified: true,
@@ -173,6 +197,30 @@ export const saveMotorSighting = zact(saveSightingSchema)(async (input) => {
     tokenData,
     notification
   );
+
+  const notifiedList = [];
+  for (const user of successfullyNotified) {
+    //const distanceInKm = geofire.distanceBetween(center, [user.lat, user.lng]);
+    notifiedList.push({
+      userId: user.userId,
+      distance: 0,
+      points: 0, // TODO: calculate points based on distance
+      redeemed: false,
+      seen: false,
+    });
+  }
+
+  await saveNotification({
+    content: `${doc.data()?.licencePlate} has been sighted`,
+    ownerId: input.sightedBy,
+    resourceId: doc.id,
+    resourceType: "sighting",
+    createdAt: Date.now(),
+    image: "",
+    lat: input.geoloc.lat,
+    lng: input.geoloc.lng,
+    notifiedUsers: notifiedList,
+  });
   return {
     success: true,
     ownerNotified: true,

@@ -105,6 +105,8 @@ export default async function Profile() {
                   userId={user?.id!}
                   missingVehicleAlerts={user?.missingVehicleAlerts ?? false}
                   missingBikeAlerts={user?.missingBikeAlerts ?? false}
+                  bloodAppealAlerts={user?.bloodAppealAlerts ?? false}
+                  bloodGroup={user?.bloodGroup ?? ""}
                 />
               ) : (
                 <AllowNotificationsButton />

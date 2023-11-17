@@ -160,6 +160,8 @@ export const updateUserSchema = z.object({
     })
     .optional(),
   enabledLocation: z.boolean().optional(),
+  bloodAppealAlerts: z.boolean().optional(),
+  bloodGroup: z.string().optional(),
   missingPersonAlerts: z.boolean().optional(),
   missingVehicleAlerts: z.boolean().optional(),
   missingBikeAlerts: z.boolean().optional(),
