@@ -434,6 +434,7 @@ export const getLoggedUser = async (id: string): Promise<User | null> => {
 export const getUser = async (): Promise<User | null> => {
   try {
     const tenant = await getTenantFromCookies(cookies);
+    if (!tenant?.uid) return Promise.resolve(null);
     const user = await serverDB
       .collection(process.env.FIREBASE_FIRESTORE_USER_COLLECTION!)
       .doc(tenant?.uid!)

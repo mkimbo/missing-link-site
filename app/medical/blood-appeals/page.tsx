@@ -10,6 +10,12 @@ import BloodAppealSearch from "./BloodAppealSearch";
 import { BloodAppealFilter } from "./BloodAppealFilter";
 import BloodAppealsList from "./BloodAppealsList";
 import { Card } from "@/components/ui/card";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Blood Appeals",
+  description: "Blood donation appeals in your area",
+};
 
 export default function BloodAppeals({
   searchParams,

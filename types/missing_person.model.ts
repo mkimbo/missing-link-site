@@ -1,6 +1,10 @@
 import geofire from "geofire-common";
 import { z } from "zod";
-import { bloodAppealSchema, newSightingFormSchema } from "./zod_schemas";
+import {
+  bloodAppealSchema,
+  newSightingFormSchema,
+  saveMedicalAlertSchema,
+} from "./zod_schemas";
 export type TLocation = {
   lng: number;
   lat: number;
@@ -57,7 +61,7 @@ export interface TBloodAppeal extends AppealFormSchema {
   id?: string;
 }
 
-type AppealFormSchema = z.infer<typeof bloodAppealSchema>;
+type AppealFormSchema = z.infer<typeof saveMedicalAlertSchema>;
 
 type SightingFormSchema = z.infer<typeof newSightingFormSchema>;
 

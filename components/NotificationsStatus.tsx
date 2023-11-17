@@ -117,7 +117,9 @@ function NotificationsStatus() {
             router.push("/alerts");
           }}
         >
-          <Bell className={`h-5 w-5 ${count > 0 && "animate-ping"}`} />
+          <Bell
+            className={`h-5 w-5 ${count > 0 && "animate-ping text-primary"} `}
+          />
           <span className="sr-only">Notifications</span>
         </Button>
       )}

@@ -18,13 +18,15 @@ function AlertCard({ notification }: Props) {
   const getLink = (type: string) => {
     switch (type) {
       case "person":
-        return `/persons/${notification.resourceId}`;
+        return `/missing/persons/${notification.resourceId}`;
       case "vehicle":
-        return `/vehicles/${notification.resourceId}`;
+        return `/missing/vehicles/${notification.resourceId}`;
       case "bike":
-        return `/bikes/${notification.resourceId}`;
+        return `/missing/bikes/${notification.resourceId}`;
+      case "bloodAppeal":
+        return `/blood-appeal/${notification.resourceId}`;
       default:
-        return `/persons/${notification.resourceId}`;
+        return `#`;
     }
   };
   return (

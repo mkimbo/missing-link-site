@@ -26,6 +26,8 @@ import BNeg from "../../../public/img/bloodB_neg.png";
 import ABNeg from "../../../public/img/bloodAB_neg.png";
 import ONeg from "../../../public/img/bloodO_neg.png";
 import ShareButtons from "@/components/ShareButtons";
+import { BloodDonationRequest } from "@/components/BloodDonationRequest";
+import { getUser } from "@/app/actions/actions";
 type Props = {
   params: { id: string };
 };
@@ -142,7 +144,7 @@ export default async function BloodAppeal({ params }: Props) {
   }
 
   const data = await getBloodAppealById(params.id);
-  const tenant = await getTenantFromCookies(cookies);
+  const loggedInUser = await getUser();
 
   return (
     <Container>
@@ -196,6 +198,11 @@ export default async function BloodAppeal({ params }: Props) {
             </CardHeader>
 
             <CardContent className="text-center">
+              <BloodDonationRequest
+                appealId={params.id}
+                creatorId={data?.createdBy!}
+                donorContact={loggedInUser?.phoneNumber?.number}
+              />
               <ShareButtons
                 url={`${process.env.NEXT_PUBLIC_URL!}/blood-appeal/${
                   params.id

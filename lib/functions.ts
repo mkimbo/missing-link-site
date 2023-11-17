@@ -145,3 +145,15 @@ export function getGender(val: string): string {
   }
   return "Other";
 }
+
+export function maskPhoneNumber(phoneNumber: string): string {
+  if (phoneNumber.length !== 12) {
+    return phoneNumber; // Return the original phone number if it doesn't have 12 characters
+  }
+
+  const countryCode = phoneNumber.slice(0, 3);
+  const maskedNumber = phoneNumber.slice(3, 9);
+  const lastDigits = phoneNumber.slice(9).replace(/\d/g, "*");
+
+  return countryCode + maskedNumber + lastDigits;
+}

@@ -81,17 +81,20 @@ export default async function BloodAppealsList({
       </div>
     );
   }
-
   const bloodAppeals = await getBloodAppeals({
     search: search,
-    bloodGroup: bloodGroup ?? user.bloodGroup,
+    bloodGroup: bloodGroup && bloodGroup != "" ? bloodGroup : "", //user.bloodGroup ?? "",
     radius: radius ?? user.alertRadius ?? "5",
     userLocation: [user.lat, user.lng],
   });
   return (
     <div className="flex flex-wrap justify-center lg:justify-normal gap-2 lg:gap-6">
       {bloodAppeals.map((appeal) => (
-        <BloodAppealCard key={appeal.id} appeal={appeal} />
+        <BloodAppealCard
+          key={appeal.id}
+          appeal={appeal}
+          currentUserBloodGroup={user.bloodGroup ?? ""}
+        />
       ))}
     </div>
   );

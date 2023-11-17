@@ -5,7 +5,6 @@ import { getApp, getApps, initializeApp } from "firebase/app";
 import { clientConfig } from "@/config/client-config";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { TSaveNotification } from "@/types/missing_person.model";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import AlertCard from "./AlertCard";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useAuth } from "@/auth/context";
