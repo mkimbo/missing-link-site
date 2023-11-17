@@ -5,9 +5,10 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
+  DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { User2 } from "lucide-react";
+import { Moon, Sun, User2 } from "lucide-react";
 import { useLoadingCallback } from "react-loading-hook";
 import { useFirebaseAuth } from "@/auth/firebase";
 import { deleteVerifiedCookie } from "@/lib/functions";
@@ -16,6 +17,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useAuth } from "../auth/context";
 import { Button } from "./ui/button";
 import { deleteAuthCookies } from "@/app/actions/actions";
+import { useTheme } from "next-themes";
 
 const ProfileButton = () => {
   const { user } = useAuth();
@@ -25,6 +27,7 @@ const ProfileButton = () => {
   // const dispatch = useDispatch();
   const router = useRouter();
   const path = usePathname();
+  const { theme, setTheme } = useTheme();
   const [handleLogout, isLogoutLoading] = useLoadingCallback(async () => {
     const auth = getFirebaseAuth();
 
@@ -57,11 +60,12 @@ const ProfileButton = () => {
             >
               Profile
             </DropdownMenuItem>
-            <DropdownMenuItem className="cursor-pointer">
-              Billing
-            </DropdownMenuItem>
-            <DropdownMenuItem className="cursor-pointer">
-              Subscription
+
+            <DropdownMenuItem
+              className="cursor-pointer flex flex-row"
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            >
+              {theme === "dark" ? "Light Theme" : "Dark Theme"}
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={handleLogout} className="cursor-pointer">

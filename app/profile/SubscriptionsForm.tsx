@@ -39,6 +39,8 @@ function SubscriptionsForm({
   userId,
   missingVehicleAlerts,
   missingBikeAlerts,
+  bloodAppealAlerts,
+  bloodGroup,
 }: SubscriptionsFormProps) {
   const [show, setShow] = React.useState(false);
   const form = useForm<z.infer<typeof FormSchema>>({
@@ -47,8 +49,8 @@ function SubscriptionsForm({
       vehicleAlerts: missingVehicleAlerts,
       bikeAlerts: missingBikeAlerts,
       personAlerts: true,
-      bloodAppealAlerts: false,
-      bloodGroup: "",
+      bloodAppealAlerts: bloodAppealAlerts,
+      bloodGroup: bloodGroup,
     },
   });
   const { mutate, data, isLoading } = useZact(updateUser);

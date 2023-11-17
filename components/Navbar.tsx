@@ -46,7 +46,7 @@ const Navbar = () => {
     },
     {
       href: "/",
-      label: "Resources",
+      label: "Info & Tips",
     },
   ];
 
@@ -88,9 +88,9 @@ const Navbar = () => {
               listClasses="mx-2 font-bold"
               capitalizeLinks
             />
-            <div className="flex items-center">
+            <div className="flex items-center pr-2">
               <NotificationsStatus />
-              <ToggleThemeIcon />
+              {/* <ToggleThemeIcon /> */}
               <ProfileButton />
             </div>
           </div>
