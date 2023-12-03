@@ -142,6 +142,7 @@ export function BloodDonationRequest({
                       ...values,
                     });
                   })();
+                  setOpen(false);
                 }}
               >
                 {isLoading && <Loader className="mr-2 h-4 w-4 animate-spin" />}

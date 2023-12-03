@@ -82,8 +82,7 @@ export default function AlertsList() {
         <TabsTrigger value="bloodAppeals">Medical</TabsTrigger>
       </TabsList>
       <TabsContent value="persons">
-        {!notificationsLoaded &&
-          notificationList.length === 0 &&
+        {notificationList.length === 0 &&
           Array.from([1, 2, 3, 4, 5, 6, 7, 8, 9]).map((itm: any) => {
             return (
               <Skeleton
@@ -101,6 +100,9 @@ export default function AlertsList() {
             })}
           </>
         )}
+        {notificationsLoaded && personList.length == 0 && (
+          <div className="text-center">Nothing yet.</div>
+        )}
       </TabsContent>
 
       <TabsContent value="motors">
@@ -113,6 +115,9 @@ export default function AlertsList() {
             })}
           </>
         )}
+        {notificationsLoaded && motorsList.length == 0 && (
+          <div className="text-center">Nothing yet.</div>
+        )}
       </TabsContent>
       <TabsContent value="sightings">
         {sightingsList.length > 0 && (
@@ -124,6 +129,9 @@ export default function AlertsList() {
             })}
           </>
         )}
+        {notificationsLoaded && sightingsList.length == 0 && (
+          <div className="text-center">Nothing yet.</div>
+        )}
       </TabsContent>
       <TabsContent value="bloodAppeals">
         {bloodAppeals.length > 0 && (
@@ -134,6 +142,9 @@ export default function AlertsList() {
               );
             })}
           </>
+        )}
+        {notificationsLoaded && bloodAppeals.length == 0 && (
+          <div className="text-center">Nothing yet.</div>
         )}
       </TabsContent>
     </Tabs>
