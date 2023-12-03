@@ -147,13 +147,17 @@ export function getGender(val: string): string {
 }
 
 export function maskPhoneNumber(phoneNumber: string): string {
-  if (phoneNumber.length !== 12) {
-    return phoneNumber; // Return the original phone number if it doesn't have 12 characters
+  console.log("Original phone number:", phoneNumber);
+
+  const length = phoneNumber.length;
+  if (length < 8) {
+    return phoneNumber; // Return the original phone number if it has less than 8 characters
   }
 
-  const countryCode = phoneNumber.slice(0, 3);
-  const maskedNumber = phoneNumber.slice(3, 9);
-  const lastDigits = phoneNumber.slice(9).replace(/\d/g, "*");
+  const maskedNumber =
+    phoneNumber.slice(0, Math.floor(length / 2) - 2) +
+    "****" +
+    phoneNumber.slice(Math.ceil(length / 2) + 2);
 
-  return countryCode + maskedNumber + lastDigits;
+  return maskedNumber;
 }
