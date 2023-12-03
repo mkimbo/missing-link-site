@@ -40,9 +40,9 @@ export function BloodDonationRequest({
   const router = useRouter();
   const [open, setOpen] = React.useState(false);
 
-  type TSightingForm = z.infer<typeof donationRequestFormSchema>;
+  type TDonationRequestForm = z.infer<typeof donationRequestFormSchema>;
 
-  const methods = useForm<TSightingForm>({
+  const methods = useForm<TDonationRequestForm>({
     resolver: zodResolver(donationRequestFormSchema),
     reValidateMode: "onChange",
     defaultValues: {
