@@ -188,4 +188,5 @@ export const donationRequestFormSchema = z.object({
   donorRequestContact: z.string({ required_error: "Required" }),
   donorId: z.string({ required_error: "Required" }),
   requestAccepted: z.boolean(),
+  PIDisclaimer: z.boolean(),
 });

@@ -28,12 +28,14 @@ type Props = {
   appealId: string;
   creatorId: string;
   donorContact?: string;
+  isCompatible?: boolean;
 };
 
 export function BloodDonationRequest({
   appealId,
   creatorId,
   donorContact,
+  isCompatible,
 }: Props) {
   const { user } = useAuth();
   const path = usePathname();
@@ -50,10 +52,11 @@ export function BloodDonationRequest({
       appealId: appealId,
       donorId: user?.uid!,
       donorRequestContact: donorContact!,
+      PIDisclaimer: false,
     },
   });
 
-  const { handleSubmit, control, formState, reset } = methods;
+  const { handleSubmit, control, getValues, reset } = methods;
   const { mutate, data, isLoading } = useZact(saveDonationRequest);
 
   React.useEffect(() => {
@@ -99,8 +102,14 @@ export function BloodDonationRequest({
   ) : user?.uid != creatorId ? (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="default" className="w-full my-2">
-          Send A Donation Request
+        <Button
+          variant="default"
+          className="w-full my-2"
+          disabled={!isCompatible}
+        >
+          {isCompatible
+            ? "Send A Donation Request"
+            : "Incompatible Blood Group"}
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px] pointer-events-auto">
@@ -122,7 +131,7 @@ export function BloodDonationRequest({
             <div className="grid gap-4 py-4"></div>
             <DialogFooter>
               <Button
-                disabled={isLoading}
+                disabled={isLoading || !getValues().PIDisclaimer}
                 type="button"
                 variant="default"
                 onClick={async () => {

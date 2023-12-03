@@ -28,6 +28,7 @@ import ONeg from "../../../public/img/bloodO_neg.png";
 import ShareButtons from "@/components/ShareButtons";
 import { BloodDonationRequest } from "@/components/BloodDonationRequest";
 import { getUser } from "@/app/actions/actions";
+import { getCompatibleBloodGroups } from "@/lib/functions";
 type Props = {
   params: { id: string };
 };
@@ -146,6 +147,10 @@ export default async function BloodAppeal({ params }: Props) {
   const data = await getBloodAppealById(params.id);
   const loggedInUser = await getUser();
 
+  const isCompatible = getCompatibleBloodGroups(data?.bloodGroup!).includes(
+    loggedInUser?.bloodGroup!
+  );
+
   return (
     <Container>
       <ServerAuthProvider>
@@ -199,6 +204,7 @@ export default async function BloodAppeal({ params }: Props) {
 
             <CardContent className="text-center">
               <BloodDonationRequest
+                isCompatible={isCompatible}
                 appealId={params.id}
                 creatorId={data?.createdBy!}
                 donorContact={loggedInUser?.phoneNumber?.number}
