@@ -454,7 +454,7 @@ export const saveDonationRequest = zact(donationRequestFormSchema)(
         donationRequests: admin.firestore.FieldValue.arrayUnion({
           donorId: data.donorId,
           donorRequestContact: data.donorRequestContact,
-          donorName: user.data()?.fullname,
+          donorName: user.data()?.email,
           geohash: user.data()?.geohash,
           lat: user.data()?.lat,
           lng: user.data()?.lng,
