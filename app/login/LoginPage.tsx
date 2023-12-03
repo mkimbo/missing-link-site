@@ -19,6 +19,7 @@ import EmailPasswordForm, { TEmailForm } from "@/components/EmailPasswordForm";
 import { Loader } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getVerifiedCookie } from "@/lib/functions";
+import { ro } from "date-fns/locale";
 
 export function LoginPage() {
   const router = useRouter();
@@ -71,7 +72,8 @@ export function LoginPage() {
         },
       });
       setHasLogged(true);
-      router.push(redirect ?? "/");
+      // router.push(redirect ?? "/");
+      router.replace(redirect ?? "/");
     }
   );
 
