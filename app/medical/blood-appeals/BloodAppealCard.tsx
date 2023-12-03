@@ -17,7 +17,7 @@ type Props = {
   currentUserBloodGroup: string;
 };
 
-export function getCompatibleBloodGroups(bloodGroup: string): string[] {
+function getCompatibleBloodGroups(bloodGroup: string): string[] {
   const bloodGroups: { [key: string]: string[] } = {
     "A+": ["A+", "A-", "O+", "O-"],
     "A-": ["A-", "O-"],
