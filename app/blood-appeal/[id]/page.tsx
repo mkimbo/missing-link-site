@@ -28,10 +28,25 @@ import ONeg from "../../../public/img/bloodO_neg.png";
 import ShareButtons from "@/components/ShareButtons";
 import { BloodDonationRequest } from "@/components/BloodDonationRequest";
 import { getUser } from "@/app/actions/actions";
-import { getCompatibleBloodGroups } from "@/lib/functions";
+
 type Props = {
   params: { id: string };
 };
+
+export function getCompatibleBloodGroups(bloodGroup: string): string[] {
+  const bloodGroups: { [key: string]: string[] } = {
+    "A+": ["A+", "A-", "O+", "O-"],
+    "A-": ["A-", "O-"],
+    "B+": ["B+", "B-", "O+", "O-"],
+    "B-": ["B-", "O-"],
+    "AB+": ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"],
+    "AB-": ["A-", "B-", "AB-", "O-"],
+    "O+": ["O+", "O-"],
+    "O-": ["O-"],
+  };
+
+  return bloodGroups[bloodGroup] || [];
+}
 
 function getBloodGroupImage(bloodGroup: string) {
   switch (bloodGroup) {

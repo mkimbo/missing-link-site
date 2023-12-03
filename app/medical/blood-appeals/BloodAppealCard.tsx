@@ -11,12 +11,26 @@ import ONeg from "../../../public/img/bloodO_neg.png";
 import { TBloodAppeal } from "@/types/missing_person.model";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
-import { getCompatibleBloodGroups } from "@/lib/functions";
 
 type Props = {
   appeal: TBloodAppeal;
   currentUserBloodGroup: string;
 };
+
+export function getCompatibleBloodGroups(bloodGroup: string): string[] {
+  const bloodGroups: { [key: string]: string[] } = {
+    "A+": ["A+", "A-", "O+", "O-"],
+    "A-": ["A-", "O-"],
+    "B+": ["B+", "B-", "O+", "O-"],
+    "B-": ["B-", "O-"],
+    "AB+": ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"],
+    "AB-": ["A-", "B-", "AB-", "O-"],
+    "O+": ["O+", "O-"],
+    "O-": ["O-"],
+  };
+
+  return bloodGroups[bloodGroup] || [];
+}
 
 function getBloodGroupImage(bloodGroup: string) {
   switch (bloodGroup) {
