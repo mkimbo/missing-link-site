@@ -74,7 +74,7 @@ export default function AlertsList() {
   }, [user, db]);
 
   return (
-    <Tabs defaultValue="all" className="w-full lg:w-6/12 px-4 pt-4 mx-auto">
+    <Tabs defaultValue="persons" className="w-full lg:w-6/12 px-4 pt-4 mx-auto">
       <TabsList className="grid w-full grid-cols-4">
         <TabsTrigger value="persons">Persons</TabsTrigger>
         <TabsTrigger value="motors">Motors</TabsTrigger>

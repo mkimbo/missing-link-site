@@ -41,3 +41,8 @@ export const motorSearchFields = {
   ],
   threshold: 0.3,
 };
+
+export const policeSearchFields = {
+  keys: ["label", "county"],
+  threshold: 0.3,
+};

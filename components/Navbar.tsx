@@ -45,7 +45,7 @@ const Navbar = () => {
       label: "Blood Appeals",
     },
     {
-      href: "/",
+      href: "/resources",
       label: "Info & Tips",
     },
   ];

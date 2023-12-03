@@ -1,909 +1,1345 @@
 [
   {
-    "label": "Police Control Room:",
+    "label": "Police Control Room",
     "value": 100,
-    "Tel": "020 2724154",
-    "Tel2": "0721 23399"
+    "contact": "020 2724154",
+    "contact2": "0721 23399",
+    "county": "Nairobi County"
   },
   {
-    "label": "Police Headquarters:",
+    "label": "Police Headquarters",
     "value": 101,
-    "Tel": "020 240000",
-    "Tel2": "0721 228989"
+    "contact": "020 240000",
+    "contact2": "0721 228989",
+    "county": "Nairobi County"
   },
   {
-    "label": "C.I.D. Headquarters:",
+    "label": "C.I.D. Headquarters",
     "value": 102,
-    "Tel": "020 272309"
+    "contact": "020 272309",
+    "county": "Nairobi County"
   },
   {
     "label": "Adungosi Police Station",
     "value": 104,
-    "Tel": "055-22419"
+    "contact": "055-22419",
+    "county": "Bungoma County"
   },
   {
     "label": "Ahero Police Station",
     "value": 105,
-    "Tel": "057-821008"
+    "contact": "057-821008",
+    "county": "Kisumu County"
   },
-  { "label": "Amagoro OCPD", "value": 106, "Tel": "055-54409" },
+  {
+    "label": "Amagoro OCPD",
+    "value": 106,
+    "contact": "055-54409",
+    "county": "Busia County"
+  },
   {
     "label": "Arror Police Station",
     "value": 107,
-    "Tel": "053-22286"
+    "contact": "053-22286",
+    "county": "Elgeyo-Marakwet County"
   },
   {
     "label": "Bahati Police Station",
     "value": 108,
-    "Tel": "051-52299"
+    "contact": "051-52299",
+    "county": "Nakuru County"
   },
   {
     "label": "Bamburi Police Station",
     "value": 109,
-    "Tel": "041-5485316"
+    "contact": "041-5485316",
+    "county": "Mombasa County"
   },
   {
     "label": "Baricho Police Station",
     "value": 110,
-    "Tel": "060-21732"
+    "contact": "060-21732",
+    "county": "Kirinyaga County"
   },
   {
     "label": "Baringo OCPD Office",
     "value": 111,
-    "Tel": "053-22227"
+    "contact": "053-22227",
+    "county": "Baringo County"
   },
   {
     "label": "Bondo OCPD’s Office",
     "value": 112,
-    "Tel": "057-52009"
+    "contact": "057-52009",
+    "county": "Siaya County"
   },
-  { "label": "Bungoma Hotline", "value": 113, "Tel": "055-30555" },
+  {
+    "label": "Bungoma Hotline",
+    "value": 113,
+    "contact": "055-30555",
+    "county": "Bungoma County"
+  },
   {
     "label": "Bura Police Station",
     "value": 114,
-    "Tel": "046-62229"
+    "contact": "046-62229",
+    "county": "Tana River County"
   },
-  { "label": "Buruburu OCPD", "value": 117, "Tel": "020-783584" },
+  {
+    "label": "Buruburu OCPD",
+    "value": 117,
+    "contact": "020-783584",
+    "county": "Nairobi County"
+  },
   {
     "label": "Buruburu Police Station",
     "value": 118,
-    "Tel": "020-786878",
-    "Tel2": "020-787404",
-    "Tel3": "020-787038"
+    "contact": "020-786878",
+    "contact2": "020-787404",
+    "contact3": "020-787038",
+    "county": "Nairobi County"
   },
-  { "label": "Busia Hotline", "value": 119, "Tel": "055-22133" },
+  {
+    "label": "Busia Hotline",
+    "value": 119,
+    "contact": "055-22133",
+    "county": "Busia County"
+  },
   {
     "label": "Butere OCPD Office",
     "value": 120,
-    "Tel": "056-620222"
+    "contact": "056-620222",
+    "county": "Kakamega County"
   },
   {
     "label": "Butere Police Station",
     "value": 121,
-    "Tel": "056-620004"
+    "contact": "056-620004",
+    "county": "Kakamega County"
   },
   {
     "label": "Capital Hill Post",
     "value": 122,
-    "Tel": "020-2721692"
+    "contact": "020-2721692",
+    "county": "Nairobi County"
   },
   {
     "label": "Central PPO Office",
     "value": 123,
-    "Tel": "061-2030885"
+    "contact": "061-2030885",
+    "county": "Nyeri County"
   },
   {
     "label": "Changamwe Police Station",
     "value": 124,
-    "Tel": "041-433700"
+    "contact": "041-433700",
+    "county": "Mombasa County"
   },
+
   {
     "label": "Cherangani Police Station",
     "value": 125,
-    "Tel": "054-30034"
+    "contact": "054-30034",
+    "county": "Trans Nzoia County"
   },
   {
     "label": "Chuka Police Station",
     "value": 126,
-    "Tel": "064-630002"
+    "contact": "064-630002",
+    "county": "Tharaka Nithi County"
   },
-  {
-    "label": "Diani Police Station",
-    "value": 127,
-    "Tel": "040-2229"
-  },
+
   {
     "label": "Eldoret Police Station",
     "value": 128,
-    "Tel": "053-2032900"
+    "contact": "053-2032900",
+    "county": "Uasin Gishu County"
   },
   {
     "label": "Elementaita Police Post",
     "value": 129,
-    "Tel": "050-2030026"
+    "contact": "050-2030026",
+    "county": "Nakuru County"
   },
-  { "label": "Embakasi OCPD", "value": 130, "Tel": "020-823200" },
-  { "label": "Embu Hotline", "value": 131, "Tel": "068-30100" },
+  {
+    "label": "Embakasi OCPD",
+    "value": 130,
+    "contact": "020-823200",
+    "county": "Nairobi County"
+  },
+  {
+    "label": "Embu Hotline",
+    "value": 131,
+    "contact": "068-30100",
+    "county": "Embu County"
+  },
   {
     "label": "Funyula Police Station",
     "value": 132,
-    "Tel": "055-63209"
+    "contact": "055-63209",
+    "county": "Busia County"
   },
   {
     "label": "Garbatulla Police Station",
     "value": 133,
-    "Tel": "064-20682"
+    "contact": "064-20682",
+    "county": "Isiolo County"
   },
-  { "label": "Garissa Hotline", "value": 134, "Tel": "046-2000" },
   {
     "label": "Gatundu Police Station",
     "value": 135,
-    "Tel": "067-74212"
+    "contact": "067-74212",
+    "county": "Kiambu County"
   },
   {
     "label": "Gigiri Police Station",
     "value": 136,
-    "Tel": "020 521 353",
-    "Tel2": "0721 363999"
+    "contact": "020 521 353",
+    "contact2": "0721 363999",
+    "county": "Nairobi County"
   },
   {
     "label": "Gilgil Police Station",
     "value": 137,
-    "Tel": "050-4228"
+    "contact": "050-4228",
+    "county": "Nakuru County"
   },
   {
     "label": "Githunguri Police Station",
     "value": 138,
-    "Tel": "066-65009"
+    "contact": "066-65009",
+    "county": "Kiambu County"
   },
-  { "label": "Gucha OCPD Office", "value": 139, "Tel": "058-30394" },
+  {
+    "label": "Gucha OCPD Office",
+    "value": 139,
+    "contact": "058-30394",
+    "county": "Kisii County"
+  },
   {
     "label": "Hardy Police Station",
     "value": 140,
-    "Tel": "020-891225"
+    "contact": "020-891225",
+    "county": "Nairobi County"
   },
   {
     "label": "Hola Police Station",
     "value": 141,
-    "Tel": "046-62004"
+    "contact": "046-62004",
+    "county": "Tana River County"
   },
-  { "label": "Homa Bay Hotline", "value": 142, "Tel": "059-22444" },
+  {
+    "label": "Homa Bay Hotline",
+    "value": 142,
+    "contact": "059-22444",
+    "county": "Homa Bay County"
+  },
   {
     "label": "Homabay OCPD Office",
     "value": 143,
-    "Tel": "059-22258"
+    "contact": "059-22258",
+    "county": "Homa Bay County"
   },
-  { "label": "Igoji Police Post", "value": 144, "Tel": "064-22432" },
-  { "label": "Ijara OCPD Office", "value": 145, "Tel": "046-62006" },
-  { "label": "Ijara Police", "value": 146, "Tel": "046-62440" },
+  {
+    "label": "Igoji Police Post",
+    "value": 144,
+    "contact": "064-22432",
+    "county": "Meru County"
+  },
+  {
+    "label": "Ijara OCPD Office",
+    "value": 145,
+    "contact": "046-62006",
+    "county": "Garissa County"
+  },
+  {
+    "label": "Ijara Police",
+    "value": 146,
+    "contact": "046-62440",
+    "county": "Garissa County"
+  },
   {
     "label": "Jamhuri Police Post",
     "value": 147,
-    "Tel": "020-565621"
+    "contact": "020-565621",
+    "county": "Nairobi County"
   },
   {
     "label": "Jogoo Police Station",
     "value": 148,
-    "Tel": "020-557766"
+    "contact": "020-557766",
+    "county": "Nairobi County"
   },
   {
     "label": "Jogoo Police Station",
     "value": 149,
-    "Tel": "020-557632"
+    "contact": "020-557632",
+    "county": "Nairobi County"
   },
   {
     "label": "Juja Police Station",
     "value": 150,
-    "Tel": "067-52176"
+    "contact": "067-52176",
+    "county": "Kiambu County"
   },
   {
     "label": "Kabati Police Station",
     "value": 151,
-    "Tel": "060-72223"
+    "contact": "060-72223",
+    "county": "Kirinyaga County"
   },
-  { "label": "Kabete", "value": 152, "Tel": "020-632222" },
-  { "label": "Kahawa Sukari", "value": 153, "Tel": "067-812099" },
+  {
+    "label": "Kabete",
+    "value": 152,
+    "contact": "020-632222",
+    "county": "Kiambu County"
+  },
+  {
+    "label": "Kahawa Sukari",
+    "value": 153,
+    "contact": "067-812099",
+    "county": "Nairobi County"
+  },
   {
     "label": "Kakamega OCPD Office",
     "value": 154,
-    "Tel": "056-31486"
+    "contact": "056-31486",
+    "county": "Kakamega County"
   },
   {
     "label": "Kinangop Police Station",
     "value": 155,
-    "Tel": "065-35015"
+    "contact": "065-35015",
+    "county": "Nyandarua County"
   },
   {
     "label": "Kandara Police Station",
     "value": 156,
-    "Tel": "060-44419"
+    "contact": "060-44419",
+    "county": "Murang'a County"
   },
   {
     "label": "Kangema Police Station",
     "value": 157,
-    "Tel": "060-322002"
+    "contact": "060-322002",
+    "county": "Murang'a County"
   },
   {
     "label": "Kangema Police Station",
     "value": 158,
-    "Tel": "060-322032"
+    "contact": "060-322032",
+    "county": "Murang'a County"
   },
   {
     "label": "Kaptembwa Police Station",
     "value": 159,
-    "Tel": "051-213228"
+    "contact": "051-213228",
+    "county": "Nakuru County"
   },
   {
     "label": "Kapsowar Police Station",
     "value": 160,
-    "Tel": "053-361507"
+    "contact": "053-361507",
+    "county": "Elgeyo-Marakwet County"
   },
   {
     "label": "Karatina Police Station",
     "value": 161,
-    "Tel": "061-72222"
+    "contact": "061-72222",
+    "county": "Nyeri County"
   },
   {
     "label": "Karen Police Station",
     "value": 162,
-    "Tel": "020-882538"
+    "contact": "020-882538",
+    "county": "Nairobi County"
   },
   {
     "label": "Kasarani Police Station",
     "value": 163,
-    "Tel": "020-8563222"
+    "contact": "020-8563222",
+    "county": "Nairobi County"
   },
-  { "label": "Kasarani DCIO", "value": 164, "Tel": "020-8564335" },
-  { "label": "Kasarani OCPD", "value": 165, "Tel": "020-8560756" },
-  { "label": "Keiyo OCPD Office", "value": 166, "Tel": "053-42088" },
+  {
+    "label": "Kasarani DCIO",
+    "value": 164,
+    "contact": "020-8564335",
+    "county": "Nairobi County"
+  },
+  {
+    "label": "Kasarani OCPD",
+    "value": 165,
+    "contact": "020-8560756",
+    "county": "Nairobi County"
+  },
+  {
+    "label": "Keiyo OCPD Office",
+    "value": 166,
+    "contact": "053-42088",
+    "county": "Elgeyo-Marakwet County"
+  },
   {
     "label": "Kenyatta Police Post",
     "value": 167,
-    "Tel": "020-2724614"
+    "contact": "020-2724614",
+    "county": "Nairobi County"
   },
   {
     "label": "Kericho OCPD Office",
     "value": 168,
-    "Tel": "052-30658"
+    "contact": "052-30658",
+    "county": "Kericho County"
   },
   {
     "label": "Kericho POLICE Station",
     "value": 169,
-    "Tel": "052-20222"
+    "contact": "052-20222",
+    "county": "Kericho County"
   },
   {
     "label": "Keroka Police Station",
     "value": 170,
-    "Tel": "058-520064"
+    "contact": "058-520064",
+    "county": "Kisii County"
   },
-  { "label": "Kiambu Hotline", "value": 171, "Tel": "066-22111" },
+  {
+    "label": "Kiambu Hotline",
+    "value": 171,
+    "contact": "066-22111",
+    "county": "Kiambu County"
+  },
   {
     "label": "Kianyaga Police Station",
     "value": 172,
-    "Tel": "060-751002"
+    "contact": "060-751002",
+    "county": "Kirinyaga County"
   },
   {
     "label": "Kibwezi Police Station",
     "value": 173,
-    "Tel": "044-350002"
+    "contact": "044-350002",
+    "county": "Makueni County"
   },
   {
     "label": "Kiganjo Police Station",
     "value": 174,
-    "Tel": "062-86022"
+    "contact": "062-86022",
+    "county": "Nyeri County"
   },
   {
     "label": "Kigumo Police Station",
     "value": 175,
-    "Tel": "060-44409"
+    "contact": "060-44409",
+    "county": "Murang'a County"
   },
   {
     "label": "Kijabe Police Station",
     "value": 176,
-    "Tel": "066-64480"
+    "contact": "066-64480",
+    "county": "Kiambu County"
   },
   {
     "label": "Kikuyu Police Station",
     "value": 177,
-    "Tel": "066-32022"
+    "contact": "066-32022",
+    "county": "Kiambu County"
   },
-  { "label": "Kileleshwa", "value": 178, "Tel": "020-560533" },
-  { "label": "Kilgoris", "value": 179, "Tel": "058-5122009" },
+  {
+    "label": "Kileleshwa",
+    "value": 178,
+    "contact": "020-560533",
+    "county": "Nairobi County"
+  },
+  {
+    "label": "Kilgoris",
+    "value": 179,
+    "contact": "058-5122009",
+    "county": "Narok County"
+  },
   {
     "label": "Kilifi OCPD Office",
     "value": 180,
-    "Tel": "041-522368"
+    "contact": "041-522368",
+    "county": "Kilifi County"
   },
-  { "label": "Kilimani D/OCPD", "value": 181, "Tel": "020-2728885" },
-  { "label": "Kilimani OCPD", "value": 182, "Tel": "020-2710392" },
+  {
+    "label": "Kilimani D/OCPD",
+    "value": 181,
+    "contact": "020-2728885",
+    "county": "Nairobi County"
+  },
+  {
+    "label": "Kilimani OCPD",
+    "value": 182,
+    "contact": "020-2710392",
+    "county": "Nairobi County"
+  },
   {
     "label": "Kilimani Police Station",
     "value": 183,
-    "Tel": "020-2721683"
+    "contact": "020-2721683",
+    "county": "Nairobi County"
   },
   {
     "label": "Kilome Police Station",
     "value": 184,
-    "Tel": "044-322280"
+    "contact": "044-322280",
+    "contact2": "044-322002",
+    "county": "Makueni County"
   },
-  {
-    "label": "Kilome Police Station",
-    "value": 185,
-    "Tel": "044-322002"
-  },
+
   {
     "label": "Kimende Patrol Base",
     "value": 186,
-    "Tel": "066-64014"
+    "contact": "066-64014",
+    "county": "Kiambu County"
   },
   {
     "label": "Kimilili Police Station",
     "value": 187,
-    "Tel": "055-21018"
+    "contact": "055-21018",
+    "county": "Bungoma County"
   },
   {
     "label": "Kiminini Police Station",
     "value": 188,
-    "Tel": "055-44044"
+    "contact": "055-44044",
+    "county": "Trans Nzoia County"
   },
   {
     "label": "Kipipiri Police Station",
     "value": 189,
-    "Tel": "065-72435"
+    "contact": "065-72435",
+    "county": "Nyandarua County"
   },
-  { "label": "Kipkabus OCPP", "value": 190, "Tel": "053-720464" },
+  {
+    "label": "Kipkabus OCPP",
+    "value": 190,
+    "contact": "053-720464",
+    "county": "Uasin Gishu County"
+  },
   {
     "label": "Kiriani Police Post",
     "value": 191,
-    "Tel": "060-51096"
+    "contact": "060-51096",
+    "county": "Murang'a County"
   },
   {
     "label": "Kirinyaga OCPD Office",
     "value": 192,
-    "Tel": "060-21266"
+    "contact": "060-21266",
+    "county": "Kirinyaga County"
   },
   {
     "label": "Kisumu OCPD’s Office",
     "value": 193,
-    "Tel": "057-23594"
+    "contact": "057-23594",
+    "county": "Kisumu County"
   },
-  { "label": "Kitale Hotline", "value": 194, "Tel": "054-30777" },
-  { "label": "Kitui OCPD Office", "value": 195, "Tel": "044-22055" },
-  { "label": "Kuria OCPD’s", "value": 196, "Tel": "057-52853" },
-  { "label": "Kwale OCPD Office", "value": 197, "Tel": "040-4075" },
-  { "label": "Kwhisero OCPP", "value": 198, "Tel": "056-620227" },
-  { "label": "Lamu OCPD Office", "value": 199, "Tel": "042-633120" },
+  {
+    "label": "Kitale Hotline",
+    "value": 194,
+    "contact": "054-30777",
+    "county": "Trans Nzoia County"
+  },
+  {
+    "label": "Kitui OCPD Office",
+    "value": 195,
+    "contact": "044-22055",
+    "county": "Kitui County"
+  },
+  {
+    "label": "Kuria OCPD’s",
+    "value": 196,
+    "contact": "057-52853",
+    "county": "Migori County"
+  },
+
+  {
+    "label": "Kwhisero OCPP",
+    "value": 198,
+    "contact": "056-620227",
+    "county": "Kakamega County"
+  },
+  {
+    "label": "Lamu OCPD Office",
+    "value": 199,
+    "contact": "042-633120",
+    "county": "Lamu County"
+  },
   {
     "label": "Lanet Police Station",
     "value": 200,
-    "Tel": "051-850043"
+    "contact": "051-850043",
+    "county": "Nakuru County"
   },
-  { "label": "Langata OCPD", "value": 201, "Tel": "020-603694" },
+  {
+    "label": "Langata OCPD",
+    "value": 201,
+    "contact": "020-603694",
+    "county": "Nairobi County"
+  },
   {
     "label": "Lari Police Station",
     "value": 202,
-    "Tel": "066-74235"
+    "contact": "066-74235",
+    "county": "Kiambu County"
   },
   {
     "label": "Likoni Police Station",
     "value": 203,
-    "Tel": "041-451222"
+    "contact": "041-451222",
+    "county": "Mombasa County"
   },
   {
     "label": "Lolgorian Police Station",
     "value": 204,
-    "Tel": "053-23237",
-    "Tel2": "051-23237"
+    "contact": "053-23237",
+    "contact2": "051-23237",
+    "county": "Narok County"
   },
   {
     "label": "Luanda Police Station",
     "value": 206,
-    "Tel": "054-251087"
+    "contact": "054-251087",
+    "county": "Vihiga County"
   },
-  { "label": "Lugari OCPD Office", "value": 207, "Tel": "053-53333" },
-  { "label": "Lugari OCPP", "value": 208, "Tel": "053-2031015" },
-  { "label": "Lungalunga Lungalunga", "value": 209, "Tel": "15" },
+  {
+    "label": "Lugari OCPD Office",
+    "value": 207,
+    "contact": "053-53333",
+    "contact2": "053-2031015",
+    "county": "Kakamega County"
+  },
+
   {
     "label": "Lwala Police Station",
     "value": 210,
-    "Tel": "057-520485"
+    "contact": "057-520485",
+    "county": "Homabay County"
+  },
+
+  {
+    "label": "Magumu Police Post",
+    "value": 212,
+    "contact": "065-32916",
+    "county": "Nyandarua County"
   },
   {
-    "label": "Madogo Police Station",
-    "value": 211,
-    "Tel": "046-2372"
+    "label": "Makongeni",
+    "value": 213,
+    "contact": "020-558277",
+    "county": "Nairobi County"
   },
-  { "label": "Magumu Police Post", "value": 212, "Tel": "065-32916" },
-  { "label": "Makongeni", "value": 213, "Tel": "020-558277" },
-  { "label": "Makueni Hotline", "value": 214, "Tel": "044-33000" },
+  {
+    "label": "Makueni Hotline",
+    "value": 214,
+    "contact": "044-33000",
+    "county": "Makueni County"
+  },
   {
     "label": "Makupa Police Station",
     "value": 215,
-    "Tel": "041-491605"
+    "contact": "041-491605",
+    "county": "Mombasa County"
   },
   {
     "label": "Malaba Police Station",
     "value": 216,
-    "Tel": "055-54038"
+    "contact": "055-54038",
+    "county": "Busia County"
   },
   {
     "label": "Malakisi Police Station",
     "value": 217,
-    "Tel": "055-30507"
+    "contact": "055-30507",
+    "county": "Bungoma County"
   },
-  { "label": "Malindi Hotline", "value": 218, "Tel": "042-31555" },
+  {
+    "label": "Malindi Hotline",
+    "value": 218,
+    "contact": "042-31555",
+    "county": "Kilifi County"
+  },
   {
     "label": "Malindi OCPD Office",
     "value": 219,
-    "Tel": "042-31348"
+    "contact": "042-31348",
+    "county": "Kilifi County"
   },
   {
     "label": "Malindi Police Station",
     "value": 220,
-    "Tel": "042-20486"
+    "contact": "042-20486",
+    "county": "Kilifi County"
   },
   {
     "label": "Mandera OCPD Office",
     "value": 221,
-    "Tel": "046-52003"
+    "contact": "046-52003",
+    "county": "Mandera County"
   },
-  { "label": "Maragua Hotline", "value": 222, "Tel": "060-313339" },
+  {
+    "label": "Maragua Hotline",
+    "value": 222,
+    "contact": "060-313339",
+    "county": "Murang'a County"
+  },
   {
     "label": "Maragua OCPD Office",
     "value": 223,
-    "Tel": "060-64026"
+    "contact": "060-64026",
+    "county": "Murang'a County"
   },
   {
     "label": "Maragua Police Station",
     "value": 224,
-    "Tel": "060-42002"
+    "contact": "060-42002",
+    "county": "Murang'a County"
   },
-  { "label": "Marakwet Hotline", "value": 225, "Tel": "053-361500" },
+  {
+    "label": "Marakwet Hotline",
+    "value": 225,
+    "contact": "053-361500",
+    "county": "Elgeyo-Marakwet County"
+  },
   {
     "label": "Marakwet OCPD Office",
     "value": 226,
-    "Tel": "053-5122086"
+    "contact": "053-5122086",
+    "county": "Elgeyo-Marakwet County"
   },
   {
     "label": "Mariakani Police Station",
     "value": 227,
-    "Tel": "041-33004"
+    "contact": "041-33004",
+    "county": "Kilifi County"
   },
   {
     "label": "Marigat Police Station",
     "value": 228,
-    "Tel": "053-51007"
+    "contact": "053-51007",
+    "county": "Baringo County"
   },
-  { "label": "Masalani", "value": 229, "Tel": "046-62013" },
-  { "label": "Mathare", "value": 230, "Tel": "020-3764118" },
-  { "label": "Mathare", "value": 231, "Tel": "020-3762698" },
+
+  {
+    "label": "Mathare Police Station",
+    "value": 231,
+    "contact": "020-3762698",
+    "contact2": "020-3764118",
+    "county": "Nairobi County"
+  },
   {
     "label": "Matunda Police Station",
     "value": 232,
-    "Tel": "053-72172"
+    "contact": "053-72172",
+    "county": "Uasin Gishu County"
   },
   {
     "label": "Maua Police Station",
     "value": 233,
-    "Tel": "064-21022"
+    "contact": "064-21022",
+    "county": "Meru County"
   },
-  { "label": "Mbaraki Depot", "value": 234, "Tel": "041-316168" },
+  {
+    "label": "Mbaraki Depot Station",
+    "value": 234,
+    "contact": "041-316168",
+    "county": "Mombasa County"
+  },
   {
     "label": "Menengai Police Station",
     "value": 236,
-    "Tel": "051-343333"
+    "contact": "051-343333",
+    "county": "Nakuru County"
   },
   {
     "label": "Meru Central Hotline",
     "value": 238,
-    "Tel": "064-31222"
+    "contact": "064-31222",
+    "county": "Meru County"
   },
   {
     "label": "Meru North OCPD Office",
     "value": 239,
-    "Tel": "064-21127"
+    "contact": "064-21127",
+    "county": "Meru County"
   },
   {
     "label": "Meru South OCPD Office",
     "value": 240,
-    "Tel": "064-630017"
+    "contact": "064-630017",
+    "county": "Meru County"
   },
   {
     "label": "Migwani Police Station",
     "value": 241,
-    "Tel": "044-822464"
+    "contact": "044-822464",
+    "county": "Kitui County"
   },
   {
     "label": "Modogashe Police Station",
     "value": 244,
-    "Tel": "046-3054"
+    "contact": "046-3054",
+    "county": "Garissa County"
   },
   {
     "label": "Moi’s Bridge Police Station",
     "value": 245,
-    "Tel": "054-72006"
+    "contact": "054-72006",
+    "county": "Uasin Gishu County"
   },
-  { "label": "Molo OCPD Office", "value": 246, "Tel": "051-5122086" },
+  {
+    "label": "Molo OCPD Office",
+    "value": 246,
+    "contact": "051-5122086",
+    "county": "Nakuru County"
+  },
   {
     "label": "Mombasa Central Police Station",
     "value": 247,
-    "Tel": "041-225501"
+    "contact": "041-225501",
+    "county": "Mombasa County"
   },
   {
     "label": "Mombasa Headquaters",
     "value": 248,
-    "Tel": "041-222121"
+    "contact": "041-222121",
+    "county": "Mombasa County"
   },
   {
     "label": "Mombasa Urban OCPD Office",
     "value": 249,
-    "Tel": "041-230706"
-  },
-  {
-    "label": "Moyale Police Station",
-    "value": 250,
-    "Tel": "069-2014"
+    "contact": "041-230706",
+    "county": "Mombasa County"
   },
   {
     "label": "Msambweni Police Station",
     "value": 251,
-    "Tel": "040-52002"
+    "contact": "040-52002",
+    "county": "Kwale County"
   },
   {
     "label": "Mt Elgon OCPD Office",
     "value": 252,
-    "Tel": "054-21843"
+    "contact": "054-21843",
+    "county": "Bungoma County"
   },
   {
     "label": "Mtitu Andei Police Station",
     "value": 253,
-    "Tel": "044-30507"
+    "contact": "044-30507",
+    "county": "Makueni County"
   },
   {
     "label": "Mukurwe-Ini Police Station",
     "value": 254,
-    "Tel": "061-60028"
+    "contact": "061-60028",
+    "county": "Nyeri County"
   },
   {
     "label": "Mumias Police Station",
     "value": 255,
-    "Tel": "056-641010"
+    "contact": "056-641010",
+    "county": "Kakamega County"
   },
-  { "label": "Muranga Hotline", "value": 256, "Tel": "060-31188" },
+  {
+    "label": "Muranga Hotline",
+    "value": 256,
+    "contact": "060-31188",
+    "county": "Murang'a County"
+  },
   {
     "label": "Muthaiga Police Station",
     "value": 257,
-    "Tel": "020-3762611"
+    "contact": "020-3762611",
+    "county": "Nairobi County"
   },
   {
     "label": "Mweiga Police Station",
     "value": 258,
-    "Tel": "061-55002"
+    "contact": "061-55002",
+    "county": "Nyeri County"
   },
   {
     "label": "Mwingi OCPD Office",
     "value": 259,
-    "Tel": "044-822196"
+    "contact": "044-822196",
+    "county": "Kitui County"
   },
-  { "label": "Mwingi Pabx", "value": 260, "Tel": "044-822032" },
+  {
+    "label": "Mwingi Pabx",
+    "value": 260,
+    "contact": "044-822032",
+    "county": "Kitui County"
+  },
   {
     "label": "Mwingi Police Station",
     "value": 261,
-    "Tel": "044-822146"
+    "contact": "044-822146",
+    "county": "Kitui County"
   },
   {
     "label": "Nairobi Central OCPD",
     "value": 262,
-    "Tel": "020-220117"
+    "contact": "020-220117",
+    "county": "Nairobi County"
   },
   {
     "label": "Nairobi Central Police Station",
     "value": 263,
-    "Tel": "020-225685"
+    "contact": "020-225685",
+    "county": "Nairobi County"
   },
   {
     "label": "Nairobi Industrial Area",
     "value": 264,
-    "Tel": "020-557284"
+    "contact": "020-557284",
+    "county": "Nairobi County"
   },
-  { "label": "Naivasha", "value": 265, "Tel": "050-2030025" },
   {
     "label": "Naivasha OCPD Office",
     "value": 266,
-    "Tel": "050-2020288"
+    "contact": "050-2020288",
+    "contact2": "050-2030025",
+    "county": "Nakuru County"
   },
   {
     "label": "Nakuru Hotline",
     "value": 267,
-    "Tel": "051-2217417",
-    "Tel2": "051-40000",
-    "Tel3": "051-30666"
+    "contact": "051-2217417",
+    "contact2": "051-40000",
+    "contact3": "051-30666",
+    "county": "Nakuru County"
   },
   {
     "label": "Nakuru Police Station",
     "value": 270,
-    "Tel": "051-2216597"
+    "contact": "051-2216597",
+    "county": "Nakuru County"
   },
-  { "label": "Narok OCPD Office", "value": 271, "Tel": "050-22127" },
+  {
+    "label": "Narok OCPD Office",
+    "value": 271,
+    "contact": "050-22127",
+    "county": "Narok County"
+  },
   {
     "label": "Narok Police Station",
     "value": 272,
-    "Tel": "050-22201"
+    "contact": "050-22201",
+    "county": "Narok County"
   },
   {
     "label": "Naromoru Police Station",
     "value": 273,
-    "Tel": "061-62003"
+    "contact": "061-62003",
+    "county": "Nyeri County"
   },
   {
     "label": "Nchiru Police Station",
     "value": 274,
-    "Tel": "064-66409"
+    "contact": "064-66409",
+    "county": "Meru County"
   },
   {
     "label": "Ndaragwa Police Station",
     "value": 275,
-    "Tel": "065-32078",
-    "Tel2": "065-32280"
+    "contact": "065-32078",
+    "contact2": "065-32280",
+    "county": "Nyandarua County"
   },
-  { "label": "Ngomongo", "value": 277, "Tel": "020-803340" },
-  { "label": "Ngubi Patrol Base", "value": 278, "Tel": "066-41582" },
+  {
+    "label": "Ngomongo",
+    "value": 277,
+    "contact": "020-803340",
+    "county": "Nairobi County"
+  },
+  {
+    "label": "Ngubi Patrol Base",
+    "value": 278,
+    "contact": "066-41582",
+    "county": "Nakuru County"
+  },
   {
     "label": "Njabini Police Station",
     "value": 279,
-    "Tel": "065-32459"
+    "contact": "065-32459",
+    "county": "Nyandarua County"
   },
   {
     "label": "Njoro Police Station",
     "value": 280,
-    "Tel": "051-61106"
+    "contact": "051-61106",
+    "county": "Nakuru County"
   },
   {
     "label": "Nkubu Police Station",
     "value": 281,
-    "Tel": "064-51002"
+    "contact": "064-51002",
+    "county": "Meru County"
   },
   {
     "label": "Ntumu Police Station",
     "value": 282,
-    "Tel": "064-22063"
+    "contact": "064-22063",
+    "county": "Tharaka-Nithi County"
   },
   {
     "label": "Nyahururu Police Station",
     "value": 283,
-    "Tel": "065-22052",
-    "Tel2": "065-22722"
+    "contact": "065-22052",
+    "contact2": "065-22722",
+    "county": "Laikipia County"
   },
   {
     "label": "Nyali Police Station",
     "value": 285,
-    "Tel": "041-477555"
+    "contact": "041-477555",
+    "county": "Mombasa County"
   },
-  { "label": "Nyamira Hotline", "value": 286, "Tel": "058-6144488" },
-  { "label": "Nyamira OCPD", "value": 287, "Tel": "058-6144035" },
+  {
+    "label": "Nyamira Hotline",
+    "value": 286,
+    "contact": "058-6144488",
+    "county": "Nyamira County"
+  },
+  {
+    "label": "Nyamira OCPD",
+    "value": 287,
+    "contact": "058-6144035",
+    "county": "Nyamira County"
+  },
   {
     "label": "Nyamira Police Station",
     "value": 288,
-    "Tel": "058-6144029"
+    "contact": "058-6144029",
+    "county": "Nyamira County"
   },
-  { "label": "Nyandarua Hotline", "value": 289, "Tel": "065-32555" },
-  { "label": "Nyando OCPD", "value": 290, "Tel": "057-821167" },
-  { "label": "Nyeri Hotline", "value": 291, "Tel": "061-2030555" },
+  {
+    "label": "Nyandarua Hotline",
+    "value": 289,
+    "contact": "065-32555",
+    "county": "Nyandarua County"
+  },
+  {
+    "label": "Nyando OCPD",
+    "value": 290,
+    "contact": "057-821167",
+    "county": "Kisumu County"
+  },
+  {
+    "label": "Nyeri Hotline",
+    "value": 291,
+    "contact": "061-2030555",
+    "county": "Nyeri County"
+  },
   {
     "label": "Ol Joro Orok Police Station",
     "value": 292,
-    "Tel": "065-22919"
+    "contact": "065-22919",
+    "county": "Nyandarua County"
   },
   {
     "label": "Ol Kalou Police Station",
     "value": 293,
-    "Tel": "065-72003"
+    "contact": "065-72003",
+    "county": "Nyandarua County"
   },
   {
     "label": "Othaya Police Station",
     "value": 294,
-    "Tel": "061-52004"
+    "contact": "061-52004",
+    "county": "Nyeri County"
   },
   {
     "label": "Oyugis Police Station",
     "value": 295,
-    "Tel": "059-31035"
+    "contact": "059-31035",
+    "county": "Homa Bay County"
   },
   {
     "label": "Pangani Police Station",
     "value": 296,
-    "Tel": "020-6760142"
+    "contact": "020-6760142",
+    "county": "Nairobi County"
   },
+
   {
     "label": "Parklands Police Station",
-    "value": 297,
-    "Tel": "020-3742238"
-  },
-  {
-    "label": "Parkalnds Police Station",
     "value": 298,
-    "Tel": "020-3746115"
+    "contact": "020-3746115",
+    "contact2": "020-3742238",
+    "county": "Nairobi County"
   },
   {
     "label": "Port Victoria Police",
     "value": 299,
-    "Tel": "055-63409"
+    "contact": "055-63409",
+    "county": "Busia County"
   },
-  { "label": "Rachuonyo Hotline", "value": 300, "Tel": "059-31200" },
+  {
+    "label": "Rachuonyo Hotline",
+    "value": 300,
+    "contact": "059-31200",
+    "county": "Homa Bay County"
+  },
   {
     "label": "Rachuonyo OCPD’s Office",
     "value": 301,
-    "Tel": "059-31284"
+    "contact": "059-31284",
+    "county": "Homa Bay County"
   },
   {
     "label": "Rhamu Police Station",
     "value": 302,
-    "Tel": "046-52454"
+    "contact": "046-52454",
+    "county": "Mandera County"
   },
   {
     "label": "Riruta Police Station",
     "value": 303,
-    "Tel": "020-560921"
+    "contact": "020-560921",
+    "county": "Nairobi County"
   },
   {
     "label": "Ruiru Police Station",
     "value": 304,
-    "Tel": "067-54260"
+    "contact": "067-54260",
+    "county": "Kiambu County"
   },
   {
     "label": "Runyenjes PoliceStation",
     "value": 305,
-    "Tel": "068-62002"
+    "contact": "068-62002",
+    "county": "Embu County"
   },
-  { "label": "Rweno Police Post", "value": 306, "Tel": "066-60092" },
+  {
+    "label": "Rweno Police Post",
+    "value": 306,
+    "contact": "066-60092",
+    "county": "Nakuru County"
+  },
   {
     "label": "Saba Saba Police Post",
     "value": 307,
-    "Tel": "060-42463"
+    "contact": "060-42463",
+    "county": "Nairobi County"
   },
   {
     "label": "Sagana Police Station",
     "value": 308,
-    "Tel": "060-46002"
+    "contact": "060-46002",
+    "county": "Nyeri County"
   },
   {
     "label": "Salama Police Station",
     "value": 309,
-    "Tel": "044-322469"
+    "contact": "044-322469",
+    "county": "Makueni County"
   },
   {
     "label": "Serem Police Station",
     "value": 310,
-    "Tel": "054-41565"
+    "contact": "054-41565",
+    "county": "Uasin Gishu County"
   },
+
   {
-    "label": "Sericho Police Station",
-    "value": 311,
-    "Tel": "064-3502"
-  },
-  {
-    "label": "Shauri Moyo",
+    "label": "Shauri Moyo Police Station",
     "value": 312,
-    "Tel": "020-652124",
-    "Tel2": "020-652125"
+    "contact": "020-652124",
+    "contact2": "020-652125",
+    "county": "Nairobi County"
   },
-  { "label": "Siaya", "value": 314, "Tel": "057-321078" },
+  {
+    "label": "Siaya Police Station",
+    "value": 314,
+    "contact": "057-321078",
+    "county": "Siaya County"
+  },
   {
     "label": "Siaya D/OCPD Office",
     "value": 315,
-    "Tel": "057-321080",
-    "Tel2": "057-321077"
+    "contact": "057-321080",
+    "contact2": "057-321077",
+    "county": "Siaya County"
   },
-  { "label": "Siaya Hotline", "value": 316, "Tel": "057-321666" },
+  {
+    "label": "Siaya Hotline",
+    "value": 316,
+    "contact": "057-321666",
+    "county": "Siaya County"
+  },
   {
     "label": "Solai Police Station",
     "value": 318,
-    "Tel": "051-52492"
+    "contact": "051-52492",
+    "county": "Nakuru County"
   },
-  { "label": "Spring Valley", "value": 320, "Tel": "020-4181245" },
+  {
+    "label": "Spring Valley",
+    "value": 320,
+    "contact": "020-4181245",
+    "county": "Nairobi County"
+  },
   {
     "label": "Subukia Police Station",
     "value": 321,
-    "Tel": "051-52024"
+    "contact": "051-52024",
+    "county": "Nakuru County"
   },
   {
     "label": "Sultan Hamud Police Station",
     "value": 322,
-    "Tel": "044-52001"
+    "contact": "044-52001",
+    "county": "Makueni County"
   },
   {
     "label": "Taita Taveta OCPD Office",
     "value": 323,
-    "Tel": "043-30303"
+    "contact": "043-30303",
+    "county": "Taita Taveta County"
   },
   {
     "label": "Taita Taveta Police Station",
     "value": 324,
-    "Tel": "043-5352224"
+    "contact": "043-5352224",
+    "county": "Taita Taveta County"
   },
   {
     "label": "Tambach Police Station",
     "value": 325,
-    "Tel": "053-42450"
+    "contact": "053-42450",
+    "county": "Baringo County"
   },
-  { "label": "Tana OCPD Office", "value": 326, "Tel": "046-62083" },
-  { "label": "Taru", "value": 327, "Tel": "040-2502" },
+  {
+    "label": "Tana OCPD Office",
+    "value": 326,
+    "contact": "046-62083",
+    "county": "Tana River County"
+  },
+
   {
     "label": "Taveta Police Station",
     "value": 328,
-    "Tel": "043-5352222"
+    "contact": "043-5352222",
+    "county": "Taita Taveta County"
   },
-  { "label": "Teso Hotline", "value": 329, "Tel": "055-54444" },
-  { "label": "Thika Hotline", "value": 330, "Tel": "067-31000" },
+  {
+    "label": "Teso Hotline",
+    "value": 329,
+    "contact": "055-54444",
+    "county": "Busia County"
+  },
+  {
+    "label": "Thika Hotline",
+    "value": 330,
+    "contact": "067-31000",
+    "county": "Kiambu County"
+  },
   {
     "label": "Thika Police Station",
     "value": 331,
-    "Tel": "067-31652",
-    "Tel2": "067-21074"
+    "contact": "067-31652",
+    "contact2": "067-21074",
+    "county": "Kiambu County"
   },
   {
     "label": "Thindigua Patrol Base",
     "value": 333,
-    "Tel": "066-513366"
+    "contact": "066-513366",
+    "county": "Kiambu County"
   },
   {
     "label": "Tigania Police Station",
     "value": 334,
-    "Tel": "064-66255"
+    "contact": "064-66255",
+    "county": "Meru County"
   },
   {
     "label": "Tigoni Police Station",
     "value": 335,
-    "Tel": "066-73222"
+    "contact": "066-73222",
+    "county": "Kiambu County"
   },
   {
     "label": "Timau Police Station",
     "value": 336,
-    "Tel": "064-41002"
+    "contact": "064-41002",
+    "county": "Meru County"
   },
-  { "label": "Tot Police Station", "value": 337, "Tel": "053-21069" },
-  { "label": "Trans-Mara OCPD", "value": 338, "Tel": "053-2345" },
+  {
+    "label": "Tot Police Station",
+    "value": 337,
+    "contact": "053-21069",
+    "county": "Elgeyo-Marakwet County"
+  },
+
   {
     "label": "Turbo Police Station",
     "value": 339,
-    "Tel": "053-53007"
+    "contact": "053-53007",
+    "county": "Uasin Gishu County"
   },
   {
     "label": "Ukwala Police Station",
     "value": 340,
-    "Tel": "057-34409"
+    "contact": "057-34409",
+    "county": "Siaya County"
   },
-  { "label": "Vihiga OCPD Office", "value": 341, "Tel": "054-51193" },
-  { "label": "Voi Police Station", "value": 342, "Tel": "043-31220" },
-  { "label": "Wajir OCPD Office", "value": 343, "Tel": "046-421505" },
+  {
+    "label": "Vihiga OCPD Office",
+    "value": 341,
+    "contact": "054-51193",
+    "county": "Vihiga County"
+  },
+  {
+    "label": "Voi Police Station",
+    "value": 342,
+    "contact": "043-31220",
+    "county": "Taita Taveta County"
+  },
+  {
+    "label": "Wajir OCPD Office",
+    "value": 343,
+    "contact": "046-421505",
+    "county": "Wajir County"
+  },
   {
     "label": "Wajir Police Station",
     "value": 344,
-    "Tel": "046-421196"
+    "contact": "046-421196",
+    "county": "Wajir County"
   },
   {
     "label": "Wanguru PoliceStation",
     "value": 345,
-    "Tel": "060-48002"
+    "contact": "060-48002",
+    "county": "Kirinyaga County"
   },
   {
     "label": "Watamu Police Station",
     "value": 346,
-    "Tel": "042-32286"
+    "contact": "042-32286",
+    "county": "Kilifi County"
   },
   {
     "label": "Webuye Police Station",
     "value": 347,
-    "Tel": "055-41044"
+    "contact": "055-41044",
+    "county": "Bungoma County"
   },
   {
     "label": "Wundanyi Police Station",
     "value": 348,
-    "Tel": "043-42002"
+    "contact": "043-42002",
+    "county": "Taita Taveta County"
   },
   {
     "label": "Yala Police Station",
     "value": 349,
-    "Tel": "057-335235"
+    "contact": "057-335235",
+    "county": "Siaya County"
   }
 ]

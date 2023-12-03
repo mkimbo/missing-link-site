@@ -14,3 +14,11 @@ export interface NavData {
 }
 
 export type TRadius = "3" | "5" | "10" | "50";
+
+export type TPoliceContact = {
+  label: string;
+  value: number;
+  contact: string;
+  contact2?: string;
+  county?: string;
+};
