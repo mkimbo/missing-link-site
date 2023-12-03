@@ -2,7 +2,6 @@
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
-  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -11,7 +10,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { useZact } from "zact/client";
-import { savePersonSighting, saveMotorSighting } from "@/app/actions/actions";
+import { saveDonationRequest } from "@/app/actions/actions";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -55,29 +54,17 @@ export function BloodDonationRequest({
   });
 
   const { handleSubmit, control, formState, reset } = methods;
-  const { mutate, data, isLoading } = useZact(saveMotorSighting);
-  const {
-    mutate: sendit,
-    data: response,
-    isLoading: isRunning,
-  } = useZact(savePersonSighting);
-
-  function calculateDaysFromDate(date: number): number {
-    const currentDate = new Date().getTime();
-    const diffInMs = Math.abs(currentDate - date);
-    const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
-    return diffInDays;
-  }
+  const { mutate, data, isLoading } = useZact(saveDonationRequest);
 
   React.useEffect(() => {
-    if (data?.success || response?.success) {
+    if (data?.success) {
       toast({
-        title: "Thank you, sighting recorded succesfully!",
+        title: "Thank you, request recorded succesfully!",
       });
       reset();
       setOpen(false);
     }
-  }, [data, response, reset]);
+  }, [data, reset]);
 
   if (!user || !user?.email) {
     return (
@@ -135,33 +122,20 @@ export function BloodDonationRequest({
             <div className="grid gap-4 py-4"></div>
             <DialogFooter>
               <Button
-                disabled={isLoading || isRunning}
+                disabled={isLoading}
                 type="button"
                 variant="default"
                 onClick={async () => {
                   if (!user) return;
 
                   handleSubmit((values) => {
-                    // if (type == "motor") {
-                    //   mutate({
-                    //     ...values,
-                    //     sightedBy: user.uid!,
-                    //     itemId: missingItem.id!,
-                    //   });
-                    // }
-                    // if (type == "person") {
-                    //   sendit({
-                    //     ...values,
-                    //     sightedBy: user.uid!,
-                    //     itemId: missingItem.id!,
-                    //   });
-                    // }
+                    mutate({
+                      ...values,
+                    });
                   })();
                 }}
               >
-                {(isLoading || isRunning) && (
-                  <Loader className="mr-2 h-4 w-4 animate-spin" />
-                )}
+                {isLoading && <Loader className="mr-2 h-4 w-4 animate-spin" />}
                 Submit
               </Button>
             </DialogFooter>
