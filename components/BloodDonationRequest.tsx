@@ -24,6 +24,7 @@ import { useRouter } from "next/navigation";
 import { Loader } from "lucide-react";
 import FormDisclaimerInput from "./form_inputs/form_disclaimer_input";
 import { maskPhoneNumber } from "@/lib/functions";
+import { donationRequestFormSchema } from "@/types/zod_schemas";
 type Props = {
   appealId: string;
   creatorId: string;
@@ -39,19 +40,18 @@ export function BloodDonationRequest({
   const path = usePathname();
   const router = useRouter();
   const [open, setOpen] = React.useState(false);
-  const donationRequestFormSchema = z.object({
-    appealId: z.string({ required_error: "Required" }),
-    donorRequestContact: z.string({ required_error: "Required" }),
-    donorId: z.string({ required_error: "Required" }),
-    requestAccepted: z.boolean(),
-  });
 
   type TSightingForm = z.infer<typeof donationRequestFormSchema>;
 
   const methods = useForm<TSightingForm>({
     resolver: zodResolver(donationRequestFormSchema),
     reValidateMode: "onChange",
-    defaultValues: { requestAccepted: false },
+    defaultValues: {
+      requestAccepted: false,
+      appealId: appealId,
+      donorId: user?.uid!,
+      donorRequestContact: donorContact!,
+    },
   });
 
   const { handleSubmit, control, formState, reset } = methods;

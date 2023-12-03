@@ -17,6 +17,7 @@ import {
   registerMobileNumberSchema,
   bloodAppealSchema,
   saveMedicalAlertSchema,
+  donationRequestFormSchema,
 } from "@/types/zod_schemas";
 import { revalidatePath } from "next/cache";
 import {
@@ -33,6 +34,7 @@ import {
 import { getTenantFromCookies } from "@/auth/server-auth-provider";
 import { cookies } from "next/headers";
 import { User } from "@/types/redux";
+import { app } from "firebase-admin";
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 const twilioClient = require("twilio")(accountSid, authToken);
@@ -157,7 +159,6 @@ export const savePersonSighting = zact(saveSightingSchema)(async (input) => {
 });
 
 export const saveMotorSighting = zact(saveSightingSchema)(async (input) => {
-  console.log(input, "formState.isValid");
   const docRef = serverDB
     .collection(process.env.FIREBASE_FIRESTORE_MISSING_MOTORS!)
     .doc(input.itemId);
@@ -400,6 +401,7 @@ export const updateUser = zact(updateUserSchema)(
     data
   ): Promise<{
     success: boolean;
+
     data: z.infer<typeof updateUserSchema> | null;
   }> => {
     try {
@@ -412,6 +414,108 @@ export const updateUser = zact(updateUserSchema)(
     } catch (error) {
       console.log("error fetching user", error);
       return { success: false, data: null };
+    }
+  }
+);
+
+export const requestDonation = zact(donationRequestFormSchema)(
+  async (
+    data
+  ): Promise<{
+    success: boolean;
+    ownerNotified: boolean;
+    errMsg?: string;
+  }> => {
+    try {
+      const user = await serverDB
+        .collection(process.env.FIREBASE_FIRESTORE_USER_COLLECTION!)
+        .doc(data.donorId)
+        .get();
+
+      if (!user.exists) {
+        return {
+          success: false,
+          ownerNotified: false,
+          errMsg: "User not found",
+        };
+      }
+
+      const docRef = serverDB
+        .collection(process.env.FIREBASE_FIRESTORE_BLOOD_APPEALS!)
+        .doc(data.appealId);
+      const appealDoc = await docRef.get();
+      const appeal = appealDoc.data();
+
+      const caseOwner = await serverDB
+        .collection(process.env.FIREBASE_FIRESTORE_USER_COLLECTION!)
+        .doc(appeal?.createdBy)
+        .get();
+      await docRef.update({
+        donationRequests: admin.firestore.FieldValue.arrayUnion({
+          donorId: data.donorId,
+          donorRequestContact: data.donorRequestContact,
+          donorName: user.data()?.fullname,
+          geohash: user.data()?.geohash,
+          lat: user.data()?.lat,
+          lng: user.data()?.lng,
+          requestAccepted: false,
+        }),
+      });
+
+      //revalidatePath("/profile");
+      const notification = {
+        title: "Good News!",
+        body: `A compatible donor has been found. Contact them on ${data.donorRequestContact}`,
+        icon: "",
+        click_action: `${process.env.NEXT_PUBLIC_URL!}/blood-appeal/${
+          data.appealId
+        }`,
+        type: "bloodAppeal" as TAlertType,
+      };
+      const tokenData = [
+        {
+          token: caseOwner.data()?.notificationToken,
+          userId: appeal?.createdBy,
+        },
+      ];
+      if (!caseOwner.data()?.notificationToken) {
+        console.log(
+          "Case owner has no notification token. No notification sent."
+        );
+        return { success: true, ownerNotified: false };
+      }
+      const successfullyNotified = await sendAlertToUserDevices(
+        tokenData,
+        notification
+      );
+
+      const notifiedList = [];
+      for (const user of successfullyNotified) {
+        //const distanceInKm = geofire.distanceBetween(center, [user.lat, user.lng]);
+        notifiedList.push({
+          userId: user.userId,
+          distance: 0,
+          points: 0, // TODO: calculate points based on distance
+          redeemed: false,
+          seen: false,
+        });
+      }
+
+      await saveNotification({
+        content: `A donor has been found for ${appeal?.fullname}`,
+        ownerId: appeal?.createdBy,
+        resourceId: appeal?.id,
+        resourceType: "bloodAppeal",
+        createdAt: Date.now(),
+        image: "",
+        lat: user.data()?.lat,
+        lng: user.data()?.lng,
+        notifiedUsers: notifiedList,
+      });
+      return { success: true, ownerNotified: notifiedList.length > 0 };
+    } catch (error) {
+      console.log("error", error);
+      return { success: false, errMsg: `${error}`, ownerNotified: false };
     }
   }
 );

@@ -182,3 +182,10 @@ export const verifyMobileNumberSchema = z.object({
 export const registerMobileNumberSchema = z.object({
   mobile: z.string(),
 });
+
+export const donationRequestFormSchema = z.object({
+  appealId: z.string({ required_error: "Required" }),
+  donorRequestContact: z.string({ required_error: "Required" }),
+  donorId: z.string({ required_error: "Required" }),
+  requestAccepted: z.boolean(),
+});
