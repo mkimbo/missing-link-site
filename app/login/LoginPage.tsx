@@ -72,21 +72,21 @@ export function LoginPage() {
         },
       });
       setHasLogged(true);
-      // router.push(redirect ?? "/");
-      router.replace(redirect ?? "/");
+      router.push(redirect ?? "/");
+      router.refresh();
     }
   );
 
   return (
     <div className="flex flex-col items-center pt-10  sm:pt-20 px-4">
-      {hasLogged && (
+      {/* {hasLogged && (
         <div>
           <span>
             Redirecting to <strong>{redirect || "/"}</strong>
           </span>
           <Loader className="mr-2 h-4 w-4 animate-spin" />
         </div>
-      )}
+      )} */}
       {!hasLogged && (
         <Card>
           <CardHeader>
