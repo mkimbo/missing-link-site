@@ -1,5 +1,4 @@
-import { Card } from "@/components/ui/card";
-import { Bike, Car, HeartPulse, Users2 } from "lucide-react";
+import { Siren } from "lucide-react";
 import ResourceCard from "./ResourceCard";
 
 export default function EmergencyContacts() {
@@ -9,14 +8,8 @@ export default function EmergencyContacts() {
       href: "/resources?type=police-contacts",
       description:
         "A list of police stations in the country with their contact details.",
-      icon: <Users2 className=" h-10 w-10 mb-2 opacity-75" />,
+      icon: <Siren className=" h-10 w-10 mb-2 opacity-75" />,
     },
-    // {
-    //   title: "Ambulance Contacts",
-    //   href: "/resources?type=ambulance-contacts",
-    //   description: "Send out timely alerts to blood donors near you.",
-    //   icon: <HeartPulse className=" h-10 w-10 mb-2 opacity-75" />,
-    // },
   ];
 
   return (

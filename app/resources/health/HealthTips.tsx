@@ -1,5 +1,4 @@
-import { Card } from "@/components/ui/card";
-import { Bike, Car, HeartPulse, Users2 } from "lucide-react";
+import { BrainCog, Cross, User2, Users2 } from "lucide-react";
 import ResourceCard from "../ResourceCard";
 
 export default function HealthTips() {
@@ -8,26 +7,28 @@ export default function HealthTips() {
       title: "Personal Wellness",
       href: "/resources?type=personal-health",
       description:
-        " A list of police stations in the country with their contact details.",
-      icon: <Users2 className=" h-10 w-10 mb-2 opacity-75" />,
+        "Wellness from the inside out.Be healthy and enjoy life more.",
+      icon: <User2 className=" h-10 w-10 mb-2 opacity-75" />,
     },
     {
       title: "Mental Health",
       href: "/resources?type=mental-health",
-      description: "Send out timely alerts to blood donors near you.",
-      icon: <HeartPulse className=" h-10 w-10 mb-2 opacity-75" />,
+      description: "Mental health matters, You matter. End the stigma.",
+      icon: <BrainCog className=" h-10 w-10 mb-2 opacity-75" />,
     },
     {
       title: "Sexual Health",
       href: "/resources?type=sexual-health",
-      description: "Send out timely alerts to blood donors near you.",
-      icon: <HeartPulse className=" h-10 w-10 mb-2 opacity-75" />,
+      description:
+        "Empower your sexual health with open conversations and safer relations",
+      icon: <Users2 className=" h-10 w-10 mb-2 opacity-75" />,
     },
     {
       title: "First Aid",
       href: "/resources?type=first-aid",
-      description: "Send out timely alerts to blood donors near you.",
-      icon: <HeartPulse className=" h-10 w-10 mb-2 opacity-75" />,
+      description:
+        "Stay calm and act fast. Respond with confidence, aid with care and save lives",
+      icon: <Cross className=" h-10 w-10 mb-2 opacity-75" />,
     },
   ];
 

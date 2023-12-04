@@ -6,6 +6,9 @@ import EmergencyContacts from "./EmergencyContacts";
 import PoliceContacts from "./police/PoliceContacts";
 import HealthTips from "./health/HealthTips";
 import PersonalHealth from "./health/PersonalHealth";
+import MentalHealth from "./health/MentalHealth";
+import SexualHealth from "./health/SexualHealth";
+import FirstAid from "./health/FirstAid";
 
 type Props = {};
 
@@ -15,9 +18,6 @@ export default function Resources({
   searchParams: { type: string };
 }) {
   const resourceType = searchParams.type;
-  //   if (!alertType) {
-  //     throw new Error("Missing alert type");
-  //   }
 
   function getResource(resourceType: string) {
     switch (resourceType) {
@@ -29,6 +29,12 @@ export default function Resources({
         return <HealthTips />;
       case "personal-health":
         return <PersonalHealth />;
+      case "mental-health":
+        return <MentalHealth />;
+      case "sexual-health":
+        return <SexualHealth />;
+      case "first-aid":
+        return <FirstAid />;
       default:
         return <AllResources />;
     }

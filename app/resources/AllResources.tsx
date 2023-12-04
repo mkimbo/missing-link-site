@@ -1,5 +1,4 @@
-import { Card } from "@/components/ui/card";
-import { Bike, Car, HeartPulse, Users2 } from "lucide-react";
+import { BadgeInfo, HeartPulse, Shield, Siren } from "lucide-react";
 import ResourceCard from "./ResourceCard";
 
 export default function AllResources() {
@@ -9,7 +8,7 @@ export default function AllResources() {
       href: "/resources?type=emergency",
       description:
         "Broadcast geo-targeted alerts for missing persons of all ages.",
-      icon: <Users2 className=" h-10 w-10 mb-2 opacity-75" />,
+      icon: <Siren className=" h-10 w-10 mb-2 opacity-75" />,
     },
     {
       title: "Health Tips",
@@ -22,14 +21,14 @@ export default function AllResources() {
       href: "/resources?type=safety",
       description:
         "Alert the community to help in the search and recovery efforts.",
-      icon: <Car className=" h-10 w-10 mb-2 opacity-75" />,
+      icon: <Shield className=" h-10 w-10 mb-2 opacity-75" />,
     },
     {
       title: "Awareness Information",
       href: "/resources?type=awareness",
       description:
         "Alert the community to help in the search and recovery efforts.",
-      icon: <Bike className=" h-10 w-10 mb-2 opacity-75" />,
+      icon: <BadgeInfo className=" h-10 w-10 mb-2 opacity-75" />,
     },
   ];
 
