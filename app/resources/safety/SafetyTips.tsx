@@ -1,34 +1,34 @@
-import { BrainCog, Cross, User2, Users2 } from "lucide-react";
+import { Flame, Baby, Globe, User2 } from "lucide-react";
+
 import ResourceCard from "../ResourceCard";
 
-export default function HealthTips() {
-  const healthTips = [
+export default function SafetyTips() {
+  const safetyTips = [
     {
-      title: "Personal Wellness",
-      href: "/resources?type=personal-health",
+      title: "Personal Safety",
+      href: "/resources?type=personal-safety",
       description:
-        "Wellness from the inside out.Be healthy and enjoy life more.",
-      icon: <User2 className=" h-10 w-10 mb-2 opacity-75" />,
+        "Ensure your personal safety. Be aware and take precautions.",
+      icon: <User2 className="h-10 w-10 mb-2 opacity-75" />,
     },
     {
-      title: "Mental Health",
-      href: "/resources?type=mental-health",
-      description: "Mental health matters, You matter. End the stigma.",
-      icon: <BrainCog className=" h-10 w-10 mb-2 opacity-75" />,
+      title: "Child Safety",
+      href: "/resources?type=child-safety",
+      description: "Keep your children safe. Create a secure environment.",
+      icon: <Baby className="h-10 w-10 mb-2 opacity-75" />,
     },
     {
-      title: "Sexual Health",
-      href: "/resources?type=sexual-health",
-      description:
-        "Empower your sexual health with open conversations and safer relations",
-      icon: <Users2 className=" h-10 w-10 mb-2 opacity-75" />,
+      title: "Online Safety",
+      href: "/resources?type=online-safety",
+      description: "Protect yourself online. Stay safe from cyber threats.",
+      icon: <Globe className="h-10 w-10 mb-2 opacity-75" />,
     },
     {
-      title: "First Aid",
-      href: "/resources?type=first-aid",
+      title: "Fire Safety",
+      href: "/resources?type=fire-safety",
       description:
-        "Stay calm and act fast. Respond with confidence, aid with care and save lives",
-      icon: <Cross className=" h-10 w-10 mb-2 opacity-75" />,
+        "Stay safe from fire hazards. Prevent, prepare, and protect.",
+      icon: <Flame className="h-10 w-10 mb-2 opacity-75" />,
     },
   ];
 
@@ -39,12 +39,12 @@ export default function HealthTips() {
           <div className="flex flex-col justify-center space-y-8 text-center">
             <div className="space-y-2">
               <h1 className="text-xl pb-2 font-bold tracking-tighter sm:text-3xl xl:text-4xl/none bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-800">
-                Healthy Living and Optimal Wellness.
+                Stay Safe: Be Proactive, Not Reactive.
               </h1>
             </div>
             <div className="w-full max-w-full space-y-4 mx-auto">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {healthTips.map((alertOption, i) => (
+                {safetyTips.map((alertOption, i) => (
                   <ResourceCard
                     key={i}
                     title={alertOption.title}

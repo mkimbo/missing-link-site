@@ -1,3 +1,4 @@
+import BackButton from "@/components/BackButton";
 import { Separator } from "@/components/ui/separator";
 import React from "react";
 
@@ -12,7 +13,8 @@ export default function TextInformation({
 }) {
   return (
     <div className="px-4 ">
-      <div className="mt-6 space-y-1">
+      <div className="mt-0 lg:mt-3 space-y-1">
+        <BackButton />
         <h2 className="text-2xl font-semibold tracking-tight">{title}</h2>
         <div className="w-full lg:w-fit flex justify-start ">{description}</div>
       </div>
