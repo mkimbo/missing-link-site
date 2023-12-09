@@ -61,8 +61,8 @@ export default function PersonalSafety() {
         <div className="text-sm text-muted-foreground my-2">
           <span className="text-primary font-bold">Stay Connected: </span>
           Keep your phone charged and easily accessible. Inform a trusted person
-          about your whereabouts or travel plans, especially if you're in an
-          unfamiliar location.
+          about your whereabouts or travel plans, especially if you&apos;re in
+          an unfamiliar location.
         </div>
 
         <div className="text-sm text-muted-foreground my-2">

@@ -54,8 +54,8 @@ export default function PoliticalEducation() {
           <span className="text-primary font-bold">
             Analyze Political Campaigns:{" "}
           </span>
-          Scrutinize political campaigns, analyzing candidates' promises, track
-          records, and credibility. Look beyond rhetoric and assess their
+          Scrutinize political campaigns, analyzing candidates&apos; promises,
+          track records, and credibility. Look beyond rhetoric and assess their
           ability to deliver on their pledges.
         </div>
         <div className="text-sm text-muted-foreground my-2">
@@ -64,7 +64,7 @@ export default function PoliticalEducation() {
           </span>
           Encourage open and constructive discussions on political issues,
           focusing on policies, solutions, and the long-term impact on the
-          country's development.
+          country&apos;s development.
         </div>
         <div className="text-sm text-muted-foreground my-2">
           <span className="text-primary font-bold">
@@ -111,9 +111,9 @@ export default function PoliticalEducation() {
           <span className="text-primary font-bold">
             Embrace Diversity and Inclusivity:{" "}
           </span>
-          Appreciate and respect the diversity of Kenya's population. Advocate
-          for inclusive policies that ensure representation and participation of
-          all groups in the political sphere.
+          Appreciate and respect the diversity of Kenya&apos;s population.
+          Advocate for inclusive policies that ensure representation and
+          participation of all groups in the political sphere.
         </div>
         <div className="text-sm text-muted-foreground my-2">
           <span className="text-primary font-bold">
