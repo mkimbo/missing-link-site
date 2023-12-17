@@ -7,27 +7,26 @@ export default function AllResources() {
       title: "Emergency Contacts",
       href: "/resources?type=emergency",
       description:
-        "Broadcast geo-targeted alerts for missing persons of all ages.",
+        "Access a list of essential emergency contacts for quick assistance.",
       icon: <Siren className=" h-10 w-10 mb-2 opacity-75" />,
     },
     {
       title: "Health Tips",
       href: "/resources?type=health",
-      description: "Send out timely alerts to blood donors near you.",
+      description: "Discover valuable health tips to enhance your well-being.",
       icon: <HeartPulse className=" h-10 w-10 mb-2 opacity-75" />,
     },
     {
       title: "Safety Tips",
       href: "/resources?type=safety",
-      description:
-        "Alert the community to help in the search and recovery efforts.",
+      description: "Explore safety tips to safeguard yourself and others. ",
       icon: <Shield className=" h-10 w-10 mb-2 opacity-75" />,
     },
     {
       title: "Awareness Information",
       href: "/resources?type=awareness",
       description:
-        "Alert the community to help in the search and recovery efforts.",
+        "Stay informed about community issues and awareness on relevant topics",
       icon: <BadgeInfo className=" h-10 w-10 mb-2 opacity-75" />,
     },
   ];

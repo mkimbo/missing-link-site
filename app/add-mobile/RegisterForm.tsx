@@ -14,7 +14,13 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { PhoneNumberRegex } from "@/lib/constants";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -68,33 +74,37 @@ export function RegisterForm() {
   }
 
   return (
-    <Card className="w-[350px] mx-auto mt-10">
-      <CardHeader>
-        <CardTitle>Account Verification</CardTitle>
+    <Card className="w-[350px] mx-auto mt-40 border-0">
+      <CardHeader className="text-center">
+        <CardTitle>Verify Phone</CardTitle>
+        <CardDescription>
+          Verify your account with a phone number.
+        </CardDescription>
       </CardHeader>
       <CardContent>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <FormField
               control={form.control}
               name="mobile"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Mobile No.</FormLabel>
+                  <FormLabel>Your Phone</FormLabel>
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
-                  <FormDescription>
-                    A verification code will be sent to this number.
-                  </FormDescription>
+                 
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <Button disabled={isLoading} type="submit">
+            <Button disabled={isLoading} type="submit" className="w-full">
               {isLoading && <Loader className="mr-2 h-4 w-4 animate-spin" />}
               Submit
             </Button>
+            <div className="text-sm text-center">
+              Message and data rates may apply.
+            </div>
           </form>
         </Form>
       </CardContent>

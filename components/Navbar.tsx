@@ -79,7 +79,20 @@ const Navbar = () => {
                 <span className="text-xl text-primary ml-2 md:ml-0"> ML</span>
               </Link>
             </div>
-            <BreadCrumbs
+            <nav className="mx-6 items-center space-x-4 lg:space-x-6 hidden md:block">
+              {routes?.map((route, i) => (
+                <Button key={i} asChild variant="ghost">
+                  <Link
+                    key={i}
+                    href={route.href}
+                    className="text-sm font-medium transition-colors"
+                  >
+                    {route.label}
+                  </Link>
+                </Button>
+              ))}
+            </nav>
+            {/* <BreadCrumbs
               routes={routes}
               homeElement={<Home className="h-4 w-4" />}
               separator={<span> {">"} </span>}
@@ -87,7 +100,7 @@ const Navbar = () => {
               containerClasses="flex py-1 items-center pl-4 sm:pl-6 text-sm sm:text-base"
               listClasses="mx-2 font-bold"
               capitalizeLinks
-            />
+            /> */}
             <div className="flex items-center pr-2">
               <NotificationsStatus />
               {/* <ToggleThemeIcon /> */}
@@ -96,7 +109,7 @@ const Navbar = () => {
           </div>
         </Container>
       </header>
-      <div className="sticky top-[89px] md:hidden">
+      {/* <div className="sticky top-[89px] md:hidden">
         <Container>
           <BreadCrumbs
             homeElement={<Home className="h-4 w-4" />}
@@ -125,7 +138,7 @@ const Navbar = () => {
             capitalizeLinks
           />
         </Container>
-      </div>
+      </div> */}
     </ServerAuthProvider>
   );
 };

@@ -25,6 +25,7 @@ import ShareButtons from "@/components/ShareButtons";
 import MarkAsFoundButton from "@/components/MarkAsFoundButton";
 import { CalendarDays } from "lucide-react";
 import { SightingDialog } from "@/components/SightingDialog";
+import BackButton from "@/components/BackButton";
 type Props = {
   params: { id: string };
 };
@@ -122,8 +123,11 @@ export default async function MissingPerson({ params }: Props) {
     <Container>
       <ServerAuthProvider>
         <div className="w-full lg:w-6/12 px-4 mx-auto items-center justify-center">
+          <div className="my-2 md:my-4">
+            <BackButton />
+          </div>
           <div
-            className={`flex items-center justify-center mt-4 md:mt-8  h-16  w-full ${
+            className={`flex items-center justify-center   h-16  w-full ${
               data?.found ? "bg-secondary" : "bg-primary"
             }`}
           >

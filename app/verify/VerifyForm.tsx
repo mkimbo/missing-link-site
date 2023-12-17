@@ -13,7 +13,13 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
@@ -73,13 +79,16 @@ export function VerifyForm() {
   }
 
   return (
-    <Card className="w-[350px] mx-auto mt-10">
-      <CardHeader>
+    <Card className="w-[350px] mx-auto mt-40 border-0">
+      <CardHeader className="text-center">
         <CardTitle>Account Verification</CardTitle>
+        <CardDescription>
+          Enter the verification code you received.
+        </CardDescription>
       </CardHeader>
       <CardContent>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <FormField
               control={form.control}
               name="otpCode"
@@ -89,14 +98,12 @@ export function VerifyForm() {
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
-                  <FormDescription>
-                    Enter the verification code you received.
-                  </FormDescription>
+                 
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <Button disabled={isLoading} type="submit">
+            <Button disabled={isLoading} type="submit" className="w-full">
               {isLoading && <Loader className="mr-2 h-4 w-4 animate-spin" />}
               Submit
             </Button>
