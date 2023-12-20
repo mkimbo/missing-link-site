@@ -18,6 +18,7 @@ import { useAuth } from "../auth/context";
 import { Button } from "./ui/button";
 import { deleteAuthCookies } from "@/app/actions/actions";
 import { useTheme } from "next-themes";
+import ToggleThemeIcon from "./ToggleThemeIcon";
 
 const ProfileButton = () => {
   const { user } = useAuth();
@@ -27,6 +28,7 @@ const ProfileButton = () => {
   // const dispatch = useDispatch();
   const router = useRouter();
   const path = usePathname();
+  const isLoginRoute = path?.includes("/login");
   const { theme, setTheme } = useTheme();
   const [handleLogout, isLogoutLoading] = useLoadingCallback(async () => {
     const auth = getFirebaseAuth();
@@ -73,6 +75,8 @@ const ProfileButton = () => {
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
+      ) : isLoginRoute ? (
+        <ToggleThemeIcon />
       ) : (
         <Button
           variant="default"
