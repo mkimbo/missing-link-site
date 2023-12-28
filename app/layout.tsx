@@ -65,13 +65,13 @@ export default async function RootLayout({
             <main className="flex-1 overflow-y-auto">{children}</main>
             <footer className="sticky bottom-0 z-10">
               <div className="container mx-auto flex justify-center items-center">
-                <span className="text-primary/80">Code</span>
+                {/* <span className="text-primary/80">Code</span>
                 <a
                   href="https://github.com/mkimbo/missing-link-site"
                   target="_blank"
                 >
                   @mkimbo
-                </a>
+                </a> */}
               </div>
             </footer>
             <Toaster />

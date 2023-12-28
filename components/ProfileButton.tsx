@@ -83,6 +83,7 @@ const ProfileButton = () => {
           size="sm"
           className="mr-2"
           aria-label="Login"
+          //onClick={handleLogout}
           onClick={() => {
             if (path == "/login") return;
             const params = new URLSearchParams();

@@ -101,7 +101,7 @@ const Navbar = () => {
               listClasses="mx-2 font-bold"
               capitalizeLinks
             /> */}
-            <div className="flex items-center pr-2">
+            <div className="flex items-center">
               <NotificationsStatus />
               {/* <ToggleThemeIcon /> */}
               <ProfileButton />
