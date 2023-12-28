@@ -84,7 +84,7 @@ export function LoginPage() {
           />
         </div>
 
-        <div className="lg:hidden h-[calc(100vh-180px)] ">
+        <div className="lg:hidden h-[calc(100vh-210px)] ">
           <Image
             src={bgSmall}
             alt="Login background image"
