@@ -18,7 +18,7 @@ export function FAQ() {
           receiving alerts about missing persons, blood donation appeals, and
           other critical public information. Missing Link aims to foster a sense
           of responsibility and collaboration within the community to ensure a
-          swift and collective response to emergencies.
+          swift and collective response to emergencies and much more.
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-2">
@@ -31,8 +31,8 @@ export function FAQ() {
           these alerts. The platform utilizes technologies like geolocation and
           push notifications to provide timely and location-specific
           information. The more users in your location, the more effective the
-          alerts will be. Share the app with your friends and family create a
-          network of vigilant community members.
+          alerts will be. Share the app with your friends and family to create a
+          network of responsible and helpful community members.
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-3">
@@ -63,7 +63,13 @@ export function FAQ() {
           Will AI take my job?
         </AccordionTrigger>
         <AccordionContent className="text-muted-foreground lg:pr-4">
-          Probably. But not today.
+          Absolutely! AI is coming for your job, your neighbor&#39;s job, and
+          even your pet&#39;s job. It&#39;s a relentless force that will stop at
+          nothing to automate every task known to humanity. But fear not, for
+          today is not that day. AI still has a long way to go before it can
+          match the creativity, adaptability, and emotional intelligence of
+          humans. So, for now, enjoy the peace of mind knowing that your job is
+          safe... at least until the next software update.
         </AccordionContent>
       </AccordionItem>
     </Accordion>

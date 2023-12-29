@@ -128,7 +128,7 @@ export function LoginPage() {
       </div>
 
       <div id="faqs" className="w-full p-4 mx-auto">
-        <SectionTitle title="Frequently Asked Questions" />
+        <SectionTitle title="Questions?" />
         <FAQ />
       </div>
     </div>
