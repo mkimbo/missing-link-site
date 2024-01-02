@@ -2,8 +2,8 @@ import { ServerAuthProvider } from "@/auth/server-auth-provider";
 import Container from "@/components/ui/container";
 import React from "react";
 import AllResources from "./AllResources";
-import EmergencyContacts from "./EmergencyContacts";
-import PoliceContacts from "./police/PoliceContacts";
+import EmergencyContacts from "./emergency/EmergencyContacts";
+import PoliceContacts from "./emergency/police/PoliceContacts";
 import HealthTips from "./health/HealthTips";
 import PersonalHealth from "./health/PersonalHealth";
 import MentalHealth from "./health/MentalHealth";
@@ -19,6 +19,7 @@ import FinancialLiteracy from "./awareness/FinancialLiteracy";
 import CSE from "./awareness/CSE";
 import SHGBV from "./awareness/SHGBV";
 import PoliticalEducation from "./awareness/PoliticalAwareness";
+import { AmbulanceContacts } from "./emergency/AmbulanceContacts";
 
 type Props = {};
 
@@ -35,6 +36,8 @@ export default function Resources({
         return <EmergencyContacts />;
       case "police-contacts":
         return <PoliceContacts />;
+      case "ambulance-contacts":
+        return <AmbulanceContacts />;
       case "health":
         return <HealthTips />;
       case "personal-health":

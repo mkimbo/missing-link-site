@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import Image from "next/image";
-import contactIcon from "../../../public/img/call_location.png";
+import contactIcon from "../../../../public/img/call_location.png";
 import { TPoliceContact } from "@/types/common";
 
 type Props = {
@@ -11,7 +11,7 @@ export default function ContactCard({ station }: Props) {
   return (
     <Card
       key={station.value}
-      className="flex flex-row p-2  w-full lg:w-[350px] cursor-pointer mb-2 transition-all hover:bg-accent hover:text-accent-foreground"
+      className="flex flex-row p-2  w-full lg:w-[320px] cursor-pointer mb-2 transition-all hover:bg-accent hover:text-accent-foreground"
     >
       <Image
         src={contactIcon}

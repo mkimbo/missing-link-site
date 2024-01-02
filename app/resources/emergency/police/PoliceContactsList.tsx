@@ -1,7 +1,7 @@
 "use client";
 import { policeSearchFields } from "@/lib/constants";
 import Fuse from "fuse.js";
-import policeInfo from "../../../public/pStations.json";
+import policeInfo from "../../../../public/pStations.json";
 import { TPoliceContact } from "@/types/common";
 import ContactCard from "./ContactCard";
 import { useSearchParams } from "next/navigation";

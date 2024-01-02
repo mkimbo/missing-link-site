@@ -24,37 +24,37 @@ interface NavbarProps {
 
 const Navbar = () => {
   const routes = [
+    // {
+    //   href: "/new",
+    //   label: "New",
+    // },
+    // {
+    //   href: "/missing/persons",
+    //   label: "Persons",
+    // },
+    // {
+    //   href: "/missing/vehicles",
+    //   label: "Vehicles",
+    // },
+    {
+      href: "/",
+      label: "Home",
+    },
     {
       href: "/new",
-      label: "New",
-    },
-    {
-      href: "/missing/persons",
-      label: "Persons",
-    },
-    {
-      href: "/missing/vehicles",
-      label: "Vehicles",
-    },
-    {
-      href: "/missing/bikes",
-      label: "Bikes",
-    },
-    {
-      href: "/medical/blood-appeals",
-      label: "Blood Appeals",
+      label: "New Alert",
     },
     {
       href: "/resources",
-      label: "Info & Tips",
+      label: "Info Hub",
     },
   ];
 
   return (
     <ServerAuthProvider>
-      <header className="sm:flex sm:justify-between py-3  border-b sticky top-0 z-10 bg-background">
-        <Container>
-          <div className="relative px-4 sm:px-6 lg:px-8 flex h-16 items-center justify-between w-full">
+      <div className="border-b">
+        <header className="container px-4 sm:flex sm:justify-between py-3  sticky top-0 z-10 bg-background">
+          <div className="relative flex h-16 items-center justify-between w-full">
             <div className="flex items-center">
               <Sheet>
                 <SheetTrigger>
@@ -107,8 +107,8 @@ const Navbar = () => {
               <ProfileButton />
             </div>
           </div>
-        </Container>
-      </header>
+        </header>
+      </div>
       {/* <div className="sticky top-[89px] md:hidden">
         <Container>
           <BreadCrumbs

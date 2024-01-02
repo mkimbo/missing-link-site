@@ -114,7 +114,7 @@ export default async function Profile() {
             </CardContent>
           </Card>
 
-          <Card className="mb-6 shadow-xl rounded-lg">
+          <Card className="mb-6 shadow-xl rounded-lg" id="settings">
             <CardHeader>
               <CardTitle>Proximity Settings</CardTitle>
               <CardDescription>Manage location settings.</CardDescription>

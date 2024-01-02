@@ -1,5 +1,5 @@
 import { Siren } from "lucide-react";
-import ResourceCard from "./ResourceCard";
+import ResourceCard from "../ResourceCard";
 
 export default function EmergencyContacts() {
   const alertOptions = [
@@ -8,6 +8,13 @@ export default function EmergencyContacts() {
       href: "/resources?type=police-contacts",
       description:
         "A list of police stations in the country with their contact details.",
+      icon: <Siren className=" h-10 w-10 mb-2 opacity-75" />,
+    },
+    {
+      title: "Ambulance Contacts",
+      href: "/resources?type=ambulance-contacts",
+      description:
+        "A list of ambulance services in the country with their contact details.",
       icon: <Siren className=" h-10 w-10 mb-2 opacity-75" />,
     },
   ];
@@ -23,7 +30,7 @@ export default function EmergencyContacts() {
               </h1>
             </div>
             <div className="w-full max-w-full space-y-4 mx-auto">
-              <div className="grid grid-cols-1 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {alertOptions.map((alertOption, i) => (
                   <ResourceCard
                     key={i}
