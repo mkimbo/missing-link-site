@@ -3,6 +3,7 @@
 import { createContext, useContext } from "react";
 import type { UserInfo } from "firebase/auth";
 import { Claims } from "next-firebase-auth-edge/lib/auth/claims";
+import { UserFull } from "@/types/redux";
 
 export interface User extends Omit<UserInfo, "providerId"> {
   emailVerified: boolean;
@@ -11,10 +12,12 @@ export interface User extends Omit<UserInfo, "providerId"> {
 
 export interface AuthContextValue {
   user: User | null;
+  // userFull: UserFull | null;
 }
 
 export const AuthContext = createContext<AuthContextValue>({
   user: null,
+  // userFull: null,
 });
 
 export const useAuth = () => useContext(AuthContext);

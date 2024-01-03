@@ -177,6 +177,7 @@ export const verifyMobileNumberSchema = z.object({
   photoUrl: z.string().optional(),
   otpCode: z.string().min(6, "Required"),
   phoneNumber: z.string(),
+  country: z.string(),
 });
 
 export const registerMobileNumberSchema = z.object({

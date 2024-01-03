@@ -11,11 +11,11 @@ export async function GET(
       return Response.error;
     }
     const userID = id;
-    console.log("got logged in user", userID);
     const user = await serverDB
       .collection(process.env.FIREBASE_FIRESTORE_USER_COLLECTION!)
       .doc(userID)
       .get();
+    console.log("user registered ?", user.exists);
     if (!user.exists) return Response.error;
     return Response.json({ user: user.data() }, { status: 200 });
   } catch (error) {

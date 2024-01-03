@@ -7,6 +7,7 @@ import { FormItem, FormLabel, FormMessage } from "../ui/form";
 
 type Props = {
   name: string;
+  country?: string;
   label: string;
   control: Control<any>;
   placeholder?: string;
@@ -15,6 +16,7 @@ type Props = {
 export default function FormLocationInput({
   name,
   control,
+  country,
   label,
   placeholder,
 }: Props) {
@@ -40,7 +42,7 @@ export default function FormLocationInput({
             apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}
             options={{
               types: [],
-              componentRestrictions: { country: "ke" },
+              componentRestrictions: { country: country ?? "ke" },
             }}
             onBlur={(e: BaseSyntheticEvent) => {
               setValue(name, e.target.value, { shouldValidate: true });

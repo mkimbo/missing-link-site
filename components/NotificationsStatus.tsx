@@ -2,7 +2,7 @@
 import { Bell } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { Button } from "./ui/button";
-import { User } from "@/types/redux";
+import { UserFull } from "@/types/redux";
 import useSWR from "swr";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/auth/context";
@@ -35,7 +35,7 @@ function NotificationsStatus() {
     }
     const resp = await response.json();
 
-    return resp.user as User;
+    return resp.user as UserFull;
   };
   const { data, error, isLoading } = useSWR(
     `/api/status/${tenant?.uid}`,
@@ -47,6 +47,7 @@ function NotificationsStatus() {
     if (data?.phoneNumber?.verified) {
       setVerifiedCookie("true");
     }
+    console.log("country", data?.country);
     localforage.setItem("enabledNotifications", data?.enabledNotifications);
     localforage.setItem("enabledLocation", data?.enabledLocation);
   }, [data]);

@@ -32,18 +32,17 @@ export function MissingPersonAlert() {
     resolver: zodResolver(newAlertFormSchema),
     reValidateMode: "onChange",
     defaultValues: {
-      fullname: "Test User",
+      fullname: "",
       PIDisclaimer: false,
       images: [],
       othername: "",
       age: 12,
-      complexion: "Dark",
-      gender: "F",
-      secondaryContact: "0722222222",
+      complexion: "",
+      gender: "",
+      secondaryContact: "",
       lastSeenDate: new Date().toISOString(),
-      lastSeenDescription:
-        "They were last seen wearing clothes and shoes. They had a bag with them. They were last seen at the bus stop.",
-      obNumber: "7857454885485",
+      lastSeenDescription: "",
+      obNumber: "",
     },
   });
 

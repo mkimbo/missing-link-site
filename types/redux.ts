@@ -13,9 +13,10 @@ export interface Tenant {
   idToken?: string;
 }
 
-export interface User {
+export interface UserFull {
   alertRadius: number;
   bloodGroup?: string;
+  country: string;
   email: string;
   enabledLocation: boolean;
   enabledNotifications: boolean;

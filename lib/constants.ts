@@ -7,7 +7,7 @@ export const ACCEPTED_IMAGE_TYPES = [
   "image/png",
   "image/webp",
 ];
-export const PhoneNumberRegex = /^(07|01)\d{8}$/;
+export const PhoneNumberRegex = /^\d+$/;
 
 export const personSearchFields = {
   keys: [

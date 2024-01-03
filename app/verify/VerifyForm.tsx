@@ -48,6 +48,7 @@ export function VerifyForm() {
   useEffect(() => {
     const redirect = searchParams?.get("redirect") || "/";
     const phoneNumber = searchParams?.get("phoneNumber");
+
     if (!phoneNumber || !redirect) {
       router.push("/");
     }
@@ -68,12 +69,14 @@ export function VerifyForm() {
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     const phoneNumber = searchParams?.get("phoneNumber");
+    const country = searchParams?.get("country") ?? "KE";
     mutate({
       id: user?.uid!,
       email: user?.email!,
       phoneNumber: phoneNumber!,
       otpCode: values.otpCode,
       photoUrl: user?.photoURL ?? ``,
+      country: country,
     });
     console.log(values);
   }
@@ -98,7 +101,7 @@ export function VerifyForm() {
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
-                 
+
                   <FormMessage />
                 </FormItem>
               )}

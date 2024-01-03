@@ -22,3 +22,9 @@ export type TPoliceContact = {
   contact2?: string;
   county?: string;
 };
+
+export type TCountryData = {
+  name: string;
+  code: string;
+  dialCode: string;
+};

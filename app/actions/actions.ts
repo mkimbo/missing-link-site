@@ -33,7 +33,7 @@ import {
 //import { MulticastMessage } from "firebase-admin/lib/messaging/messaging-api-internal";
 import { getTenantFromCookies } from "@/auth/server-auth-provider";
 import { cookies } from "next/headers";
-import { User } from "@/types/redux";
+import { UserFull } from "@/types/redux";
 import { app } from "firebase-admin";
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
@@ -520,7 +520,7 @@ export const saveDonationRequest = zact(donationRequestFormSchema)(
   }
 );
 
-export const getLoggedUser = async (id: string): Promise<User | null> => {
+export const getLoggedUser = async (id: string): Promise<UserFull | null> => {
   console.log(id, "getting user with id");
   try {
     const user = await serverDB
@@ -528,14 +528,14 @@ export const getLoggedUser = async (id: string): Promise<User | null> => {
       .doc(id)
       .get();
     if (!user.exists) return Promise.resolve(null);
-    return Promise.resolve(user.data() as User);
+    return Promise.resolve(user.data() as UserFull);
   } catch (error) {
     console.log("error fetching user", error);
     return Promise.resolve(null);
   }
 };
 
-export const getUser = async (): Promise<User | null> => {
+export const getUser = async (): Promise<UserFull | null> => {
   try {
     const tenant = await getTenantFromCookies(cookies);
     if (!tenant?.uid) return Promise.resolve(null);
@@ -548,8 +548,8 @@ export const getUser = async (): Promise<User | null> => {
         id: tenant?.uid,
         email: tenant?.email,
         photoUrl: tenant?.photoURL,
-      } as User);
-    return Promise.resolve(user.data() as User);
+      } as UserFull);
+    return Promise.resolve(user.data() as UserFull);
   } catch (error) {
     console.log("error fetching user", error);
     return Promise.resolve(null);
@@ -573,7 +573,7 @@ export const registerMobileNumber = zact(registerMobileNumberSchema)(
 export const verifyMobileNumber = zact(verifyMobileNumberSchema)(
   async (data): Promise<boolean> => {
     try {
-      const { phoneNumber, otpCode, email, id, photoUrl } = data;
+      const { phoneNumber, otpCode, email, id, photoUrl, country } = data;
 
       const response = await twilioClient.verify.v2
         .services("VA7d5b858fb0469e1515d03c762977a9b0")
@@ -584,6 +584,7 @@ export const verifyMobileNumber = zact(verifyMobileNumberSchema)(
         data = {
           id: id,
           email: email,
+          country: country,
           phoneNumber: {
             number: phoneNumber,
             verified: true,
@@ -832,7 +833,7 @@ export const getStatus = async () => {
       );
       console.log(await response.json(), "data");
       const resp = await response.json();
-      return resp as User;
+      return resp as UserFull;
     } catch (error) {
       console.log(error, "error");
     }
@@ -841,7 +842,7 @@ export const getStatus = async () => {
   // if (response.status === 200) {
   //   const data = await response.json();
   //   console.log(data, "data");
-  //   return data as User;
+  //   return data as UserFull;
   // }
   //return null;
 };
