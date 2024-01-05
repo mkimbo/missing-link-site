@@ -113,7 +113,7 @@ export const processPlaceDetails: (
     county,
     constituency,
   };
-  console.log("detailedLocation", detailedLocation);
+
   return detailedLocation;
 };
 

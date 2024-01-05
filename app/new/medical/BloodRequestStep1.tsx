@@ -11,7 +11,6 @@ type Props = {};
 function BloodAppealStep1({}: Props) {
   const { control } = useFormContext();
   const { user } = useUser();
-  console.log(user, "user");
   return (
     <div className="flex flex-col gap-x-2 gap-y-3">
       <div className="text-xl my-3">Patient & Hospital details</div>

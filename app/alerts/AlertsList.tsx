@@ -11,11 +11,8 @@ import { useAuth } from "@/auth/context";
 import { markNotificationsAsSeen } from "../actions/actions";
 
 export default function AlertsList() {
-  // const tenant = useSelector((state: RootState) => state.auth.tenant);
   const { user } = useAuth();
-  //   if (!tenant || tenant?.isAnonymous) return;
-  const [notificationsLoaded, setNotificationsLoaded] = useState(false);
-  const [activeIdx, setActiveIdx] = useState(0);
+  const [notificationsLoading, setNotificationsLoading] = useState(false);
   const [notificationList, setNotificationList] = useState<TSaveNotification[]>(
     []
   );
@@ -33,11 +30,10 @@ export default function AlertsList() {
     if (!user?.email) return;
     const notificationsRef = ref(db, "notifications");
     onValue(notificationsRef, (snapshot) => {
+      setNotificationsLoading(true);
       let notificationsArray: TSaveNotification[] = [];
       snapshot?.forEach(function (childSnapshot) {
         const notification: TSaveNotification = childSnapshot.val();
-        //get all notifications that match the tenant id
-        // console.log("notification", notification);
         notification?.notifiedUsers?.forEach((notified) => {
           console.log(notified.userId, "notification", user?.uid);
           if (notified.userId === user?.uid) {
@@ -45,7 +41,6 @@ export default function AlertsList() {
           }
         });
       });
-      // group notifications by resource type
       const persons = notificationsArray?.filter(
         (notification) => notification.resourceType === "person"
       );
@@ -69,7 +64,7 @@ export default function AlertsList() {
         tenantID: user?.uid!,
         list: notificationsArray,
       });
-      setNotificationsLoaded(true);
+      setNotificationsLoading(false);
     });
   }, [user, db]);
 
@@ -83,6 +78,7 @@ export default function AlertsList() {
       </TabsList>
       <TabsContent value="persons">
         {notificationList.length === 0 &&
+          notificationsLoading &&
           Array.from([1, 2, 3, 4, 5, 6, 7, 8, 9]).map((itm: any) => {
             return (
               <Skeleton
@@ -100,7 +96,7 @@ export default function AlertsList() {
             })}
           </>
         )}
-        {notificationsLoaded && personList.length == 0 && (
+        {!notificationsLoading && personList.length == 0 && (
           <div className="text-center">Nothing yet.</div>
         )}
       </TabsContent>
@@ -115,7 +111,7 @@ export default function AlertsList() {
             })}
           </>
         )}
-        {notificationsLoaded && motorsList.length == 0 && (
+        {!notificationsLoading && motorsList.length == 0 && (
           <div className="text-center">Nothing yet.</div>
         )}
       </TabsContent>
@@ -129,7 +125,7 @@ export default function AlertsList() {
             })}
           </>
         )}
-        {notificationsLoaded && sightingsList.length == 0 && (
+        {!notificationsLoading && sightingsList.length == 0 && (
           <div className="text-center">Nothing yet.</div>
         )}
       </TabsContent>
@@ -143,7 +139,7 @@ export default function AlertsList() {
             })}
           </>
         )}
-        {notificationsLoaded && bloodAppeals.length == 0 && (
+        {!notificationsLoading && bloodAppeals.length == 0 && (
           <div className="text-center">Nothing yet.</div>
         )}
       </TabsContent>

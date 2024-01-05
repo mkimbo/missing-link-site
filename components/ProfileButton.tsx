@@ -18,9 +18,11 @@ import { Button } from "./ui/button";
 import { deleteAuthCookies } from "@/app/actions/actions";
 import { useTheme } from "next-themes";
 import ToggleThemeIcon from "./ToggleThemeIcon";
+import { useUser } from "@/context/UserContext";
 
 const ProfileButton = () => {
   const { user } = useAuth();
+  const { deleteUser } = useUser();
   const tenant = user;
   const { getFirebaseAuth } = useFirebaseAuth();
 
@@ -37,8 +39,7 @@ const ProfileButton = () => {
     await fetch("/api/logout", {
       method: "GET",
     });
-    //dispatch(setTenant(null));
-    //dispatch(setUser(null));
+    deleteUser();
     deleteVerifiedCookie();
     deleteAuthCookies();
     window.location.reload();

@@ -74,10 +74,8 @@ export default function Resources({
   }
 
   return (
-    <Container>
-      <ServerAuthProvider>
-        <div className="">{getResource(resourceType)}</div>
-      </ServerAuthProvider>
-    </Container>
+    <div className="container mx-auto p-4 ">
+      <ServerAuthProvider>{getResource(resourceType)}</ServerAuthProvider>
+    </div>
   );
 }

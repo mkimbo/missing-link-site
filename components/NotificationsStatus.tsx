@@ -66,11 +66,9 @@ function NotificationsStatus() {
     if (!user?.email) return;
     const notificationsRef = ref(db, "notifications");
     onValue(notificationsRef, (snapshot) => {
-      let notificationsArray: TSaveNotification[] = [];
       snapshot?.forEach(function (childSnapshot) {
         const notification: TSaveNotification = childSnapshot.val();
         notification?.notifiedUsers?.forEach((notified) => {
-          console.log(notified.userId, "notification", user?.uid);
           if (notified.userId === user?.uid && !notified.seen) {
             setCount((prev) => prev + 1);
           }

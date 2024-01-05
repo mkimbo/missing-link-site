@@ -6,8 +6,10 @@ import FormTextArea from "@/components/form_inputs/form_text_area";
 import FormAutoCompleteSelect from "@/components/form_inputs/form_autocomplete_input";
 import policeInfo from "../../../public/pStations.json";
 import FormTextField from "@/components/form_inputs/form_text_field";
+import { useUser } from "@/context/UserContext";
 function PersonStep2() {
   const { control } = useFormContext();
+  const { user } = useUser();
   const stations = Array.from(policeInfo)
     .filter((item) => item.label.includes("Police Station"))
     .map((item) => {
@@ -29,6 +31,7 @@ function PersonStep2() {
         </div>
         <div className="w-full md:w-6/12">
           <FormLocationInput
+            country={user?.country.toLowerCase() ?? "ke"}
             name="lastSeenLocation"
             control={control}
             label="Last Seen Location"

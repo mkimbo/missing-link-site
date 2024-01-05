@@ -15,7 +15,6 @@ export async function GET(
       .collection(process.env.FIREBASE_FIRESTORE_USER_COLLECTION!)
       .doc(userID)
       .get();
-    console.log("user registered ?", user.exists);
     if (!user.exists) return Response.error;
     return Response.json({ user: user.data() }, { status: 200 });
   } catch (error) {

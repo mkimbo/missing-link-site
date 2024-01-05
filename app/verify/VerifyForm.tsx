@@ -53,9 +53,11 @@ export function VerifyForm() {
       router.push("/");
     }
     const verified = getVerifiedCookie();
+
     if (verified === "true") {
       router.push(redirect);
     }
+    window.location.reload();
   }, [router, searchParams]);
 
   useEffect(() => {

@@ -2,7 +2,6 @@
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
-  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -25,18 +24,18 @@ import { FormDatePicker } from "./form_inputs/form_date_picker";
 import FormLocationInput from "./form_inputs/form_location_input";
 import FormTextArea from "./form_inputs/form_text_area";
 import { usePathname } from "next/navigation";
-import { useAuth } from "@/auth/context";
+
 import { useRouter } from "next/navigation";
 import { Loader } from "lucide-react";
+import { useUser } from "@/context/UserContext";
 type Props = {
   missingItem: TPerson | TMotor;
   type: "person" | "motor";
-
   creatorId: string;
 };
 
 export function SightingDialog({ missingItem, type, creatorId }: Props) {
-  const { user } = useAuth();
+  const { user } = useUser();
   const path = usePathname();
   const router = useRouter();
   const [open, setOpen] = React.useState(false);
@@ -92,7 +91,7 @@ export function SightingDialog({ missingItem, type, creatorId }: Props) {
     >
       Login to report sighting
     </Button>
-  ) : user?.uid != creatorId ? (
+  ) : user?.id != creatorId ? (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant="default" className="w-full">
@@ -119,6 +118,7 @@ export function SightingDialog({ missingItem, type, creatorId }: Props) {
               />
               <FormLocationInput
                 label="Sigting Location"
+                country={user?.country.toLowerCase() ?? "ke"}
                 name="sightingLocation"
                 control={control}
               />
@@ -141,14 +141,14 @@ export function SightingDialog({ missingItem, type, creatorId }: Props) {
                     if (type == "motor") {
                       mutate({
                         ...values,
-                        sightedBy: user.uid!,
+                        sightedBy: user.id!,
                         itemId: missingItem.id!,
                       });
                     }
                     if (type == "person") {
                       sendit({
                         ...values,
-                        sightedBy: user.uid!,
+                        sightedBy: user.id!,
                         itemId: missingItem.id!,
                       });
                     }
