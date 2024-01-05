@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import Navbar from "@/components/Navbar";
+import { UserProvider } from "@/context/UserContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -60,22 +61,24 @@ export default async function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <div className="flex flex-col min-h-screen">
-            <Navbar />
-            <main className="flex-1 overflow-y-auto">{children}</main>
-            <footer className="sticky bottom-0 z-10">
-              <div className="container mx-auto flex justify-center items-center">
-                {/* <span className="text-primary/80">Code</span>
+          <UserProvider>
+            <div className="flex flex-col min-h-screen">
+              <Navbar />
+              <main className="flex-1 overflow-y-auto">{children}</main>
+              <footer className="sticky bottom-0 z-10">
+                <div className="container mx-auto flex justify-center items-center">
+                  {/* <span className="text-primary/80">Code</span>
                 <a
                   href="https://github.com/mkimbo/missing-link-site"
                   target="_blank"
                 >
                   @mkimbo
                 </a> */}
-              </div>
-            </footer>
-            <Toaster />
-          </div>
+                </div>
+              </footer>
+              <Toaster />
+            </div>
+          </UserProvider>
         </ThemeProvider>
       </body>
     </html>

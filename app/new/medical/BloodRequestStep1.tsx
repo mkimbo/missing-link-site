@@ -5,10 +5,13 @@ import FormSelect from "@/components/form_inputs/form_select_input";
 import FormDisclaimerInput from "@/components/form_inputs/form_disclaimer_input";
 import FormLocationInput from "@/components/form_inputs/form_location_input";
 import FormTextArea from "@/components/form_inputs/form_text_area";
+import { useUser } from "@/context/UserContext";
 type Props = {};
 
 function BloodAppealStep1({}: Props) {
   const { control } = useFormContext();
+  const { user } = useUser();
+  console.log(user, "user");
   return (
     <div className="flex flex-col gap-x-2 gap-y-3">
       <div className="text-xl my-3">Patient & Hospital details</div>
@@ -30,6 +33,7 @@ function BloodAppealStep1({}: Props) {
         <div className="w-full md:w-6/12 mt-[11px]">
           <FormLocationInput
             name="hospitalLocation"
+            country={user?.country.toLowerCase() ?? "ke"}
             control={control}
             label="Hospital Location"
             placeholder="or nearest landmark"

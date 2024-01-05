@@ -114,8 +114,7 @@ export function RegisterForm() {
     )?.dialCode;
     if (!code) return;
     const phoneNumber = `${code}${removeLeadingZero(values.mobile.toString())}`;
-    console.log(phoneNumber);
-    // mutate({ mobile: phoneNumber });
+    mutate({ mobile: phoneNumber });
   }
 
   function removeLeadingZero(mobileNumber: string) {

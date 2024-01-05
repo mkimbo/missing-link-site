@@ -13,9 +13,12 @@ import localforage from "localforage";
 import { TSaveNotification } from "@/types/missing_person.model";
 import { clientConfig } from "@/config/client-config";
 import { SettingsErrorDialog } from "./SettingsErrorDialog";
+import { useUser } from "@/context/UserContext";
 
 function NotificationsStatus() {
   const { user } = useAuth();
+  const { saveUser } = useUser();
+
   const tenant = user;
   const [count, setCount] = useState(0);
   const router = useRouter();
@@ -47,7 +50,10 @@ function NotificationsStatus() {
     if (data?.phoneNumber?.verified) {
       setVerifiedCookie("true");
     }
-    console.log("country", data?.country);
+    if (data) {
+      saveUser(data);
+    }
+    console.log("data", data);
     localforage.setItem("enabledNotifications", data?.enabledNotifications);
     localforage.setItem("enabledLocation", data?.enabledLocation);
   }, [data]);
