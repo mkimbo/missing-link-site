@@ -72,7 +72,7 @@ export default async function BloodAppealsList({
         <h1 className="text-2xl font-semibold">
           Please enable Geo-location to view blood donation appeals near you.
         </h1>
-        <p className="text-sm text-gray-500">
+        <p className="text-sm text-muted-foreground">
           You can update your location settings from your{" "}
           <Link href="/profile" className="text-primary">
             profile page.

@@ -1,8 +1,3 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/EiOI0t6RDQD
- */
-
 type Props = {
   title: string;
 };

@@ -18,6 +18,7 @@ import { Metadata } from "next";
 import { AllowNotificationsButton } from "./AllowNotifications";
 import { getUser } from "../actions/actions";
 import { SaveLocation } from "./SaveLocation";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Profile",
@@ -69,24 +70,30 @@ export default async function Profile() {
                     </div>
                   </div>
                   <div className="flex justify-center py-4 lg:pt-4 ">
-                    <div className="mr-4 p-3 text-center">
+                    <Link
+                      href="/profile/rewards"
+                      className="mr-4 p-3 text-center"
+                    >
                       <span className="text-xl font-bold block uppercase tracking-wide text-primary">
                         580
                       </span>
                       <span className="text-sm ">VP</span>
-                    </div>
-                    <div className="mr-4 p-3 text-center">
+                    </Link>
+                    <Link
+                      href="/profile/rewards"
+                      className="mr-4 p-3 text-center"
+                    >
                       <span className="text-xl font-bold block uppercase tracking-wide text-primary">
                         58
                       </span>
                       <span className="text-sm ">RP</span>
-                    </div>
-                    <div className="lg:mr-4 p-3 text-center">
+                    </Link>
+                    <Link href="/alerts" className="lg:mr-4 p-3 text-center">
                       <span className="text-xl font-bold block uppercase tracking-wide text-primary">
                         25
                       </span>
                       <span className="text-sm ">Alerts</span>
-                    </div>
+                    </Link>
                   </div>
                 </CardContent>
               </div>

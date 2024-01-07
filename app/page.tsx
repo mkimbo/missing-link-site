@@ -6,7 +6,6 @@ export async function generateStaticParams() {
   return [{}];
 }
 
-
 export default function Home() {
   return (
     <main className="container mx-auto p-4 ">
@@ -25,7 +24,7 @@ export default function Home() {
           <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-right">
             Missing Persons Alerts
           </h2>
-          <p className="text-gray-500 text-right">
+          <p className="text-muted-foreground text-right">
             Broadcast missing person alerts to nearby users and mobilize the
             community in the search for your loved ones.
           </p>
@@ -40,7 +39,7 @@ export default function Home() {
           <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-left">
             Blood Donation Appeals
           </h2>
-          <p className="text-gray-500 text-left">
+          <p className="text-muted-foreground text-left">
             Send out timely alerts to compatible blood donors near you and make
             a life-saving difference.
           </p>
@@ -57,7 +56,7 @@ export default function Home() {
           <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-right">
             Missing Motor Alerts
           </h2>
-          <p className="text-gray-500 text-right">
+          <p className="text-muted-foreground text-right">
             Broadcast alerts to subscribed users and mobilize the community in
             the search for your stolen vehicles and bikes.
           </p>
