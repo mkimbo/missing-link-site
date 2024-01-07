@@ -51,7 +51,7 @@ const ProfileButton = () => {
       {tenant?.email != null ? (
         <DropdownMenu>
           <DropdownMenuTrigger>
-            <User2 />
+            <User2 className="text-primary" />
           </DropdownMenuTrigger>
           <DropdownMenuContent>
             <DropdownMenuLabel>My Account</DropdownMenuLabel>

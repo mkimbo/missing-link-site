@@ -1,5 +1,6 @@
 import { BrainCog, Cross, User2, Users2 } from "lucide-react";
 import ResourceCard from "../ResourceCard";
+import BackButton from "@/components/BackButton";
 
 export default function HealthTips() {
   const healthTips = [
@@ -37,11 +38,20 @@ export default function HealthTips() {
       <div className="grid gap-6 items-center">
         <div className="flex flex-col justify-center space-y-8 text-center">
           <section className="w-full py-12 bg-primary ">
-            <div className="space-y-6 text-left md:text-center pl-4">
+            <div className="space-y-4 text-left md:text-center pl-4">
+              <div className="lg:hidden">
+                <BackButton />
+              </div>
               <h1 className="text-5xl font-bold tracking-tighter sm:text-7xl">
                 Healthy<br className="md:hidden"></br> Living
               </h1>
-              <div className="text-xl"> Health is certainly wealth.</div>
+              <div className="text-sm lg:text-xl">
+                {" "}
+                Health is certainly wealth.
+              </div>
+              <div className="hidden lg:block">
+                <BackButton />
+              </div>
             </div>
           </section>
           {/* <div className="space-y-2">

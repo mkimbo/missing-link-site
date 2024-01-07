@@ -15,6 +15,7 @@ import ProfileButton from "./ProfileButton";
 
 import { ServerAuthProvider } from "@/auth/server-auth-provider";
 import BreadCrumbs from "./BreadCrumb";
+import ViewListsButton from "./ViewListsButton";
 
 // add a props interface to type check the props of this component
 interface NavbarProps {
@@ -24,18 +25,30 @@ interface NavbarProps {
 
 const Navbar = () => {
   const routes = [
-    // {
-    //   href: "/new",
-    //   label: "New",
-    // },
-    // {
-    //   href: "/missing/persons",
-    //   label: "Persons",
-    // },
-    // {
-    //   href: "/missing/vehicles",
-    //   label: "Vehicles",
-    // },
+    {
+      href: "/",
+      label: "Home",
+    },
+    {
+      href: "/about",
+      label: "About",
+    },
+
+    {
+      href: "/new",
+      label: "New Alert",
+    },
+    {
+      href: "/view",
+      label: "Lists",
+    },
+    {
+      href: "/resources",
+      label: "Info Hub",
+    },
+  ];
+
+  const mobileRoutes = [
     {
       href: "/",
       label: "Home",
@@ -45,8 +58,28 @@ const Navbar = () => {
       label: "New Alert",
     },
     {
+      href: "/missing/persons",
+      label: "Missing Persons",
+    },
+    {
+      href: "/missing/vehicles",
+      label: "Missing Vehicles",
+    },
+    {
+      href: "/missing/bikes",
+      label: "Missing Bikes",
+    },
+    {
+      href: "/medical/blood-appeals",
+      label: "Blood Appeals",
+    },
+    {
       href: "/resources",
       label: "Info Hub",
+    },
+    {
+      href: "/#",
+      label: "About",
     },
   ];
 
@@ -58,11 +91,21 @@ const Navbar = () => {
             <div className="flex items-center">
               <Sheet>
                 <SheetTrigger>
-                  <Menu className="h-6 md:hidden w-6" />
+                  <Menu className="h-6 md:hidden w-6 text-primary" />
                 </SheetTrigger>
                 <SheetContent side="left" className="w-[300px] sm:w-[400px]">
                   <nav className="flex flex-col gap-4">
-                    {routes.map((route, i) => (
+                    {/* {routes.map((route, i) => (
+                      <SheetClose key={i} asChild>
+                        <Link
+                          href={route.href}
+                          className="block px-2 py-1 text-lg"
+                        >
+                          {route.label}
+                        </Link>
+                      </SheetClose>
+                    ))} */}
+                    {mobileRoutes?.map((route, i) => (
                       <SheetClose key={i} asChild>
                         <Link
                           href={route.href}
@@ -76,20 +119,29 @@ const Navbar = () => {
                 </SheetContent>
               </Sheet>
               <Link href="/">
-                <span className="text-xl text-primary ml-2 md:ml-0"> ML</span>
+                <span className="hidden lg:block text-xl text-primary ml-2 md:ml-0">
+                  {" "}
+                  ML
+                </span>
               </Link>
             </div>
             <nav className="mx-6 items-center space-x-4 lg:space-x-6 hidden md:block">
               {routes?.map((route, i) => (
-                <Button key={i} asChild variant="ghost">
-                  <Link
-                    key={i}
-                    href={route.href}
-                    className="text-sm font-medium transition-colors"
-                  >
-                    {route.label}
-                  </Link>
-                </Button>
+                <>
+                  {route.href == "/view" ? (
+                    <ViewListsButton key={i} />
+                  ) : (
+                    <Button key={i} asChild variant="ghost">
+                      <Link
+                        key={i}
+                        href={route.href}
+                        className="text-sm font-medium transition-colors"
+                      >
+                        {route.label}
+                      </Link>
+                    </Button>
+                  )}
+                </>
               ))}
             </nav>
             {/* <BreadCrumbs

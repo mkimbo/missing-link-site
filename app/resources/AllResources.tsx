@@ -40,7 +40,9 @@ export default function AllResources() {
               <h1 className="text-5xl font-bold tracking-tighter sm:text-7xl">
                 Information Hub
               </h1>
-              <div className="text-xl">Public info at your fingertips.</div>
+              <div className="text-sm lg:text-xl">
+                Public info at your fingertips.
+              </div>
             </div>
           </section>
 

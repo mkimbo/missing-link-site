@@ -1,5 +1,6 @@
 import { Siren } from "lucide-react";
 import ResourceCard from "../ResourceCard";
+import BackButton from "@/components/BackButton";
 
 export default function EmergencyContacts() {
   const alertOptions = [
@@ -24,11 +25,19 @@ export default function EmergencyContacts() {
       <div className="grid gap-6 items-center">
         <div className="flex flex-col justify-center space-y-8 text-center">
           <section className="w-full py-12 bg-primary ">
-            <div className="space-y-6 text-left md:text-center pl-4">
+            <div className="space-y-4 text-left md:text-center pl-4">
+              <div className="lg:hidden">
+                <BackButton />
+              </div>
               <h1 className="text-5xl font-bold tracking-tighter sm:text-7xl">
                 Emergency Contacts
               </h1>
-              <div className="text-xl">Help may be just a phone call away.</div>
+              <div className="text-sm lg:text-xl">
+                Help may be just a phone call away.
+              </div>
+              <div className="hidden lg:block">
+                <BackButton />
+              </div>
             </div>
           </section>
 

@@ -40,7 +40,9 @@ export default function AlertOptions() {
               <h1 className="text-5xl font-bold tracking-tighter sm:text-7xl">
                 Emergency Alerts
               </h1>
-              <div className="text-xl">Powered by your community.</div>
+              <div className="text-sm lg:text-xl">
+                Powered by your community.
+              </div>
             </div>
           </section>
 
