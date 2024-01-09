@@ -9,7 +9,7 @@ export default function ChildSafety() {
             establish clear guidelines, and maintain open lines of
             communication."
     >
-      <div className="w-full lg:w-2/3">
+      <div className="w-full">
         <div className="text-sm text-muted-foreground my-2">
           <span className="text-primary font-bold">Supervision: </span>
           Always supervise young children and be actively involved in their

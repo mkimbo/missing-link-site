@@ -2,6 +2,7 @@ import { DropletsIcon, PersonStandingIcon } from "lucide-react";
 
 import MotorIcon from "@/components/MotorIcon";
 import LinkButton from "@/components/LinkButton";
+import MultiLinkButton from "@/components/MultiLinkButton";
 export async function generateStaticParams() {
   return [{}];
 }
@@ -15,7 +16,7 @@ export default function Home() {
             Technology for community welfare.
           </h1>
           <p className="text-2xl">Together, we can make a difference.</p>
-          <LinkButton href="/" className="" label="Learn More" />
+          <LinkButton href="/about" className="" label="Learn More" />
         </div>
       </section>
       <section className="w-full py-12 flex justify-between items-center">
@@ -61,8 +62,20 @@ export default function Home() {
             the search for your stolen vehicles and bikes.
           </p>
           <div className="flex justify-end space-x-4">
-            <LinkButton href="/new?type=vehicle" label="New Vehicle Alert" />
-            <LinkButton href="/new?type=bike" label="New Bike Alert" />
+            <MultiLinkButton
+              name="Create New"
+              items={[
+                { href: "/new?type=vehicle", label: "Vehicle Alert" },
+                { href: "/new?type=bike", label: "Bike Alert" },
+              ]}
+            />
+            <MultiLinkButton
+              name="View List"
+              items={[
+                { href: "/missing/vehicles", label: "Missing Vehicles" },
+                { href: "/missing/bikes", label: "Missing Bikes" },
+              ]}
+            />
           </div>
         </div>
       </section>

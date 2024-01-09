@@ -49,7 +49,7 @@ export default function AwarenessInformation() {
           <section className="w-full py-12 bg-primary ">
             <div className="space-y-4 text-left md:text-center pl-4">
               <div className="lg:hidden">
-                <BackButton />
+                <BackButton mutedText={false} />
               </div>
               <h1 className="text-5xl font-bold tracking-tighter sm:text-7xl">
                 Awareness <br className="md:hidden"></br> Is key
@@ -58,7 +58,7 @@ export default function AwarenessInformation() {
                 Stay Informed and prepared.
               </div>
               <div className="hidden lg:block">
-                <BackButton />
+                <BackButton mutedText={false} />
               </div>
             </div>
           </section>

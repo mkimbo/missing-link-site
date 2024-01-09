@@ -10,7 +10,7 @@ export default function SHGBV() {
       changes. By fostering a culture of respect, consent, and equality,
       we can strive towards a society free from sexual harassment and GBV."
     >
-      <div className="w-full lg:w-2/3">
+      <div className="w-full">
         <div className="text-sm text-muted-foreground my-2">
           <span className="text-primary font-bold">Consent Education:</span>
           Promote the importance of consent and educate individuals on what it

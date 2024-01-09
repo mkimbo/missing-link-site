@@ -8,7 +8,7 @@ export default function PersonalHealth() {
       description="Prioritize your health and well-being by making small, sustainable
     changes towards a healthier lifestyle."
     >
-      <div className="w-full lg:w-2/3">
+      <div className="w-full">
         <div className="text-sm text-muted-foreground my-2">
           <span className="text-primary font-bold">Eat a Balanced Diet: </span>
           Include a variety of fruits, vegetables, whole grains, lean proteins,

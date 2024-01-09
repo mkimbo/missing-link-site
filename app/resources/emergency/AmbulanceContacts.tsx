@@ -1,3 +1,4 @@
+import BackButton from "@/components/BackButton";
 import { Separator } from "@/components/ui/separator";
 import {
   Table,
@@ -58,8 +59,9 @@ const ambulanceContacts = [
 
 export function AmbulanceContacts() {
   return (
-    <div className="px-4 ">
-      <div className="mt-6 space-y-1">
+    <>
+      <div className=" space-y-1">
+        <BackButton />
         <h2 className="text-2xl font-semibold tracking-tight">
           Ambulance Contacts
         </h2>
@@ -92,6 +94,6 @@ export function AmbulanceContacts() {
           ))}
         </TableBody>
       </Table>
-    </div>
+    </>
   );
 }

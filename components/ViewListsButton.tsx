@@ -16,9 +16,14 @@ import { useRouter } from "next/navigation";
 import { Button } from "./ui/button";
 import { ChevronDown } from "lucide-react";
 
-type Props = {};
+type Props = {
+  // name: string;
+  // items: { href: string; label: string }[];
+};
 
-const ViewListsButton = ({}: Props) => {
+const ViewListsButton = ({}: // name,
+// items,
+Props) => {
   const router = useRouter();
 
   return (
@@ -70,7 +75,7 @@ const ViewListsButton = ({}: Props) => {
         </DropdownMenuSub>
         <DropdownMenuItem
           className="cursor-pointer"
-          onClick={() => router.push("/profile")}
+          onClick={() => router.push("/medical/blood-appeals")}
         >
           Blood Appeals
         </DropdownMenuItem>

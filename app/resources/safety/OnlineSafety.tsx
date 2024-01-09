@@ -8,7 +8,7 @@ export default function OnlineSafety() {
       description=" Online safety is an ongoing effort, and staying informed about
             emerging threats and best practices is crucial. Here are some tips to protect yourself while browsing the internet."
     >
-      <div className="w-full lg:w-2/3">
+      <div className="w-full">
         <div className="text-sm text-muted-foreground my-2">
           <span className="text-primary font-bold">
             Protect Personal Information:{" "}

@@ -7,7 +7,7 @@ export default function PersonalSafety() {
       title="Personal Safety"
       description="Personal safety is a priority, and being observant and alert can help you identify potential dangers and take necessary precautions to protect yourself."
     >
-      <div className="w-full lg:w-2/3">
+      <div className="w-full">
         <div className="text-sm text-muted-foreground my-2">
           <span className="text-primary font-bold">Trust Your Instincts: </span>
           Pay attention to your gut feelings and intuition. If something feels

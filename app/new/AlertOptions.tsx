@@ -6,7 +6,7 @@ export default function AlertOptions() {
     {
       title: "Missing Person",
       href: "/new?type=person",
-      description: "Broadcast geo-targeted alerts for missing loved ones.",
+      description: "Broadcast location based alerts of missing loved ones.",
       icon: <Users2 className=" h-10 w-10 mb-2 opacity-75" />,
     },
     {

@@ -7,7 +7,7 @@ export default function FirstAid() {
       title="First Aid"
       description="While first aid can be crucial in many situations, it is not a substitute for professional medical care. Always seek medical help when needed."
     >
-      <div className="w-full lg:w-2/3">
+      <div className="w-full">
         <div className="text-sm text-muted-foreground my-2">
           <span className="text-primary font-bold">Stay Informed: </span>
           Regularly update your first aid knowledge. Attend first aid training

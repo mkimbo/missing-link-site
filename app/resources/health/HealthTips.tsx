@@ -40,7 +40,7 @@ export default function HealthTips() {
           <section className="w-full py-12 bg-primary ">
             <div className="space-y-4 text-left md:text-center pl-4">
               <div className="lg:hidden">
-                <BackButton />
+                <BackButton mutedText={false} />
               </div>
               <h1 className="text-5xl font-bold tracking-tighter sm:text-7xl">
                 Healthy<br className="md:hidden"></br> Living
@@ -50,7 +50,7 @@ export default function HealthTips() {
                 Health is certainly wealth.
               </div>
               <div className="hidden lg:block">
-                <BackButton />
+                <BackButton mutedText={false} />
               </div>
             </div>
           </section>

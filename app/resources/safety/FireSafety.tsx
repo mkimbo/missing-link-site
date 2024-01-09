@@ -7,7 +7,7 @@ export default function FireSafety() {
       title="Fire Safety"
       description="Fire safety is crucial for protecting lives and property."
     >
-      <div className="w-full lg:w-2/3">
+      <div className="w-full">
         <div className="text-sm text-muted-foreground my-2">
           <span className="text-primary font-bold">Install Smoke Alarms: </span>
           Install smoke alarms on every level of your home, including inside

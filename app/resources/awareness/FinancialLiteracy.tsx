@@ -10,7 +10,7 @@ export default function FinancialLiteracy() {
       budgeting, and investing. Financial literacy helps individuals
       become self-sufficient so that they can achieve financial stability."
     >
-      <div className="w-full lg:w-2/3">
+      <div className="w-full">
         <h4 className="text-primary font-bold">Tips for kids:</h4>
 
         <div className="text-sm text-muted-foreground my-2">

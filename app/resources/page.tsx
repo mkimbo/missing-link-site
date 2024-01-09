@@ -74,7 +74,7 @@ export default function Resources({
   }
 
   return (
-    <div className="container mx-auto p-4 ">
+    <div className="container mx-auto px-4 py-1">
       <ServerAuthProvider>{getResource(resourceType)}</ServerAuthProvider>
     </div>
   );

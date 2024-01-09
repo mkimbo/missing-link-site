@@ -38,7 +38,7 @@ export default function AllResources() {
           <section className="w-full py-12 bg-primary ">
             <div className="space-y-6 text-left md:text-center pl-4">
               <h1 className="text-5xl font-bold tracking-tighter sm:text-7xl">
-                Information Hub
+                Information <br className="md:hidden"></br>Hub
               </h1>
               <div className="text-sm lg:text-xl">
                 Public info at your fingertips.

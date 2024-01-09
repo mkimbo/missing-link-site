@@ -7,7 +7,7 @@ export default function PoliticalEducation() {
       title="Political Education"
       description="We need to empower ourselves to become informed, engaged, and responsible citizens who actively participate in shaping the political landscape of Kenya."
     >
-      <div className="w-full lg:w-2/3">
+      <div className="w-full">
         <div className="text-sm text-muted-foreground my-2">
           <span className="text-primary font-bold">
             Understand the Political System:

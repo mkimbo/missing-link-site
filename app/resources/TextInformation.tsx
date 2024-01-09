@@ -12,8 +12,8 @@ export default function TextInformation({
   description: string;
 }) {
   return (
-    <div className="px-4 ">
-      <div className="mt-0 lg:mt-3 space-y-1">
+    <div>
+      <div className=" space-y-1">
         <BackButton />
         <h2 className="text-2xl font-semibold tracking-tight">{title}</h2>
         <div className="w-full lg:w-fit flex justify-start ">{description}</div>

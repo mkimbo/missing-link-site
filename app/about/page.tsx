@@ -28,7 +28,7 @@ function About({}: Props) {
           </p>
         </div>
       </section>
-      <SectionTitle title="Why MissingLink?" />
+      <SectionTitle title="Why Missing Link?" />
       <section className="w-full py-2 flex justify-between items-center">
         <div className="space-y-8 lg:w-3/4 mx-auto">
           <p className="text-muted-foreground text-center">

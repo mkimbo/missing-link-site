@@ -15,7 +15,7 @@ export default function CSE() {
       understand and ensure the protection of their rights throughout
       their lives."
     >
-      <div className="w-full lg:w-2/3 ">
+      <div className="w-full ">
         <div className="text-sm  my-2">
           CSE should start at an early age with foundational content and skills
           delivered in-school and out-of-school.The content and skills grow in

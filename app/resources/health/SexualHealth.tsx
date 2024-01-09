@@ -7,7 +7,7 @@ export default function SexualHealth() {
       title="Sexual Health"
       description="Sexual health is an important aspect of overall well-being."
     >
-      <div className="w-full lg:w-2/3">
+      <div className="w-full">
         <div className="text-sm text-muted-foreground my-2">
           <span className="text-primary font-bold">
             Practice Consensual and Respectful Relationships:{" "}
