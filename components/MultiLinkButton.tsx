@@ -45,6 +45,7 @@ const MultiLinkButton = ({ name, items, variant }: Props) => {
       <DropdownMenuContent>
         {items.map((item) => (
           <DropdownMenuItem
+            key={item.href}
             className="cursor-pointer"
             onClick={() => router.push(item.href)}
           >
