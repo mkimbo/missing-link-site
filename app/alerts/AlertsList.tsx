@@ -69,7 +69,7 @@ export default function AlertsList() {
   }, [user, db]);
 
   return (
-    <Tabs defaultValue="persons" className="w-full lg:w-6/12 px-4 pt-4 mx-auto">
+    <Tabs defaultValue="persons" className="w-full lg:w-6/12 px-4 pt-2 mx-auto">
       <TabsList className="grid w-full grid-cols-4">
         <TabsTrigger value="persons">Persons</TabsTrigger>
         <TabsTrigger value="motors">Motors</TabsTrigger>
@@ -97,7 +97,12 @@ export default function AlertsList() {
           </>
         )}
         {!notificationsLoading && personList.length == 0 && (
-          <div className="text-center">Nothing yet.</div>
+          <div className="text-center">
+            <div>Nothing Yet.</div>
+            <div className="text-sm text-muted-foreground">
+              Missing person alerts will appear here.
+            </div>
+          </div>
         )}
       </TabsContent>
 
@@ -112,7 +117,12 @@ export default function AlertsList() {
           </>
         )}
         {!notificationsLoading && motorsList.length == 0 && (
-          <div className="text-center">Nothing yet.</div>
+          <div className="text-center">
+            <div>Nothing Yet.</div>
+            <div className="text-sm text-muted-foreground">
+              Missing vehicle/bike alerts will appear here.
+            </div>
+          </div>
         )}
       </TabsContent>
       <TabsContent value="sightings">
@@ -126,7 +136,12 @@ export default function AlertsList() {
           </>
         )}
         {!notificationsLoading && sightingsList.length == 0 && (
-          <div className="text-center">Nothing yet.</div>
+          <div className="text-center">
+            <div>Nothing Yet.</div>
+            <div className="text-sm text-muted-foreground">
+              Sightings will appear here.
+            </div>
+          </div>
         )}
       </TabsContent>
       <TabsContent value="bloodAppeals">
@@ -140,7 +155,12 @@ export default function AlertsList() {
           </>
         )}
         {!notificationsLoading && bloodAppeals.length == 0 && (
-          <div className="text-center">Nothing yet.</div>
+          <div className="text-center">
+            <div>Nothing Yet.</div>
+            <div className="text-sm text-muted-foreground">
+              Blood donation appeals will appear here.
+            </div>
+          </div>
         )}
       </TabsContent>
     </Tabs>

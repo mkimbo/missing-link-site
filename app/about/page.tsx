@@ -16,7 +16,10 @@ function About({}: Props) {
         </div>
       </section>
       <SectionTitle title="The Idea" />
-      <section className="w-full py-2 flex justify-between items-center">
+      <section
+        className="w-full py-2 flex justify-between items-center"
+        id="welcome"
+      >
         <div className="space-y-8 lg:w-3/4 mx-auto">
           <p className="text-muted-foreground text-center">
             Welcome to Missing Link, a transformative community-driven
@@ -57,7 +60,10 @@ function About({}: Props) {
         </div>
       </section>
       <SectionTitle title="Geolocation" />
-      <section className="w-full py-2 flex justify-between items-center">
+      <section
+        className="w-full py-2 flex justify-between items-center"
+        id="geolocation"
+      >
         <div className="space-y-8 lg:w-3/4 mx-auto">
           <p className="text-muted-foreground text-center">
             Geolocation technology is at the heart of Missing Link. It enables
@@ -85,19 +91,22 @@ function About({}: Props) {
         </div>
       </section>
       <SectionTitle title="More than Alerts" />
-      <section className="w-full py-2 flex justify-between items-center">
+      <section
+        className="w-full py-2 flex justify-between items-center"
+        id="more"
+      >
         <div className="space-y-8 lg:w-3/4 mx-auto">
           <p className="text-muted-foreground text-center">
             Missing Link goes beyond alerts. We are committed to providing a
             wealth of information to the public. From emergency contacts to
-            safety guidelines and community-driven initiatives, our platform
+            safety guidelines and community-driven initiatives, the platform
             serves as a hub for valuable resources. By fostering community
-            engagement, we empower individuals to actively participate in public
-            safety and make a positive impact.{" "}
+            engagement, individuals are empowered to actively participate in
+            public safety and make a positive impact.{" "}
             <InlineButtonLink title="Join Us" href="/login" /> at Missing Link
             and be part of a community that prioritizes safety, collaboration,
             and the well-being of all its members. Together, we can create a
-            safer and more connected world.
+            safer and more ideal world.
           </p>
         </div>
       </section>

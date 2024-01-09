@@ -4,6 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import InlineButtonLink from "./InlineButtonLink";
 
 export function FAQ() {
   return (
@@ -18,7 +19,8 @@ export function FAQ() {
           receiving alerts about missing persons, blood donation appeals, and
           other critical public information. Missing Link aims to foster a sense
           of responsibility and collaboration within the community to ensure a
-          swift and collective response to emergencies and much more.
+          swift and collective response to emergencies and
+          <InlineButtonLink href="/about#more" title="much more" />.
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-2">
@@ -58,7 +60,7 @@ export function FAQ() {
           in case of emergencies.
         </AccordionContent>
       </AccordionItem>
-      <AccordionItem value="item-4">
+      <AccordionItem value="item-5">
         <AccordionTrigger className="text-lg ">
           Will AI take my job?
         </AccordionTrigger>
