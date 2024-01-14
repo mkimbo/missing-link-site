@@ -108,6 +108,7 @@ export function MedicalAlert() {
                         phoneNumber:
                           values.paymentMobileNo ?? user?.phoneNumber.number!,
                       });
+                      console.log(payment, "payment status");
                       if (payment.invoice.state == "COMPLETE") {
                         const data = {
                           ...values,

@@ -1,5 +1,4 @@
 import { ServerAuthProvider } from "@/auth/server-auth-provider";
-import Container from "@/components/ui/container";
 import React from "react";
 import { MissingPersonAlert } from "./person/MissingPersonAlert";
 import AlertOptions from "./AlertOptions";
@@ -14,9 +13,6 @@ export default function NewAlert({
   searchParams: { type: string };
 }) {
   const alertType = searchParams.type;
-  //   if (!alertType) {
-  //     throw new Error("Missing alert type");
-  //   }
 
   function getAlertType(alertType: string) {
     switch (alertType) {
@@ -34,10 +30,10 @@ export default function NewAlert({
   }
 
   return (
-    <Container>
+    <div className="container mx-auto px-4 py-1">
       <ServerAuthProvider>
         <div className="">{getAlertType(alertType)}</div>
       </ServerAuthProvider>
-    </Container>
+    </div>
   );
 }

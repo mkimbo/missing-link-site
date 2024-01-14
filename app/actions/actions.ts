@@ -253,38 +253,32 @@ export const sendMpesaSTKPush = async (data: {
       api_ref: process.env.INTASEND_API_REF!,
     });
     const checkPaymentStatus = async (): Promise<TPaymentStatusResponse> => {
-      if (stkPushResponse.invoice.state == "PENDING") {
-        // Retry after 30 seconds
-        return new Promise((resolve) => {
-          setTimeout(async () => {
-            const retryStatusResponse: TPaymentStatusResponse =
-              await collection.status(stkPushResponse.invoice.invoice_id);
-            if (retryStatusResponse.invoice.state == "PENDING") {
-              // Retry after 60 seconds
-              setTimeout(async () => {
-                const finalStatusResponse: TPaymentStatusResponse =
-                  await collection.status(stkPushResponse.invoice.invoice_id);
+      //check payment status after 20 seconds
+      return new Promise((resolve) => {
+        setTimeout(async () => {
+          const checkStatusResponse: TPaymentStatusResponse =
+            await collection.status(stkPushResponse.invoice.invoice_id);
+          if (checkStatusResponse.invoice.state == "PENDING") {
+            // Retry after 60 seconds
+            setTimeout(async () => {
+              const retryStatusResponse: TPaymentStatusResponse =
+                await collection.status(stkPushResponse.invoice.invoice_id);
 
-                if (finalStatusResponse.invoice.state == "COMPLETE") {
-                  resolve(finalStatusResponse);
-                } else {
-                  console.log("Payment failed in final", finalStatusResponse);
-                  resolve(finalStatusResponse);
-                }
-              }, 60000);
-            } else if (retryStatusResponse.invoice.state == "COMPLETE") {
-              resolve(retryStatusResponse);
-            } else {
-              console.log("Payment failed in retry", retryStatusResponse);
-              resolve(retryStatusResponse);
-            }
-          }, 30000);
-        });
-      } else {
-        console.log("Payment Status", stkPushResponse.invoice.state);
-
-        return stkPushResponse;
-      }
+              if (retryStatusResponse.invoice.state == "COMPLETE") {
+                resolve(retryStatusResponse);
+              } else {
+                console.log("Payment failed in final", retryStatusResponse);
+                resolve(retryStatusResponse);
+              }
+            }, 60000);
+          } else if (checkStatusResponse.invoice.state == "COMPLETE") {
+            resolve(checkStatusResponse);
+          } else {
+            console.log("Payment failed in retry", checkStatusResponse);
+            resolve(checkStatusResponse);
+          }
+        }, 20000);
+      });
     };
 
     const paymentStatus = await checkPaymentStatus();

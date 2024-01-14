@@ -1,7 +1,6 @@
 import { ServerAuthProvider } from "../../auth/server-auth-provider";
 import { Metadata } from "next";
 import { RegisterForm } from "./RegisterForm";
-import Container from "@/components/ui/container";
 
 export const metadata: Metadata = {
   title: "Register",
@@ -10,10 +9,10 @@ export const metadata: Metadata = {
 
 export default function Register() {
   return (
-    <Container>
+    <div className="container mx-auto px-4 py-1">
       <ServerAuthProvider>
         <RegisterForm />
       </ServerAuthProvider>
-    </Container>
+    </div>
   );
 }

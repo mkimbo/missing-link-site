@@ -110,7 +110,7 @@ export function RegisterForm() {
   }
 
   return (
-    <Card className="w-[350px] mx-auto mt-40 border-0">
+    <Card className="w-[350px] mx-auto mt-4 md:mt-40 border-0">
       <CardHeader className="text-center">
         <CardTitle>Verify Phone</CardTitle>
         <CardDescription>
