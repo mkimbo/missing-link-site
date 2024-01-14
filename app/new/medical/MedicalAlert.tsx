@@ -8,26 +8,31 @@ import { useRouter } from "next/navigation";
 
 import { useZact } from "zact/client";
 import { bloodAppealSchema } from "@/types/zod_schemas";
-import { useAuth } from "@/auth/context";
-import { saveBloodAppealAlert } from "@/app/actions/actions";
-import { ChevronLeft, ChevronRight, Loader, Save } from "lucide-react";
+import { saveBloodAppealAlert, sendMpesaSTKPush } from "@/app/actions/actions";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import BloodAppealStep2 from "./BloodAppealStep2";
 import ProgressBar from "@/components/ProgressBar";
 import BloodAppealStep1 from "./BloodRequestStep1";
 import BloodAppealSuccess from "./BloodRequestSuccess";
+import SaveAlertButton from "@/components/SaveAlertButton";
+import { getAmountToPay } from "@/lib/functions";
+import { useUser } from "@/context/UserContext";
+import { toast } from "@/components/ui/use-toast";
 
 export type TFormSchema = z.infer<typeof bloodAppealSchema>;
 export function MedicalAlert() {
-  const { user } = useAuth();
+  const { user } = useUser();
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState(1);
+  const [isProcessing, setProcessing] = useState(false);
   const methods = useForm<TFormSchema>({
     resolver: zodResolver(bloodAppealSchema),
     reValidateMode: "onChange",
     defaultValues: {
       PIDisclaimer: false,
+      paymentMobileNo: user?.phoneNumber.number ?? "",
     },
   });
 
@@ -40,8 +45,8 @@ export function MedicalAlert() {
     }
   }, [data, router, reset]);
 
-  if (!user?.email) {
-    return null;
+  if (!user?.phoneNumber.number || !user?.id) {
+    router.push(`/add-mobile?redirect=/new?type=medical}`);
   }
 
   return (
@@ -86,24 +91,46 @@ export function MedicalAlert() {
             )}
 
             {currentStep == 2 && (
-              <Button
-                variant="default"
-                disabled={isLoading}
+              <SaveAlertButton
+                loading={isProcessing || isLoading}
                 onClick={async () => {
                   handleSubmit(async (values) => {
-                    const data = {
-                      ...values,
-                      createdBy: user?.uid,
-                    };
+                    setProcessing(true);
+                    if (values.alertRadius === "3") {
+                      const data = {
+                        ...values,
+                        createdBy: user?.id!,
+                      };
+                      mutate(data);
+                    } else {
+                      const payment = await sendMpesaSTKPush({
+                        amount: parseInt(getAmountToPay(values.alertRadius)),
+                        phoneNumber:
+                          values.paymentMobileNo ?? user?.phoneNumber.number!,
+                      });
+                      if (payment.invoice.state == "COMPLETE") {
+                        const data = {
+                          ...values,
+                          createdBy: user?.id!,
+                          paymentId: payment.invoice.id,
+                          paymentMobileNo: payment.invoice.account,
+                          paymentMode: payment.invoice.provider,
+                          paymentDate: payment.invoice.updated_at,
+                          paymentReference: payment.invoice.mpesa_reference,
+                          paymentAmount: payment.invoice.net_amount,
+                        };
+                        mutate(data);
+                      } else {
+                        toast({
+                          title: "Payment not successful!",
+                        });
+                      }
+                    }
 
-                    mutate(data);
+                    setProcessing(false);
                   })();
                 }}
-              >
-                {isLoading && <Loader className="mr-2 h-4 w-4 animate-spin" />}
-                Save
-                <Save className="h-5 w-5" />
-              </Button>
+              />
             )}
           </div>
         )}

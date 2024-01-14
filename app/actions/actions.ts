@@ -35,10 +35,12 @@ import { getTenantFromCookies } from "@/auth/server-auth-provider";
 import { cookies } from "next/headers";
 import { UserFull } from "@/types/redux";
 import { app } from "firebase-admin";
+import { fi } from "date-fns/locale";
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 const twilioClient = require("twilio")(accountSid, authToken);
 const geofire = require("geofire-common");
+const IntaSend = require("intasend-node");
 const saveSightingSchema = z.intersection(
   newSightingFormSchema,
   z.object({
@@ -229,135 +231,178 @@ export const saveMotorSighting = zact(saveSightingSchema)(async (input) => {
   };
 });
 
-export const saveAlert = zact(savePersonAlertSchema)(async (data) => {
-  const docID = nanoid();
-  await serverDB
-    .collection(process.env.FIREBASE_FIRESTORE_MISSING_PERSONS!)
-    .doc(docID)
-    .set(data);
-  revalidatePath("/missing/persons");
-  const center = [Number(data.geoloc.lat), Number(data.geoloc.lng)];
-  const notification = {
-    title: data.fullname,
-    body: "has just been reported missing in your area",
-    icon: data.images[0],
-    click_action: `${process.env.NEXT_PUBLIC_URL!}/missing/persons/${docID}`,
-    type: "person" as TAlertType,
-  };
-  const successfullyNotified = await sendNotifications({
-    center,
-    radius: parseInt(data.alertRadius),
-    notification,
-  });
-  const notifiedList = [];
-  for (const user of successfullyNotified) {
-    const distanceInKm = geofire.distanceBetween(center, [user.lat, user.lng]);
-    notifiedList.push({
-      userId: user.userId,
-      distance: distanceInKm,
-      points: 10, // TODO: calculate points based on distance
-      redeemed: false,
-      seen: false,
+export const sendMpesaSTKPush = async (data: {
+  amount: number;
+  phoneNumber: string;
+}): Promise<TPaymentStatusResponse> => {
+  try {
+    const intasend = new IntaSend(
+      process.env.INTASEND_PUBLIC_KEY!,
+      process.env.INTASEND_SECRET_KEY!,
+      process.env.INTASEND_TEST_MODE! // set to false when going live
+    );
+
+    const collection = intasend.collection();
+    const stkPushResponse = await collection.mpesaStkPush({
+      first_name: "Jack",
+      last_name: "Mkimbo",
+      email: "jackmkimbo@gmail.com",
+      host: "https://missinglink.site",
+      amount: 1,
+      phone_number: "254758677651",
+      api_ref: process.env.INTASEND_API_REF!,
     });
+    const checkPaymentStatus = async (): Promise<TPaymentStatusResponse> => {
+      if (stkPushResponse.invoice.state == "PENDING") {
+        // Retry after 30 seconds
+        return new Promise((resolve) => {
+          setTimeout(async () => {
+            const retryStatusResponse: TPaymentStatusResponse =
+              await collection.status(stkPushResponse.invoice.invoice_id);
+            if (retryStatusResponse.invoice.state == "PENDING") {
+              // Retry after 60 seconds
+              setTimeout(async () => {
+                const finalStatusResponse: TPaymentStatusResponse =
+                  await collection.status(stkPushResponse.invoice.invoice_id);
+
+                if (finalStatusResponse.invoice.state == "COMPLETE") {
+                  resolve(finalStatusResponse);
+                } else {
+                  console.log("Payment failed in final", finalStatusResponse);
+                  resolve(finalStatusResponse);
+                }
+              }, 60000);
+            } else if (retryStatusResponse.invoice.state == "COMPLETE") {
+              resolve(retryStatusResponse);
+            } else {
+              console.log("Payment failed in retry", retryStatusResponse);
+              resolve(retryStatusResponse);
+            }
+          }, 30000);
+        });
+      } else {
+        console.log("Payment Status", stkPushResponse.invoice.state);
+
+        return stkPushResponse;
+      }
+    };
+
+    const paymentStatus = await checkPaymentStatus();
+    console.log("Payment Response:", paymentStatus);
+    return paymentStatus;
+  } catch (error) {
+    console.error("Error:", error);
+    throw error;
+  }
+};
+
+export const saveAlert = zact(savePersonAlertSchema)(async (data) => {
+  let response: {
+    success: boolean;
+    error: string | null;
+    id: string | null;
+    notificationSent: boolean;
+    numUsersNotified: number;
+  } | null;
+  try {
+    const docID = nanoid();
+    await serverDB
+      .collection(process.env.FIREBASE_FIRESTORE_MISSING_PERSONS!)
+      .doc(docID)
+      .set(data);
+    revalidatePath("/missing/persons");
+    const center = [Number(data.geoloc.lat), Number(data.geoloc.lng)];
+    const notification = {
+      title: data.fullname,
+      body: "has just been reported missing in your area",
+      icon: data.images[0],
+      click_action: `${process.env.NEXT_PUBLIC_URL!}/missing/persons/${docID}`,
+      type: "person" as TAlertType,
+    };
+    const successfullyNotified = await sendNotifications({
+      center,
+      radius: parseInt(data.alertRadius),
+      notification,
+    });
+    const notifiedList = [];
+    for (const user of successfullyNotified) {
+      const distanceInKm = geofire.distanceBetween(center, [
+        user.lat,
+        user.lng,
+      ]);
+      notifiedList.push({
+        userId: user.userId,
+        distance: distanceInKm,
+        points: 10, // TODO: calculate points based on distance
+        redeemed: false,
+        seen: false,
+      });
+    }
+
+    await saveNotification({
+      content: `${data.fullname} has been reported missing`,
+      ownerId: data.createdBy,
+      resourceId: docID,
+      resourceType: "person",
+      createdAt: Date.now(),
+      image: data.images[0],
+      lat: data.geoloc.lat,
+      lng: data.geoloc.lng,
+      notifiedUsers: notifiedList,
+    });
+
+    response = {
+      success: true,
+      error: null,
+      id: docID,
+      notificationSent: successfullyNotified.length > 0,
+      numUsersNotified: successfullyNotified.length,
+    };
+  } catch (error) {
+    console.log("error", error);
+    response = {
+      success: false,
+      error: `Error saving alert`,
+      id: null,
+      notificationSent: false,
+      numUsersNotified: 0,
+    };
   }
 
-  await saveNotification({
-    content: `${data.fullname} has been reported missing`,
-    ownerId: data.createdBy,
-    resourceId: docID,
-    resourceType: "person",
-    createdAt: Date.now(),
-    image: data.images[0],
-    lat: data.geoloc.lat,
-    lng: data.geoloc.lng,
-    notifiedUsers: notifiedList,
-  });
-
-  return {
-    success: true,
-    id: docID,
-    notificationSent: successfullyNotified.length > 0,
-    numUsersNotified: successfullyNotified.length,
-  };
+  return response;
 });
 
 export const saveMotorAlert = zact(saveMotorAlertSchema)(async (data) => {
-  const docID = nanoid();
-  await serverDB
-    .collection(process.env.FIREBASE_FIRESTORE_MISSING_MOTORS!)
-    .doc(docID)
-    .set(data);
-  let action = "";
-  if (data.motorType === "vehicle") {
-    revalidatePath("/missing/vehicles");
-    action = `${process.env.NEXT_PUBLIC_URL!}/missing/vehicles/${docID}`;
-  }
-  if (data.motorType === "bike") {
-    revalidatePath("/missing/bikes");
-    action = `${process.env.NEXT_PUBLIC_URL!}/missing/bikes/${docID}`;
-  }
-  const center = [Number(data.geoloc.lat), Number(data.geoloc.lng)];
-  const notification = {
-    title: data.licencePlate,
-    body: "has just been reported missing in your area",
-    icon: data.images[0],
-    click_action: action,
-    type: data.motorType as TAlertType,
-  };
-  const successfullyNotified = await sendNotifications({
-    center,
-    radius: parseInt(data.alertRadius),
-    notification,
-  });
-  const notifiedList = [];
-  for (const user of successfullyNotified) {
-    notifiedList.push({
-      userId: user.userId,
-      distance: user.subscribedDistance!,
-      points: 10, // TODO: calculate points based on distance
-      redeemed: false,
-      seen: false,
-    });
-  }
-
-  await saveNotification({
-    content: `${data.licencePlate} has been reported missing`,
-    ownerId: data.createdBy,
-    resourceId: docID,
-    resourceType: data.motorType as TAlertType,
-    createdAt: Date.now(),
-    image: data.images[0],
-    lat: data.geoloc.lat,
-    lng: data.geoloc.lng,
-    notifiedUsers: notifiedList,
-  });
-
-  return {
-    success: true,
-    id: docID,
-    motorType: data.motorType,
-    notificationSent: successfullyNotified.length > 0,
-    numUsersNotified: successfullyNotified.length,
-  };
-});
-
-export const saveBloodAppealAlert = zact(saveMedicalAlertSchema)(
-  async (data) => {
+  let response: {
+    success: boolean;
+    error: string | null;
+    id: string | null;
+    motorType?: string;
+    notificationSent: boolean;
+    numUsersNotified: number;
+  } | null;
+  try {
     const docID = nanoid();
     await serverDB
-      .collection(process.env.FIREBASE_FIRESTORE_BLOOD_APPEALS!)
+      .collection(process.env.FIREBASE_FIRESTORE_MISSING_MOTORS!)
       .doc(docID)
       .set(data);
-    //TODO: add action
     let action = "";
-    revalidatePath("/missing/blood-appeals");
+    if (data.motorType === "vehicle") {
+      revalidatePath("/missing/vehicles");
+      action = `${process.env.NEXT_PUBLIC_URL!}/missing/vehicles/${docID}`;
+    }
+    if (data.motorType === "bike") {
+      revalidatePath("/missing/bikes");
+      action = `${process.env.NEXT_PUBLIC_URL!}/missing/bikes/${docID}`;
+    }
     const center = [Number(data.geoloc.lat), Number(data.geoloc.lng)];
     const notification = {
-      title: "Urgent Blood Appeal",
-      body: `${data.fullname} admitted at ${data.hospitalName} needs ${data.bUnits} units of ${data.bloodGroup} blood`,
-      icon: "https://firebasestorage.googleapis.com/v0/b/amber-alerts-ke.appspot.com/o/blood.png?alt=media&token=8b5b5b1a-7b0a-4b0a-9b0a-5b0a5b0a5b0a",
+      title: data.licencePlate,
+      body: "has just been reported missing in your area",
+      icon: data.images[0],
       click_action: action,
-      type: "bloodAppeal" as TAlertType,
+      type: data.motorType as TAlertType,
     };
     const successfullyNotified = await sendNotifications({
       center,
@@ -376,23 +421,112 @@ export const saveBloodAppealAlert = zact(saveMedicalAlertSchema)(
     }
 
     await saveNotification({
-      content: `${data.fullname} needs ${data.bloodGroup} blood urgently.`,
+      content: `${data.licencePlate} has been reported missing`,
       ownerId: data.createdBy,
       resourceId: docID,
-      resourceType: "bloodAppeal" as TAlertType,
+      resourceType: data.motorType as TAlertType,
       createdAt: Date.now(),
-      image: "",
+      image: data.images[0],
       lat: data.geoloc.lat,
       lng: data.geoloc.lng,
       notifiedUsers: notifiedList,
     });
 
-    return {
+    response = {
       success: true,
+      error: null,
       id: docID,
+      motorType: data.motorType,
       notificationSent: successfullyNotified.length > 0,
       numUsersNotified: successfullyNotified.length,
     };
+  } catch (error) {
+    console.log("error", error);
+    response = {
+      success: false,
+      error: `Error saving alert`,
+      id: null,
+      notificationSent: false,
+      numUsersNotified: 0,
+    };
+  }
+
+  return response;
+});
+
+export const saveBloodAppealAlert = zact(saveMedicalAlertSchema)(
+  async (data) => {
+    let response: {
+      success: boolean;
+      error: string | null;
+      id: string | null;
+      notificationSent: boolean;
+      numUsersNotified: number;
+    } | null;
+    try {
+      const docID = nanoid();
+      await serverDB
+        .collection(process.env.FIREBASE_FIRESTORE_BLOOD_APPEALS!)
+        .doc(docID)
+        .set(data);
+      //TODO: add action
+      let action = "";
+      revalidatePath("/missing/blood-appeals");
+      const center = [Number(data.geoloc.lat), Number(data.geoloc.lng)];
+      const notification = {
+        title: "Urgent Blood Appeal",
+        body: `${data.fullname} admitted at ${data.hospitalName} needs ${data.bUnits} units of ${data.bloodGroup} blood`,
+        icon: "https://firebasestorage.googleapis.com/v0/b/amber-alerts-ke.appspot.com/o/blood.png?alt=media&token=8b5b5b1a-7b0a-4b0a-9b0a-5b0a5b0a5b0a",
+        click_action: action,
+        type: "bloodAppeal" as TAlertType,
+      };
+      const successfullyNotified = await sendNotifications({
+        center,
+        radius: parseInt(data.alertRadius),
+        notification,
+      });
+      const notifiedList = [];
+      for (const user of successfullyNotified) {
+        notifiedList.push({
+          userId: user.userId,
+          distance: user.subscribedDistance!,
+          points: 10, // TODO: calculate points based on distance
+          redeemed: false,
+          seen: false,
+        });
+      }
+
+      await saveNotification({
+        content: `${data.fullname} needs ${data.bloodGroup} blood urgently.`,
+        ownerId: data.createdBy,
+        resourceId: docID,
+        resourceType: "bloodAppeal" as TAlertType,
+        createdAt: Date.now(),
+        image: "",
+        lat: data.geoloc.lat,
+        lng: data.geoloc.lng,
+        notifiedUsers: notifiedList,
+      });
+
+      response = {
+        success: true,
+        error: null,
+        id: docID,
+        notificationSent: successfullyNotified.length > 0,
+        numUsersNotified: successfullyNotified.length,
+      };
+    } catch (error) {
+      console.log("error", error);
+      response = {
+        success: false,
+        error: `Error saving alert`,
+        id: null,
+        notificationSent: false,
+        numUsersNotified: 0,
+      };
+    }
+
+    return response;
   }
 );
 

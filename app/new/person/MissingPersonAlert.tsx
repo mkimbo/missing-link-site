@@ -10,24 +10,27 @@ import { uploadFileToCloud } from "../../../auth/firebase";
 
 import { useZact } from "zact/client";
 import { newAlertFormSchema } from "@/types/zod_schemas";
-import { useAuth } from "@/auth/context";
-import { saveAlert } from "@/app/actions/actions";
-import { ChevronLeft, ChevronRight, Loader, Save } from "lucide-react";
+import { saveAlert, sendMpesaSTKPush } from "@/app/actions/actions";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { getFileObjectFromBlobUrl } from "@/lib/functions";
+import { getAmountToPay, getFileObjectFromBlobUrl } from "@/lib/functions";
 import ProgressBar from "@/components/ProgressBar";
 import PersonStep1 from "./PersonStep1";
 import { Card } from "@/components/ui/card";
 import PersonStep2 from "./PersonStep2";
 import PersonStep3 from "./PersonStep3";
 import PersonSuccess from "./PersonSuccess";
+import { toast } from "@/components/ui/use-toast";
+import SaveAlertButton from "@/components/SaveAlertButton";
+import { useUser } from "@/context/UserContext";
 
 export type TFormSchema = z.infer<typeof newAlertFormSchema>;
 export function MissingPersonAlert() {
-  const { user } = useAuth();
+  const { user } = useUser();
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState(1);
-  const [savingFiles, setSavingFiles] = useState(false);
+  const [isProcessing, setProcessing] = useState(false);
+
   const methods = useForm<TFormSchema>({
     resolver: zodResolver(newAlertFormSchema),
     reValidateMode: "onChange",
@@ -43,8 +46,23 @@ export function MissingPersonAlert() {
       lastSeenDate: new Date().toISOString(),
       lastSeenDescription: "",
       obNumber: "",
+      paymentMobileNo: user?.phoneNumber.number ?? "",
     },
   });
+
+  const saveFiles = async (images: string[]): Promise<string[]> => {
+    const files: string[] = [];
+
+    for await (const item of images) {
+      const file = await getFileObjectFromBlobUrl(item);
+      const downloadUrl = await uploadFileToCloud(file);
+      if (downloadUrl) {
+        files.push(downloadUrl);
+      }
+    }
+
+    return files;
+  };
 
   const { handleSubmit, formState, trigger, getValues, reset } = methods;
   const { mutate, data, isLoading } = useZact(saveAlert);
@@ -52,11 +70,15 @@ export function MissingPersonAlert() {
   useEffect(() => {
     if (data?.success) {
       setCurrentStep(4);
+    } else if (data?.error) {
+      toast({
+        title: data.error,
+      });
     }
   }, [data, router, reset]);
 
-  if (!user?.email) {
-    return null;
+  if (!user?.phoneNumber.number || !user?.id) {
+    router.push("/add-mobile?redirect=/new?type=person");
   }
 
   return (
@@ -67,7 +89,7 @@ export function MissingPersonAlert() {
             <div>
               {currentStep != 1 && (
                 <Button
-                  variant="default"
+                  variant="outline"
                   onClick={() => setCurrentStep(currentStep - 1)}
                   className=""
                 >
@@ -118,42 +140,52 @@ export function MissingPersonAlert() {
               </Button>
             )}
             {currentStep == 3 && (
-              <Button
-                variant="default"
-                disabled={savingFiles || isLoading}
+              <SaveAlertButton
+                loading={isProcessing || isLoading}
                 onClick={async () => {
                   handleSubmit(async (values) => {
-                    const files: string[] = [];
-                    setSavingFiles(true);
-                    for await (const item of values.images) {
-                      const file = await getFileObjectFromBlobUrl(item);
-                      const downloadUrl = await uploadFileToCloud(file);
-                      if (downloadUrl) {
-                        files.push(downloadUrl);
+                    setProcessing(true);
+                    if (values.alertRadius === "3") {
+                      const files = await saveFiles(values.images);
+                      const data = {
+                        ...values,
+                        createdBy: user?.id!,
+                        images: files,
+                        found: false,
+                      };
+                      mutate(data);
+                    } else {
+                      const payment = await sendMpesaSTKPush({
+                        amount: parseInt(getAmountToPay(values.alertRadius)),
+                        phoneNumber:
+                          values.paymentMobileNo ?? user?.phoneNumber.number!,
+                      });
+                      if (payment.invoice.state == "COMPLETE") {
+                        const files = await saveFiles(values.images);
+                        const data = {
+                          ...values,
+                          createdBy: user?.id!,
+                          images: files,
+                          found: false,
+                          paymentId: payment.invoice.id,
+                          paymentMobileNo: payment.invoice.account,
+                          paymentMode: payment.invoice.provider,
+                          paymentDate: payment.invoice.updated_at,
+                          paymentReference: payment.invoice.mpesa_reference,
+                          paymentAmount: payment.invoice.net_amount,
+                        };
+                        mutate(data);
+                      } else {
+                        toast({
+                          title: "Payment not successful!",
+                        });
                       }
                     }
 
-                    if (files.length < 1) {
-                      return;
-                    }
-                    const data = {
-                      ...values,
-                      createdBy: user?.uid,
-                      images: files,
-                      found: false,
-                    };
-
-                    mutate(data);
-                    setSavingFiles(false);
+                    setProcessing(false);
                   })();
                 }}
-              >
-                {(savingFiles || isLoading) && (
-                  <Loader className="mr-2 h-4 w-4 animate-spin" />
-                )}
-                Save
-                <Save fontSize={25} className="h-5 w-5" />
-              </Button>
+              />
             )}
           </div>
         )}

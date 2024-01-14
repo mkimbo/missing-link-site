@@ -52,6 +52,7 @@
     "flag-icons": "^7.1.0",
     "fuse.js": "^7.0.0",
     "geofire-common": "^6.0.0",
+    "intasend-node": "^1.0.8",
     "js-cookie": "^3.0.5",
     "localforage": "^1.10.0",
     "lodash": "^4.17.21",

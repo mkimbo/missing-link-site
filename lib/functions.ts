@@ -146,6 +146,19 @@ export function getGender(val: string): string {
   return "Other";
 }
 
+export function getAmountToPay(radius: string): string {
+  switch (radius) {
+    case "5":
+      return "50";
+    case "10":
+      return "100";
+    case "20":
+      return "200";
+    default:
+      return "50";
+  }
+}
+
 export function maskPhoneNumber(phoneNumber: string): string {
   console.log("Original phone number:", phoneNumber);
 

@@ -1,4 +1,4 @@
-import { PhoneNumberRegex } from "@/lib/constants";
+import { PhoneNumberRegex, safaricomPhoneNumberRegex } from "@/lib/constants";
 import { z } from "zod";
 
 export const newAlertFormSchema = z.object({
@@ -21,6 +21,7 @@ export const newAlertFormSchema = z.object({
   formattedAddress: z.string(),
   county: z.string(),
   constituency: z.string(),
+  paymentMobileNo: z.string().optional(),
   secondaryContact: z.string({ required_error: "Required" }),
   lastSeenDescription: z
     .string()
@@ -39,6 +40,20 @@ export const newAlertFormSchema = z.object({
   policeStation: z.string({ required_error: "Required" }),
   obNumber: z.string({ required_error: "Required" }),
 });
+// .refine(
+//   (data) => {
+//     // If alertRadius is not "3", then paymentMobileNo must be provided
+//     if (data.alertRadius != "3" && !data.paymentMobileNo) {
+//       return false;
+//     }
+//     return true;
+//   },
+//   {
+//     // Custom error message
+//     message:
+//       "An Mpesa mobile number is required when alertRadius is more than 3km",
+//   }
+// );
 
 export const bloodAppealSchema = z.object({
   fullname: z.string({ required_error: "Required" }),
@@ -57,6 +72,7 @@ export const bloodAppealSchema = z.object({
     lat: z.number(),
     lng: z.number(),
   }),
+  paymentMobileNo: z.string().optional(),
   geohash: z.string(),
   longAddress: z.string(),
   formattedAddress: z.string(),
@@ -76,6 +92,7 @@ export const newMotorAlertSchema = z.object({
   year: z.string().optional(),
   color: z.string({ required_error: "Required" }),
   alertRadius: z.string({ required_error: "Required" }),
+  paymentMobileNo: z.string().optional(),
   motorType: z.string().optional(),
   licencePlate: z.string({ required_error: "Required" }),
   lastSeenLocation: z.string().optional(),
@@ -116,6 +133,12 @@ export const savePersonAlertSchema = z.intersection(
   z.object({
     found: z.boolean(),
     createdBy: z.string().nonempty("Required"),
+    payment_mode: z.string().optional(),
+    paymentMobileNo: z.string().optional(),
+    paymentAmount: z.number().optional(),
+    paymentReference: z.string().optional(),
+    paymentId: z.string().optional(),
+    paymentDate: z.string().optional(),
   })
 );
 
@@ -124,6 +147,12 @@ export const saveMotorAlertSchema = z.intersection(
   z.object({
     found: z.boolean(),
     createdBy: z.string().nonempty("Required"),
+    payment_mode: z.string().optional(),
+    paymentMobileNo: z.string().optional(),
+    paymentAmount: z.number().optional(),
+    paymentReference: z.string().optional(),
+    paymentId: z.string().optional(),
+    paymentDate: z.string().optional(),
   })
 );
 
@@ -131,6 +160,12 @@ export const saveMedicalAlertSchema = z.intersection(
   bloodAppealSchema,
   z.object({
     createdBy: z.string({ required_error: "Required" }),
+    payment_mode: z.string().optional(),
+    paymentMobileNo: z.string().optional(),
+    paymentAmount: z.number().optional(),
+    paymentReference: z.string().optional(),
+    paymentId: z.string().optional(),
+    paymentDate: z.string().optional(),
   })
 );
 

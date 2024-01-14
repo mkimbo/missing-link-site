@@ -8,6 +8,8 @@ export const ACCEPTED_IMAGE_TYPES = [
   "image/webp",
 ];
 export const PhoneNumberRegex = /^\d+$/;
+export const safaricomPhoneNumberRegex =
+  /^(?:254|\+254|0)?((?:70[0-9]|71[0-9]|72[0-9]|74[0-3]|74[5-6]|748|75[7-9]|76[8-9]|79[0-9]|011[2-5])[0-9]{6})$/;
 
 export const personSearchFields = {
   keys: [
