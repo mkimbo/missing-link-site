@@ -13,7 +13,11 @@ import { newAlertFormSchema } from "@/types/zod_schemas";
 import { saveAlert, sendMpesaSTKPush } from "@/app/actions/actions";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { getAmountToPay, getFileObjectFromBlobUrl } from "@/lib/functions";
+import {
+  getAmountToPay,
+  getFileObjectFromBlobUrl,
+  getRandomItem,
+} from "@/lib/functions";
 import ProgressBar from "@/components/ProgressBar";
 import PersonStep1 from "./PersonStep1";
 import { Card } from "@/components/ui/card";
@@ -145,13 +149,17 @@ export function MissingPersonAlert() {
                 onClick={async () => {
                   handleSubmit(async (values) => {
                     setProcessing(true);
-                    if (values.alertRadius === "3") {
+                    if (values.alertRadius === "3" || values.alertReach === 0) {
                       const files = await saveFiles(values.images);
                       const data = {
                         ...values,
                         createdBy: user?.id!,
                         images: files,
                         found: false,
+                        paymentAmount:
+                          values.alertRadius === "3"
+                            ? 0
+                            : getRandomItem([50, 100, 200]), // TODO: remove this
                       };
                       mutate(data);
                     } else {
@@ -196,7 +204,14 @@ export function MissingPersonAlert() {
         <div className="">
           {currentStep === 1 && <PersonStep1 />}
           {currentStep === 2 && <PersonStep2 />}
-          {currentStep === 3 && <PersonStep3 />}
+          {currentStep === 3 && (
+            <PersonStep3
+              caseLocation={[
+                getValues().geoloc?.lat!,
+                getValues().geoloc?.lng!,
+              ]}
+            />
+          )}
           {currentStep === 4 && data && (
             <PersonSuccess
               data={{

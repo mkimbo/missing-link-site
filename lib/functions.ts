@@ -174,3 +174,8 @@ export function maskPhoneNumber(phoneNumber: string): string {
 
   return maskedNumber;
 }
+
+export function getRandomItem(list: any[]) {
+  const randomIndex = Math.floor(Math.random() * list.length);
+  return list[randomIndex];
+}

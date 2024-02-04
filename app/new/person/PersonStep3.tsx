@@ -3,7 +3,7 @@ import { useFormContext } from "react-hook-form";
 import FormSelect from "@/components/form_inputs/form_select_input";
 import MPesaPayment from "@/components/MPesaPayment";
 
-function PersonStep3() {
+function PersonStep3({ caseLocation }: { caseLocation: number[] }) {
   const { control } = useFormContext();
 
   return (
@@ -22,7 +22,7 @@ function PersonStep3() {
           ]}
         />
       </div>
-      <MPesaPayment />
+      <MPesaPayment caseLocation={caseLocation} />
     </div>
   );
 }

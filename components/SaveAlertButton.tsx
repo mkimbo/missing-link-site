@@ -14,7 +14,12 @@ function SaveAlertButton({ loading, onClick }: Props) {
   const radius = useWatch({
     control,
     name: "alertRadius",
-    defaultValue: "3",
+  });
+
+  const reach = useWatch({
+    control,
+    name: "alertReach",
+    defaultValue: 0,
   });
   const mobileNo = useWatch({
     control,
@@ -22,11 +27,16 @@ function SaveAlertButton({ loading, onClick }: Props) {
   });
 
   const isDisabled = () => {
-    if (radius == "3") {
+    if (radius && (radius == "3" || reach == 0)) {
       return false;
-    } else if (!mobileNo || safaricomPhoneNumberRegex.test(mobileNo) == false) {
+    } else if (
+      radius &&
+      radius != "3" &&
+      (!mobileNo || safaricomPhoneNumberRegex.test(mobileNo) == false)
+    ) {
       return true;
     }
+    return true;
   };
   return (
     <Button

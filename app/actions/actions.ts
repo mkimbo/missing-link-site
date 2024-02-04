@@ -22,9 +22,12 @@ import {
 import { revalidatePath } from "next/cache";
 import {
   TAlertType,
+  TAwardPoints,
+  TCalculateRP,
   TNotification,
   TNotificationInput,
   TNotifiedUser,
+  TResponsibilityPoint,
   TSaveNotification,
   TUserDevice,
 } from "@/types/missing_person.model";
@@ -36,6 +39,7 @@ import { cookies } from "next/headers";
 import { UserFull } from "@/types/redux";
 import { app } from "firebase-admin";
 import { fi } from "date-fns/locale";
+import { rewardableNotifications } from "@/lib/constants";
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 const twilioClient = require("twilio")(accountSid, authToken);
@@ -258,7 +262,10 @@ export const sendMpesaSTKPush = async (data: {
         setTimeout(async () => {
           const checkStatusResponse: TPaymentStatusResponse =
             await collection.status(stkPushResponse.invoice.invoice_id);
-          if (checkStatusResponse.invoice.state == "PENDING") {
+          if (
+            checkStatusResponse.invoice.state == "PENDING" ||
+            checkStatusResponse.invoice.state == "PROCESSING"
+          ) {
             // Retry after 60 seconds
             setTimeout(async () => {
               const retryStatusResponse: TPaymentStatusResponse =
@@ -318,6 +325,28 @@ export const saveAlert = zact(savePersonAlertSchema)(async (data) => {
       radius: parseInt(data.alertRadius),
       notification,
     });
+
+    //award points to all notified users
+    for (const user of successfullyNotified) {
+      const rewardPool = data.paymentAmount ?? 0; // amount paid by alert sender minus maintenance fee
+      const maxDistance = parseInt(data.alertRadius) * 1000;
+      const receiverDistance = user.subscribedDistance!;
+      const { rp, vp } = await awardPoints({
+        isPremium: rewardPool > 0,
+        rewardPool,
+        maxDistance,
+        receiverDistance,
+        alertId: docID,
+        userId: user.userId,
+        userRp: user.rp ?? [],
+        userVp: user.vp ?? 0,
+      });
+      await serverDB
+        .collection(process.env.FIREBASE_FIRESTORE_USER_COLLECTION!)
+        .doc(user.userId)
+        .update({ responsibilityPoints: rp, valuePoints: vp });
+    }
+
     const notifiedList = [];
     for (const user of successfullyNotified) {
       const distanceInKm = geofire.distanceBetween(center, [
@@ -327,8 +356,6 @@ export const saveAlert = zact(savePersonAlertSchema)(async (data) => {
       notifiedList.push({
         userId: user.userId,
         distance: distanceInKm,
-        points: 10, // TODO: calculate points based on distance
-        redeemed: false,
         seen: false,
       });
     }
@@ -403,6 +430,28 @@ export const saveMotorAlert = zact(saveMotorAlertSchema)(async (data) => {
       radius: parseInt(data.alertRadius),
       notification,
     });
+
+    //award points to all notified users
+    for (const user of successfullyNotified) {
+      const rewardPool = data.paymentAmount ?? 0; // amount paid by alert sender minus maintenance fee
+      const maxDistance = parseInt(data.alertRadius) * 1000;
+      const receiverDistance = user.subscribedDistance!;
+      const { rp, vp } = await awardPoints({
+        isPremium: rewardPool > 0,
+        rewardPool,
+        maxDistance,
+        receiverDistance,
+        alertId: docID,
+        userId: user.userId,
+        userRp: user.rp ?? [],
+        userVp: user.vp ?? 0,
+      });
+      await serverDB
+        .collection(process.env.FIREBASE_FIRESTORE_USER_COLLECTION!)
+        .doc(user.userId)
+        .update({ responsibilityPoints: rp, valuePoints: vp });
+    }
+
     const notifiedList = [];
     for (const user of successfullyNotified) {
       notifiedList.push({
@@ -479,6 +528,27 @@ export const saveBloodAppealAlert = zact(saveMedicalAlertSchema)(
         radius: parseInt(data.alertRadius),
         notification,
       });
+      //award points to all notified users
+      for (const user of successfullyNotified) {
+        const rewardPool = data.paymentAmount ?? 0; // amount paid by alert sender minus maintenance fee
+        const maxDistance = parseInt(data.alertRadius) * 1000;
+        const receiverDistance = user.subscribedDistance!;
+        const { rp, vp } = await awardPoints({
+          isPremium: rewardPool > 0,
+          rewardPool,
+          maxDistance,
+          receiverDistance,
+          alertId: docID,
+          userId: user.userId,
+          userRp: user.rp ?? [],
+          userVp: user.vp ?? 0,
+        });
+        await serverDB
+          .collection(process.env.FIREBASE_FIRESTORE_USER_COLLECTION!)
+          .doc(user.userId)
+          .update({ responsibilityPoints: rp, valuePoints: vp });
+      }
+
       const notifiedList = [];
       for (const user of successfullyNotified) {
         notifiedList.push({
@@ -752,6 +822,8 @@ export const sendNotifications = async ({
         userId: user.data().id,
         lat: user.data().lat,
         lng: user.data().lng,
+        rp: user.data().responsibilityPoints ?? [],
+        vp: user.data().valuePoints ?? 0,
         subscriptions: [
           "person",
           "sighting",
@@ -792,7 +864,99 @@ export const sendNotifications = async ({
   return successfullyNotified;
 };
 
-const getUsersWithinRadiusOfCase = async (
+function calculateRP({
+  rewardPool,
+  maxDistance,
+  receiverDistance,
+}: TCalculateRP) {
+  const reward = rewardPool * (1 - receiverDistance / maxDistance);
+  return reward;
+}
+
+export const awardPoints = async ({
+  isPremium,
+  rewardPool,
+  maxDistance,
+  receiverDistance,
+  alertId,
+  userId,
+  userRp,
+  userVp,
+}: TAwardPoints) => {
+  let rp: TResponsibilityPoint[];
+  let vp: number;
+  if (isPremium) {
+    const unredeemedCrp = userRp.filter(
+      (rp) => rp.redeemed == false && rp.isPremium == true
+    );
+    let newRp =
+      unredeemedCrp.length +
+      Math.round(
+        calculateRP({
+          rewardPool: rewardPool * 0.7,
+          maxDistance,
+          receiverDistance,
+        })
+      );
+    if (newRp >= 1000) {
+      let remainingRp = newRp - 1000;
+      let newVp = 1;
+
+      while (remainingRp >= 1000) {
+        remainingRp -= 1000;
+        newVp += 1;
+      }
+      const unredeemedRp = Array<TResponsibilityPoint>(remainingRp).fill({
+        userId: userId,
+        alertId: alertId,
+        redeemed: false,
+        isPremium: true,
+      });
+      const redeemedRp = Array<TResponsibilityPoint>(newVp * 1000).fill({
+        userId: userId,
+        alertId: alertId,
+        redeemed: true,
+        isPremium: true,
+      });
+      vp = userVp + newVp;
+      rp = [
+        ...unredeemedRp,
+        ...redeemedRp,
+        ...userRp.filter((rp) => rp.redeemed == true && rp.isPremium == true),
+        ...userRp.filter((rp) => rp.isPremium == false),
+      ];
+    } else {
+      const unredeemedRp = Array<TResponsibilityPoint>(newRp).fill({
+        userId: userId,
+        alertId: alertId,
+        redeemed: false,
+        isPremium: true,
+      });
+      const redeemedRp = userRp.filter(
+        (rp) => rp.redeemed == true && rp.isPremium == true
+      );
+      vp = userVp;
+      rp = [
+        ...unredeemedRp,
+        ...redeemedRp,
+        ...userRp.filter((rp) => rp.isPremium == false),
+      ];
+    }
+  } else {
+    const unredeemedRp = Array<TResponsibilityPoint>(10).fill({
+      userId: userId,
+      alertId: alertId,
+      redeemed: false,
+      isPremium: false,
+    });
+    vp = userVp;
+    rp = [...userRp, ...unredeemedRp];
+  }
+
+  return { rp, vp };
+};
+
+export const getUsersWithinRadiusOfCase = async (
   radiusInM: number,
   caseLocation: number[]
 ) => {
@@ -825,6 +989,14 @@ const getUsersWithinRadiusOfCase = async (
 
     return matchingDocs;
   });
+};
+
+export const getDevicesWithinRadiusOfCase = async (
+  radiusInM: number,
+  caseLocation: number[]
+) => {
+  const users = await getUsersWithinRadiusOfCase(radiusInM, caseLocation);
+  return users.length;
 };
 
 export const getAppealsWithinRadiusOfUser = async (
@@ -911,6 +1083,7 @@ const sendAlertToUserDevices = async (
 
   // Remove devices which are not registered anymore.
   await Promise.all(tokensToRemove);
+
   return successfullyNotified;
 };
 

@@ -1,9 +1,9 @@
-import React from "react";
-import { useFormContext } from "react-hook-form";
+import React, { useEffect } from "react";
+import { useFormContext, useWatch } from "react-hook-form";
 import FormSelect from "@/components/form_inputs/form_select_input";
 import MPesaPayment from "@/components/MPesaPayment";
 
-function BloodAppealStep2() {
+function BloodAppealStep2({ caseLocation }: { caseLocation: number[] }) {
   const { control } = useFormContext();
 
   return (
@@ -22,7 +22,7 @@ function BloodAppealStep2() {
           ]}
         />
       </div>
-      <MPesaPayment />
+      <MPesaPayment caseLocation={caseLocation} />
     </div>
   );
 }

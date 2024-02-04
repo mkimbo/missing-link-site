@@ -74,9 +74,7 @@ export interface TSighting extends SightingFormSchema {
 export type TNotifiedUser = {
   userId: string;
   distance: number;
-  redeemed: boolean;
   seen: boolean;
-  points: number;
 };
 
 export type TSaveNotification = {
@@ -90,6 +88,30 @@ export type TSaveNotification = {
   lat: number;
   lng: number;
   notifiedUsers: TNotifiedUser[];
+};
+
+export type TAwardPoints = {
+  isPremium: boolean;
+  rewardPool: number;
+  maxDistance: number;
+  receiverDistance: number;
+  alertId: string;
+  userId: string;
+  userRp: TResponsibilityPoint[];
+  userVp: number;
+};
+
+export type TCalculateRP = {
+  rewardPool: number;
+  maxDistance: number;
+  receiverDistance: number;
+};
+
+export type TResponsibilityPoint = {
+  userId: string;
+  alertId: string;
+  redeemed: boolean;
+  isPremium: boolean;
 };
 
 export type TAlertType =
@@ -115,6 +137,8 @@ export type TNotificationInput = {
 export type TUserDevice = {
   token: string;
   userId: string;
+  rp?: TResponsibilityPoint[];
+  vp?: number;
   lat?: number;
   lng?: number;
   subscriptions?: TAlertType[];

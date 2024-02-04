@@ -48,3 +48,5 @@ export const policeSearchFields = {
   keys: ["label", "county"],
   threshold: 0.3,
 };
+
+export const rewardableNotifications = ["person", "vehicle", "bike"];

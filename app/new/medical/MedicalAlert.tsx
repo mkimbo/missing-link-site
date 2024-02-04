@@ -17,7 +17,7 @@ import ProgressBar from "@/components/ProgressBar";
 import BloodAppealStep1 from "./BloodRequestStep1";
 import BloodAppealSuccess from "./BloodRequestSuccess";
 import SaveAlertButton from "@/components/SaveAlertButton";
-import { getAmountToPay } from "@/lib/functions";
+import { getAmountToPay, getRandomItem } from "@/lib/functions";
 import { useUser } from "@/context/UserContext";
 import { toast } from "@/components/ui/use-toast";
 
@@ -45,9 +45,9 @@ export function MedicalAlert() {
     }
   }, [data, router, reset]);
 
-  if (!user?.phoneNumber.number || !user?.id) {
-    router.push(`/add-mobile?redirect=/new?type=medical}`);
-  }
+  // if (!user?.phoneNumber.number || !user?.id) {
+  //   router.push(`/add-mobile?redirect=/new?type=medical}`);
+  // }
 
   return (
     <FormProvider {...methods}>
@@ -96,10 +96,14 @@ export function MedicalAlert() {
                 onClick={async () => {
                   handleSubmit(async (values) => {
                     setProcessing(true);
-                    if (values.alertRadius === "3") {
+                    if (values.alertRadius === "3" || values.alertReach === 0) {
                       const data = {
                         ...values,
                         createdBy: user?.id!,
+                        paymentAmount:
+                          values.alertRadius === "3"
+                            ? 0
+                            : getRandomItem([50, 100, 200]), // TODO: remove this
                       };
                       mutate(data);
                     } else {
@@ -140,7 +144,14 @@ export function MedicalAlert() {
         )}
         <div className="">
           {currentStep === 1 && <BloodAppealStep1 />}
-          {currentStep === 2 && <BloodAppealStep2 />}
+          {currentStep === 2 && (
+            <BloodAppealStep2
+              caseLocation={[
+                getValues().geoloc?.lat!,
+                getValues().geoloc?.lng!,
+              ]}
+            />
+          )}
           {currentStep === 3 && data && (
             <BloodAppealSuccess
               data={{

@@ -11,6 +11,7 @@ export const newAlertFormSchema = z.object({
   lastSeenLocation: z.string().optional(),
   lastSeenDate: z.string({ required_error: "Required" }),
   alertRadius: z.string({ required_error: "Required" }),
+  alertReach: z.number().optional(),
   placeId: z.string().nonempty("Please choose a location from the dropdown"),
   geoloc: z.object({
     lat: z.number(),
@@ -67,6 +68,7 @@ export const bloodAppealSchema = z.object({
     .max(5, "You can only appeal for a maximum of 5 units"),
   hospitalLocation: z.string().optional(),
   alertRadius: z.string({ required_error: "Required" }),
+  alertReach: z.number().optional(),
   placeId: z.string().nonempty("Please choose a location from the dropdown"),
   geoloc: z.object({
     lat: z.number(),
@@ -92,6 +94,7 @@ export const newMotorAlertSchema = z.object({
   year: z.string().optional(),
   color: z.string({ required_error: "Required" }),
   alertRadius: z.string({ required_error: "Required" }),
+  alertReach: z.number().optional(),
   paymentMobileNo: z.string().optional(),
   motorType: z.string().optional(),
   licencePlate: z.string({ required_error: "Required" }),
@@ -160,6 +163,7 @@ export const saveMedicalAlertSchema = z.intersection(
   bloodAppealSchema,
   z.object({
     createdBy: z.string({ required_error: "Required" }),
+
     payment_mode: z.string().optional(),
     paymentMobileNo: z.string().optional(),
     paymentAmount: z.number().optional(),

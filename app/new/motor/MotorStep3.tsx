@@ -3,7 +3,7 @@ import { useFormContext } from "react-hook-form";
 import FormSelect from "@/components/form_inputs/form_select_input";
 import MPesaPayment from "@/components/MPesaPayment";
 
-function MotorStep3() {
+function MotorStep3({ caseLocation }: { caseLocation: number[] }) {
   const { control } = useFormContext();
   return (
     <div className="flex flex-col gap-2">
@@ -21,7 +21,7 @@ function MotorStep3() {
           ]}
         />
       </div>
-      <MPesaPayment />
+      <MPesaPayment caseLocation={caseLocation} />
     </div>
   );
 }

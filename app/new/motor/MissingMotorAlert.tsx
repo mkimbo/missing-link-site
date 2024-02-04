@@ -16,7 +16,11 @@ import {
 } from "@/app/actions/actions";
 import { ChevronLeft, ChevronRight, Loader, Save } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { getAmountToPay, getFileObjectFromBlobUrl } from "@/lib/functions";
+import {
+  getAmountToPay,
+  getFileObjectFromBlobUrl,
+  getRandomItem,
+} from "@/lib/functions";
 import ProgressBar from "@/components/ProgressBar";
 import { Card } from "@/components/ui/card";
 import { uploadFileToCloud } from "@/auth/firebase";
@@ -27,6 +31,7 @@ import MotorSuccess from "./MotorSuccess";
 import { toast } from "@/components/ui/use-toast";
 import SaveAlertButton from "@/components/SaveAlertButton";
 import { useUser } from "@/context/UserContext";
+import { random } from "lodash";
 
 type Props = {
   type: string;
@@ -153,7 +158,7 @@ export function MissingMotorAlert({ type }: Props) {
                 onClick={async () => {
                   handleSubmit(async (values) => {
                     setProcessing(true);
-                    if (values.alertRadius === "3") {
+                    if (values.alertRadius === "3" || values.alertReach === 0) {
                       const files = await saveFiles(values.images);
                       const data = {
                         ...values,
@@ -161,6 +166,10 @@ export function MissingMotorAlert({ type }: Props) {
                         motorType: type,
                         images: files,
                         found: false,
+                        paymentAmount:
+                          values.alertRadius === "3"
+                            ? 0
+                            : getRandomItem([50, 100, 200]), // TODO: remove this
                       };
                       mutate(data);
                     } else {
@@ -243,7 +252,14 @@ export function MissingMotorAlert({ type }: Props) {
         <div className="">
           {currentStep === 1 && <MotorStep1 type={type} />}
           {currentStep === 2 && <MotorStep2 />}
-          {currentStep === 3 && <MotorStep3 />}
+          {currentStep === 3 && (
+            <MotorStep3
+              caseLocation={[
+                getValues().geoloc?.lat!,
+                getValues().geoloc?.lng!,
+              ]}
+            />
+          )}
           {currentStep === 4 && data && (
             <MotorSuccess
               data={{
