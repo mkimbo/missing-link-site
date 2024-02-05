@@ -44,7 +44,7 @@ function MPesaPayment({ caseLocation }: Props) {
 
   return (
     <>
-      {radius != "3" ? (
+      {radius && radius != "3" ? (
         <div className="flex flex-col gap-1">
           <div className="text-primary">
             Paid Alert{" "}
