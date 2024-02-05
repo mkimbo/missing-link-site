@@ -22,7 +22,7 @@ function PersonStep3({ caseLocation }: { caseLocation: number[] }) {
           ]}
         />
       </div>
-      <MPesaPayment caseLocation={caseLocation} />
+      <MPesaPayment caseLocation={caseLocation} notificationType="person" />
     </div>
   );
 }

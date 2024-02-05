@@ -153,6 +153,7 @@ export function MedicalAlert() {
           {currentStep === 1 && <BloodAppealStep1 />}
           {currentStep === 2 && (
             <BloodAppealStep2
+              bloodGroupFilter={getValues().bloodGroup}
               caseLocation={[
                 getValues().geoloc?.lat!,
                 getValues().geoloc?.lng!,

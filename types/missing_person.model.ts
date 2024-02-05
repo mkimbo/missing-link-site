@@ -144,3 +144,10 @@ export type TUserDevice = {
   subscriptions?: TAlertType[];
   subscribedDistance?: number;
 };
+
+export type TPossibleReachReq = {
+  radiusInM: number;
+  caseLocation: number[];
+  type: TAlertType;
+  bloodGroup?: string;
+};

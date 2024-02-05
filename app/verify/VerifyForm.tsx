@@ -56,8 +56,8 @@ export function VerifyForm() {
 
     if (verified === "true") {
       router.push(redirect);
+      window.location.reload();
     }
-    window.location.reload();
   }, [router, searchParams]);
 
   useEffect(() => {

@@ -27,6 +27,7 @@ import {
   TNotification,
   TNotificationInput,
   TNotifiedUser,
+  TPossibleReachReq,
   TResponsibilityPoint,
   TSaveNotification,
   TUserDevice,
@@ -38,7 +39,7 @@ import { getTenantFromCookies } from "@/auth/server-auth-provider";
 import { cookies } from "next/headers";
 import { UserFull } from "@/types/redux";
 import { app } from "firebase-admin";
-import { fi } from "date-fns/locale";
+import { de, fi } from "date-fns/locale";
 import { rewardableNotifications } from "@/lib/constants";
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
@@ -991,12 +992,45 @@ export const getUsersWithinRadiusOfCase = async (
   });
 };
 
-export const getDevicesWithinRadiusOfCase = async (
-  radiusInM: number,
-  caseLocation: number[]
-) => {
+export const getPossibleReachWithinRadiusOfCase = async ({
+  radiusInM,
+  caseLocation,
+  type,
+  bloodGroup,
+}: TPossibleReachReq) => {
   const users = await getUsersWithinRadiusOfCase(radiusInM, caseLocation);
-  return users.length;
+  const devices: FirebaseFirestore.DocumentData[] = [];
+  for (const device of users) {
+    const userData = device.data();
+    const token = userData.notificationToken;
+    const lat = userData.lat;
+    const lng = userData.lng;
+    const subscribedDistance = userData.alertRadius ?? "3";
+    const subscriptions = [
+      "person",
+      "sighting",
+      userData.missingVehicleAlerts && "vehicle",
+      userData.missingBikeAlerts && "bike",
+      userData.bloodAppealAlerts && "bloodAppeal",
+    ];
+
+    const distanceInKm = geofire.distanceBetween(caseLocation, [lat, lng]);
+    if (
+      distanceInKm * 1000 <= parseInt(subscribedDistance) * 1000 &&
+      subscriptions!.includes(type!) &&
+      token?.length > 0
+    ) {
+      if (type === "bloodAppeal" && bloodGroup) {
+        if (userData.bloodGroup === bloodGroup) {
+          devices.push(userData);
+        }
+      } else {
+        devices.push(userData);
+      }
+    }
+  }
+
+  return devices.length;
 };
 
 export const getAppealsWithinRadiusOfUser = async (

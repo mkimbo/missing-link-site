@@ -32,9 +32,10 @@ import { toast } from "@/components/ui/use-toast";
 import SaveAlertButton from "@/components/SaveAlertButton";
 import { useUser } from "@/context/UserContext";
 import { random } from "lodash";
+import { TAlertType } from "@/types/missing_person.model";
 
 type Props = {
-  type: string;
+  type: TAlertType;
 };
 
 export type TFormSchema = z.infer<typeof newMotorAlertSchema>;
@@ -269,6 +270,7 @@ export function MissingMotorAlert({ type }: Props) {
           {currentStep === 2 && <MotorStep2 />}
           {currentStep === 3 && (
             <MotorStep3
+              notificationType={type}
               caseLocation={[
                 getValues().geoloc?.lat!,
                 getValues().geoloc?.lng!,

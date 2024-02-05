@@ -2,8 +2,15 @@ import React from "react";
 import { useFormContext } from "react-hook-form";
 import FormSelect from "@/components/form_inputs/form_select_input";
 import MPesaPayment from "@/components/MPesaPayment";
+import { TAlertType } from "@/types/missing_person.model";
 
-function MotorStep3({ caseLocation }: { caseLocation: number[] }) {
+function MotorStep3({
+  caseLocation,
+  notificationType,
+}: {
+  caseLocation: number[];
+  notificationType: TAlertType;
+}) {
   const { control } = useFormContext();
   return (
     <div className="flex flex-col gap-2">
@@ -21,7 +28,10 @@ function MotorStep3({ caseLocation }: { caseLocation: number[] }) {
           ]}
         />
       </div>
-      <MPesaPayment caseLocation={caseLocation} />
+      <MPesaPayment
+        caseLocation={caseLocation}
+        notificationType={notificationType}
+      />
     </div>
   );
 }
