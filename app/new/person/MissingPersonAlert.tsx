@@ -163,31 +163,41 @@ export function MissingPersonAlert() {
                       };
                       mutate(data);
                     } else {
-                      const payment = await sendMpesaSTKPush({
-                        amount: parseInt(getAmountToPay(values.alertRadius)),
-                        phoneNumber:
-                          values.paymentMobileNo ?? user?.phoneNumber.number!,
-                      });
-                      if (payment.invoice.state == "COMPLETE") {
-                        const files = await saveFiles(values.images);
-                        const data = {
-                          ...values,
-                          createdBy: user?.id!,
-                          images: files,
-                          found: false,
-                          paymentId: payment.invoice.id,
-                          paymentMobileNo: payment.invoice.account,
-                          paymentMode: payment.invoice.provider,
-                          paymentDate: payment.invoice.updated_at,
-                          paymentReference: payment.invoice.mpesa_reference,
-                          paymentAmount: payment.invoice.net_amount,
-                        };
-                        mutate(data);
-                      } else {
-                        toast({
-                          title: "Payment not successful!",
-                        });
-                      }
+                      // const payment = await sendMpesaSTKPush({
+                      //   amount: parseInt(getAmountToPay(values.alertRadius)),
+                      //   phoneNumber:
+                      //     values.paymentMobileNo ?? user?.phoneNumber.number!,
+                      // });
+                      // if (payment.invoice.state == "COMPLETE") {
+                      //   const files = await saveFiles(values.images);
+                      //   const data = {
+                      //     ...values,
+                      //     createdBy: user?.id!,
+                      //     images: files,
+                      //     found: false,
+                      //     paymentId: payment.invoice.id,
+                      //     paymentMobileNo: payment.invoice.account,
+                      //     paymentMode: payment.invoice.provider,
+                      //     paymentDate: payment.invoice.updated_at,
+                      //     paymentReference: payment.invoice.mpesa_reference,
+                      //     paymentAmount: payment.invoice.net_amount,
+                      //   };
+                      //   mutate(data);
+                      // } else {
+                      //   toast({
+                      //     title: "Payment not successful!",
+                      //   });
+                      // }
+                      const files = await saveFiles(values.images);
+                      const data = {
+                        ...values,
+                        createdBy: user?.id!,
+                        images: files,
+                        found: false,
+
+                        paymentAmount: getRandomItem([50, 100, 200]),
+                      };
+                      mutate(data);
                     }
 
                     setProcessing(false);

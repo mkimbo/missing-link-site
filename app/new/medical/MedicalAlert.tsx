@@ -107,29 +107,36 @@ export function MedicalAlert() {
                       };
                       mutate(data);
                     } else {
-                      const payment = await sendMpesaSTKPush({
-                        amount: parseInt(getAmountToPay(values.alertRadius)),
-                        phoneNumber:
-                          values.paymentMobileNo ?? user?.phoneNumber.number!,
-                      });
-                      console.log(payment, "payment status");
-                      if (payment.invoice.state == "COMPLETE") {
-                        const data = {
-                          ...values,
-                          createdBy: user?.id!,
-                          paymentId: payment.invoice.id,
-                          paymentMobileNo: payment.invoice.account,
-                          paymentMode: payment.invoice.provider,
-                          paymentDate: payment.invoice.updated_at,
-                          paymentReference: payment.invoice.mpesa_reference,
-                          paymentAmount: payment.invoice.net_amount,
-                        };
-                        mutate(data);
-                      } else {
-                        toast({
-                          title: "Payment not successful!",
-                        });
-                      }
+                      // const payment = await sendMpesaSTKPush({
+                      //   amount: parseInt(getAmountToPay(values.alertRadius)),
+                      //   phoneNumber:
+                      //     values.paymentMobileNo ?? user?.phoneNumber.number!,
+                      // });
+                      // console.log(payment, "payment status");
+                      // if (payment.invoice.state == "COMPLETE") {
+                      //   const data = {
+                      //     ...values,
+                      //     createdBy: user?.id!,
+                      //     paymentId: payment.invoice.id,
+                      //     paymentMobileNo: payment.invoice.account,
+                      //     paymentMode: payment.invoice.provider,
+                      //     paymentDate: payment.invoice.updated_at,
+                      //     paymentReference: payment.invoice.mpesa_reference,
+                      //     paymentAmount: payment.invoice.net_amount,
+                      //   };
+                      //   mutate(data);
+                      // } else {
+                      //   toast({
+                      //     title: "Payment not successful!",
+                      //   });
+                      // }
+                      const data = {
+                        ...values,
+                        createdBy: user?.id!,
+
+                        paymentAmount: getRandomItem([50, 100, 200]),
+                      };
+                      mutate(data);
                     }
 
                     setProcessing(false);

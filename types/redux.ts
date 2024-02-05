@@ -1,3 +1,5 @@
+import { TResponsibilityPoint } from "./missing_person.model";
+
 export type CounterState = {
   count: number;
 };
@@ -16,6 +18,8 @@ export interface Tenant {
 export interface UserFull {
   alertRadius: number;
   bloodGroup?: string;
+  responsibilityPoints?: TResponsibilityPoint[];
+  valuePoints?: number;
   country: string;
   email: string;
   enabledLocation: boolean;

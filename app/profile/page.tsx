@@ -75,18 +75,18 @@ export default async function Profile() {
                       className="mr-4 p-3 text-center"
                     >
                       <span className="text-xl font-bold block uppercase tracking-wide text-primary">
-                        580
+                        {user?.responsibilityPoints?.length ?? 0}
                       </span>
-                      <span className="text-sm ">VP</span>
+                      <span className="text-sm ">RP</span>
                     </Link>
                     <Link
                       href="/profile/rewards"
                       className="mr-4 p-3 text-center"
                     >
                       <span className="text-xl font-bold block uppercase tracking-wide text-primary">
-                        58
+                        {user?.valuePoints ?? 0}
                       </span>
-                      <span className="text-sm ">RP</span>
+                      <span className="text-sm ">VP</span>
                     </Link>
                     <Link href="/alerts" className="lg:mr-4 p-3 text-center">
                       <span className="text-xl font-bold block uppercase tracking-wide text-primary">

@@ -56,13 +56,13 @@ function MPesaPayment({ caseLocation }: Props) {
             </span>
           </div>
           <div className="text-sm text-muted-foreground">
-            {reach > 0
+            {reach > 0 && !loading
               ? `A payment request for Ksh. ${getAmountToPay()} will be sent to the mobile number
             below.`
               : !loading &&
                 "The reach is zero, no payment will be required. Share this platform with your friends & family to make it more effective for you and your community."}
           </div>
-          {reach > 0 && (
+          {reach > 0 && !loading && (
             <FormTextField
               name="paymentMobileNo"
               placeholder="Phone number"
