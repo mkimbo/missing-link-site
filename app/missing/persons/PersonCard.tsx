@@ -52,11 +52,16 @@ function PersonCard({ person }: PersonCardProps) {
       </div>
       <div className="space-y-1 text-sm text-left">
         <div className="flex flex-row items-center">
-          <h3 className="font-medium leading-none text-primary">
+          <h3
+            className={`font-medium leading-none ${
+              person?.found == true ? "text-green-500" : "text-primary"
+            }`}
+          >
             {truncateText(person.fullname, 17)}
+            {person?.found == true && `(Found)`}
           </h3>
           <span className="text-sm text-muted-foreground ml-2">
-            {person.age}
+            {!person?.found && person.age}
           </span>
         </div>
         <div className="flex flex-row justify-start items-center">

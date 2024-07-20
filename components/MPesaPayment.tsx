@@ -59,7 +59,7 @@ function MPesaPayment({
       {radius && radius != "3" ? (
         <div className="flex flex-col gap-1">
           <div className="text-primary">
-            Paid Alert{" "}
+            Broadcast Alert{" "}
             <span className="text-sm text-muted-foreground">
               <HoverableText
                 title={loading ? "Calculating reach..." : `(${reach} devices)`}

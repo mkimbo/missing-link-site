@@ -128,7 +128,7 @@ export default async function MissingPerson({ params }: Props) {
           </div>
           <div
             className={`flex items-center justify-center   h-16  w-full ${
-              data?.found ? "bg-secondary" : "bg-primary"
+              data?.found ? "bg-green-500" : "bg-primary"
             }`}
           >
             <span className="text-xl">{data?.found ? "Found" : "Missing"}</span>
@@ -177,30 +177,38 @@ export default async function MissingPerson({ params }: Props) {
             </CardHeader>
 
             <CardContent className="text-center">
-              <div className="mb-2">{`If you have any info please contact ${data?.secondaryContact}. You can also report to the nearest police station or directly on this platform by clicking the button below.`}</div>
-              <SightingDialog
-                type="person"
-                missingItem={{ ...data!, id: params.id }}
-                creatorId={`${data?.createdBy}`}
-              />
-            </CardContent>
-
-            <CardFooter className="flex flex-col">
-              <ShareButtons
-                url={`${process.env.NEXT_PUBLIC_URL!}/missing/persons/${
-                  params.id
-                }`}
-                title={data?.fullname!}
-                description={data?.lastSeenDescription!}
-              />
-              {tenant?.uid === data?.createdBy && (
-                <MarkAsFoundButton
+              <div className="mb-2">
+                {!data?.found
+                  ? `If you have any info please contact ${data?.secondaryContact}. You can also report to the nearest police station or directly on this platform by clicking the button below.`
+                  : `${data.fullname} was found! Thank you.`}
+              </div>
+              {!data?.found && (
+                <SightingDialog
                   type="person"
-                  found={data?.found}
-                  itemId={params.id!}
+                  missingItem={{ ...data!, id: params.id }}
+                  creatorId={`${data?.createdBy}`}
                 />
               )}
-            </CardFooter>
+            </CardContent>
+
+            {!data?.found && (
+              <CardFooter className="flex flex-col">
+                <ShareButtons
+                  url={`${process.env.NEXT_PUBLIC_URL!}/missing/persons/${
+                    params.id
+                  }`}
+                  title={data?.fullname!}
+                  description={data?.lastSeenDescription!}
+                />
+                {tenant?.uid === data?.createdBy && (
+                  <MarkAsFoundButton
+                    type="person"
+                    found={data?.found}
+                    itemId={params.id!}
+                  />
+                )}
+              </CardFooter>
+            )}
           </Card>
           {tenant?.uid === data?.createdBy && !data?.found && (
             <Card className="my-6">

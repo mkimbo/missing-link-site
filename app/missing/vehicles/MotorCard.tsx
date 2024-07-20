@@ -53,12 +53,17 @@ function MotorCard({ motor }: MotorCardProps) {
         />
       </div>
       <div className="space-y-1 text-sm text-left">
-        <h3 className="font-medium leading-none text-primary">
-          {truncateText(` ${motor.make} ${motor.model} ${motor.year}`, 17)}
+        <h3
+          className={`font-medium leading-none ${
+            motor.found == true ? "text-green-500" : "text-primary"
+          }`}
+        >
+          {truncateText(` ${motor.make} ${motor.model} ${motor.year}`, 17)}{" "}
+          {motor?.found == true && `(Found)`}
         </h3>
 
         <span className="text-sm text-muted-foreground">
-          {motor.licencePlate}
+          {!motor?.found && motor.licencePlate}
         </span>
         <div className="flex flex-row justify-start items-center">
           <MapPin className="h-4 w-4 mr-1" />

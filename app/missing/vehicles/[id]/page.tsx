@@ -124,7 +124,7 @@ export default async function MissingVehicle({ params }: Props) {
           </div>
           <div
             className={`flex items-center justify-center  h-16  w-full ${
-              vehicle?.found ? "bg-secondary" : "bg-primary"
+              vehicle?.found ? "bg-green-500" : "bg-primary"
             }`}
           >
             <span className="text-xl">
@@ -175,30 +175,38 @@ export default async function MissingVehicle({ params }: Props) {
             </CardHeader>
 
             <CardContent className="text-center">
-              <div className="mb-2">{`If you have any info please contact ${vehicle?.secondaryContact}. You can also report to the nearest police station or directly on this platform by clicking the button below.`}</div>
-              <SightingDialog
-                type="motor"
-                missingItem={{ ...vehicle!, id: params.id }}
-                creatorId={`${vehicle?.createdBy}`}
-              />
-            </CardContent>
-
-            <CardFooter className="flex flex-col">
-              <ShareButtons
-                url={`${process.env.NEXT_PUBLIC_URL!}/missing/vehicles/${
-                  params.id
-                }`}
-                title={`${vehicle?.make} ${vehicle?.model}`}
-                description={vehicle?.lastSeenDescription!}
-              />
-              {tenant?.uid === vehicle?.createdBy && (
-                <MarkAsFoundButton
-                  type="vehicle"
-                  found={vehicle?.found}
-                  itemId={params.id!}
+              <div className="mb-2">
+                {!vehicle?.found
+                  ? `If you have any info please contact ${vehicle?.secondaryContact}. You can also report to the nearest police station or directly on this platform by clicking the button below.`
+                  : `This vehicle was found! Thank you.`}
+              </div>
+              {!vehicle?.found && (
+                <SightingDialog
+                  type="motor"
+                  missingItem={{ ...vehicle!, id: params.id }}
+                  creatorId={`${vehicle?.createdBy}`}
                 />
               )}
-            </CardFooter>
+            </CardContent>
+
+            {!vehicle?.found && (
+              <CardFooter className="flex flex-col">
+                <ShareButtons
+                  url={`${process.env.NEXT_PUBLIC_URL!}/missing/vehicles/${
+                    params.id
+                  }`}
+                  title={`${vehicle?.make} ${vehicle?.model} is missing`}
+                  description={vehicle?.lastSeenDescription!}
+                />
+                {tenant?.uid === vehicle?.createdBy && (
+                  <MarkAsFoundButton
+                    type="vehicle"
+                    found={vehicle?.found}
+                    itemId={params.id!}
+                  />
+                )}
+              </CardFooter>
+            )}
           </Card>
           {tenant?.uid === vehicle?.createdBy && !vehicle?.found && (
             <Card className="my-6">

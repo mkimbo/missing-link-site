@@ -27,13 +27,21 @@ export default function ShareButtons({
         Amplify this alerts impact by spreading the word on social media.
       </span>
       <div className="flex flex-row items-center justify-center  gap-x-2">
-        <FacebookShareButton url={url} quote={description} hashtag={hashtag}>
+        <FacebookShareButton
+          url={url}
+          quote={description}
+          hashtag={`#${title.replaceAll(" ", "")}IsMissing`}
+        >
           <FacebookIcon size={32} />
         </FacebookShareButton>
-        <WhatsappShareButton url={url} title={title}>
+        <WhatsappShareButton url={url} title={description}>
           <WhatsappIcon size={32} />
         </WhatsappShareButton>
-        <TwitterShareButton url={url} title={title}>
+        <TwitterShareButton
+          url={url}
+          title={`${title} is missing`}
+          hashtags={[`#${title.replaceAll(" ", "")}IsMissing`]}
+        >
           <TwitterIcon size={32} />
         </TwitterShareButton>
       </div>

@@ -48,6 +48,13 @@ export default async function VehicleList({ searchParams }: Props) {
       {missingVehicles.map((vehicle) => (
         <MotorCard key={vehicle.id} motor={vehicle} />
       ))}
+      {missingVehicles.length === 0 && (
+        <div className="flex flex-col items-center justify-center w-full">
+          <p className="text-center text-gray-500">
+            No results found {searchKey && `for "${searchKey}"`}
+          </p>
+        </div>
+      )}
     </div>
   );
 }
