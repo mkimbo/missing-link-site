@@ -69,19 +69,18 @@ function MPesaPayment({
           </div>
           <div className="text-sm text-muted-foreground">
             {reach > 0 && !loading
-              ? `A payment request for Ksh. ${getAmountToPay()} will be sent to the mobile number
-            below.`
+              ? `This alert will be sent to ${reach} devices within ${radius}km radius. Share this platform with your friends & family to make it more effective for you and your community.`
               : !loading &&
-                "The reach is zero, no payment will be required. Share this platform with your friends & family to make it more effective for you and your community."}
+                "There are no devices within the chosen radius. You can still send out this alert and it will be seen by nearby users when they open the app. Share this platform with your friends & family to make it more effective for you and your community."}
           </div>
-          {reach > 0 && !loading && (
+          {/* {reach > 0 && !loading && (
             <FormTextField
               name="paymentMobileNo"
               placeholder="Phone number"
               label="Mpesa Number"
               control={control}
             />
-          )}
+          )} */}
         </div>
       ) : (
         <></>
@@ -91,3 +90,5 @@ function MPesaPayment({
 }
 
 export default MPesaPayment;
+// /A payment request for Ksh. ${getAmountToPay()} will be sent to the mobile number below.
+//The reach is zero, no payment will be required. Share this platform with your friends & family to make it more effective for you and your community.

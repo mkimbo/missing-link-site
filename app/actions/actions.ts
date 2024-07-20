@@ -316,7 +316,7 @@ export const saveAlert = zact(savePersonAlertSchema)(async (data) => {
     const center = [Number(data.geoloc.lat), Number(data.geoloc.lng)];
     const notification = {
       title: data.fullname,
-      body: "has just been reported missing in your area",
+      body: "has just been reported missing in your area(Test)",
       icon: data.images[0],
       click_action: `${process.env.NEXT_PUBLIC_URL!}/missing/persons/${docID}`,
       type: "person" as TAlertType,
@@ -362,7 +362,7 @@ export const saveAlert = zact(savePersonAlertSchema)(async (data) => {
     }
 
     await saveNotification({
-      content: `${data.fullname} has been reported missing`,
+      content: `${data.fullname} has been reported missing(Test)`,
       ownerId: data.createdBy,
       resourceId: docID,
       resourceType: "person",
@@ -421,7 +421,7 @@ export const saveMotorAlert = zact(saveMotorAlertSchema)(async (data) => {
     const center = [Number(data.geoloc.lat), Number(data.geoloc.lng)];
     const notification = {
       title: data.licencePlate,
-      body: "has just been reported missing in your area",
+      body: "has just been reported missing in your area(Test)",
       icon: data.images[0],
       click_action: action,
       type: data.motorType as TAlertType,
@@ -465,7 +465,7 @@ export const saveMotorAlert = zact(saveMotorAlertSchema)(async (data) => {
     }
 
     await saveNotification({
-      content: `${data.licencePlate} has been reported missing`,
+      content: `${data.licencePlate} has been reported missing (Test)`,
       ownerId: data.createdBy,
       resourceId: docID,
       resourceType: data.motorType as TAlertType,
@@ -518,7 +518,7 @@ export const saveBloodAppealAlert = zact(saveMedicalAlertSchema)(
       revalidatePath("/missing/blood-appeals");
       const center = [Number(data.geoloc.lat), Number(data.geoloc.lng)];
       const notification = {
-        title: "Urgent Blood Appeal",
+        title: "Urgent Blood Appeal(Test)",
         body: `${data.fullname} admitted at ${data.hospitalName} needs ${data.bUnits} units of ${data.bloodGroup} blood`,
         icon: "https://firebasestorage.googleapis.com/v0/b/amber-alerts-ke.appspot.com/o/blood.png?alt=media&token=8b5b5b1a-7b0a-4b0a-9b0a-5b0a5b0a5b0a",
         click_action: action,
@@ -562,7 +562,7 @@ export const saveBloodAppealAlert = zact(saveMedicalAlertSchema)(
       }
 
       await saveNotification({
-        content: `${data.fullname} needs ${data.bloodGroup} blood urgently.`,
+        content: `${data.fullname} needs ${data.bloodGroup} blood urgently.(Test)`,
         ownerId: data.createdBy,
         resourceId: docID,
         resourceType: "bloodAppeal" as TAlertType,

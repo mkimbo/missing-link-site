@@ -156,10 +156,10 @@ export function MissingPersonAlert() {
                         createdBy: user?.id!,
                         images: files,
                         found: false,
-                        paymentAmount:
-                          values.alertRadius === "3"
-                            ? 0
-                            : getRandomItem([50, 100, 200]), // TODO: remove this
+                        // paymentAmount:
+                        //   values.alertRadius === "3"
+                        //     ? 0
+                        //     : getRandomItem([50, 100, 200]), // TODO: remove this
                       };
                       mutate(data);
                     } else {

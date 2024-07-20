@@ -78,6 +78,8 @@ export function SightingDialog({ missingItem, type, creatorId }: Props) {
       setOpen(false);
     }
   }, [data, response, reset]);
+  console.log(user, "user");
+
   return !user || !user?.email ? (
     <Button
       variant="default"
@@ -89,7 +91,7 @@ export function SightingDialog({ missingItem, type, creatorId }: Props) {
         router.push(url);
       }}
     >
-      Login to report sighting
+      Login & verify your account to report a sighting
     </Button>
   ) : user?.id != creatorId ? (
     <Dialog open={open} onOpenChange={setOpen}>
