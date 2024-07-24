@@ -30,6 +30,7 @@ function PoliceStationSearch() {
     <div className="flex flex-row w-full text-muted-foreground align-middle">
       <input
         type="search"
+        autoFocus={true}
         value={search}
         placeholder="Search Kenya Police Contacts"
         className="w-full focus:outline-none py-1.5 bg-transparent"

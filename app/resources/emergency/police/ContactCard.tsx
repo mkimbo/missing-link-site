@@ -54,7 +54,7 @@ export default function ContactCard({ station }: Props) {
             onClick={() => station.contact2 && handleCopyUrl(station.contact2)}
             className="text-sm text-muted-foreground px-2 py-1 flex flex-row align-middle gap-2 w-fit rounded-md transition-all hover:bg-accent hover:text-accent-foreground shadow-[2px_2px_0px_0px_rgba(234,88,12,0.1)]"
           >
-            {`Tel: ${station.contact2}`}{" "}
+            {`Tel2: ${station.contact2}`}{" "}
             {isCopied == station.contact2 ? (
               <Check size={18} />
             ) : (
