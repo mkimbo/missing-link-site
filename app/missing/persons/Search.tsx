@@ -30,13 +30,11 @@ function Search({ searchKey }: Props) {
         className="w-full focus:outline-none py-1.5 bg-transparent"
         onChange={(e) => setSearch(e.target.value)}
       />
-      <InfoTooltip
-        children={
-          <p className="text-sm text-muted-foreground">
-            If this list is too long, something is wrong.
-          </p>
-        }
-      />
+      <InfoTooltip>
+        <p className="text-sm text-white">
+          If this list is too long, something is wrong.
+        </p>
+      </InfoTooltip>
     </div>
   );
 }

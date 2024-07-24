@@ -35,11 +35,9 @@ function PoliceStationSearch() {
         className="w-full focus:outline-none py-1.5 bg-transparent"
         onChange={(e) => setSearch(e.target.value)}
       />
-      <InfoTooltip
-        children={
-          <p className="text-sm text-white">Curated from online sources.</p>
-        }
-      />
+      <InfoTooltip>
+        <p className="text-sm text-white">Curated from online sources.</p>
+      </InfoTooltip>
     </div>
   );
 }
