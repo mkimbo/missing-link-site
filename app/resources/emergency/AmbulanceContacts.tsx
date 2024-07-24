@@ -60,16 +60,6 @@ const ambulanceContacts = [
 export function AmbulanceContacts() {
   return (
     <>
-      <div className=" space-y-1">
-        <BackButton />
-        <h2 className="text-2xl font-semibold tracking-tight">
-          Ambulance Contacts
-        </h2>
-        <p className="text-muted-foreground">
-          A list of ambulance agencies and their contacts.
-        </p>
-      </div>
-      <Separator className="my-4 max-w-5xl" />
       <Table className="max-w-5xl">
         <TableHeader>
           <TableRow>

@@ -1,4 +1,5 @@
 "use client";
+import { InfoTooltip } from "@/components/InfoTooltip";
 import { Input } from "@/components/ui/input";
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useState, useEffect } from "react";
@@ -26,13 +27,18 @@ function PoliceStationSearch() {
     router.push(url);
   }, [searchValue, router]);
   return (
-    <div className="w-full">
-      <Input
+    <div className="flex flex-row w-full text-muted-foreground align-middle">
+      <input
         type="search"
         value={search}
-        placeholder="Search"
-        className="md:w-[100px] lg:w-[300px]"
+        placeholder="Search Kenya Police Contacts"
+        className="w-full focus:outline-none py-1.5 bg-transparent"
         onChange={(e) => setSearch(e.target.value)}
+      />
+      <InfoTooltip
+        children={
+          <p className="text-sm text-white">Curated from online sources.</p>
+        }
       />
     </div>
   );

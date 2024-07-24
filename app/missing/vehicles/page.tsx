@@ -17,17 +17,16 @@ export default function MissingVehicles({
   const search = searchParams.search || "";
 
   return (
-    <div className="container mx-auto px-4 py-1">
-      <ServerAuthProvider>
-        <div className=" space-y-1">
+    <ServerAuthProvider>
+      <div className="sticky self-end top-0 z-50 backdrop-blur-lg w-full">
+        <div className="flex flex-row w-full px-4">
           <BackButton />
-          <h2 className="text-2xl font-semibold tracking-tight">
-            Missing Vehicles
-          </h2>
-          <VehicleSearch searchKey={search} />
+          <div className=" w-full">
+            <VehicleSearch searchKey={search} />
+          </div>
         </div>
-        <Separator className="my-4" />
-
+      </div>
+      <div className="container mx-auto px-4 py-1">
         <Suspense
           fallback={
             <div className="flex flex-wrap justify-center lg:justify-normal">
@@ -47,8 +46,8 @@ export default function MissingVehicles({
           }
         >
           <VehicleList searchParams={searchParams} />
-        </Suspense>
-      </ServerAuthProvider>
-    </div>
+        </Suspense>{" "}
+      </div>
+    </ServerAuthProvider>
   );
 }

@@ -6,7 +6,7 @@ type Props = {};
 
 function About({}: Props) {
   return (
-    <main className="container mx-auto p-4 ">
+    <div className="container mx-auto p-4 ">
       <section className="w-full py-12 bg-primary ">
         <div className="space-y-4 text-center">
           <h1 className="text-5xl font-bold tracking-tighter sm:text-7xl">
@@ -110,7 +110,7 @@ function About({}: Props) {
           </p>
         </div>
       </section>
-    </main>
+    </div>
   );
 }
 

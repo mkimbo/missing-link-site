@@ -20,6 +20,8 @@ import CSE from "./awareness/CSE";
 import SHGBV from "./awareness/SHGBV";
 import PoliticalEducation from "./awareness/PoliticalAwareness";
 import { AmbulanceContacts } from "./emergency/AmbulanceContacts";
+import PoliceStationHeader from "./emergency/police/PoliceStationHeader";
+import AmbulancesHeader from "./emergency/AmbulancesHeader";
 
 type Props = {};
 
@@ -73,9 +75,57 @@ export default function Resources({
     }
   }
 
+  function getResourceHeader(resourceType: string) {
+    switch (resourceType) {
+      case "emergency":
+        return <></>;
+      case "police-contacts":
+        return <PoliceStationHeader />;
+      case "ambulance-contacts":
+        return <AmbulancesHeader />;
+      case "health":
+        return <></>;
+      case "personal-health":
+        return <></>;
+      case "mental-health":
+        return <></>;
+      case "sexual-health":
+        return <></>;
+      case "first-aid":
+        return <></>;
+      case "safety":
+        return <></>;
+      case "fire-safety":
+        return <></>;
+      case "personal-safety":
+        return <></>;
+      case "online-safety":
+        return <></>;
+      case "child-safety":
+        return <></>;
+      case "awareness":
+        return <></>;
+      case "financial-literacy":
+        return <></>;
+      case "comprehensive-sexuality-education":
+        return <></>;
+      case "sexual-harrassment-and-gbv":
+        return <></>;
+      case "political-awareness":
+        return <></>;
+      default:
+        return <></>;
+    }
+  }
+
   return (
-    <div className="container mx-auto px-4 py-1">
-      <ServerAuthProvider>{getResource(resourceType)}</ServerAuthProvider>
-    </div>
+    <ServerAuthProvider>
+      <div className="sticky self-end top-0 z-50 backdrop-blur-lg w-full">
+        {getResourceHeader(resourceType)}
+      </div>
+      <div className="container mx-auto px-4 py-1">
+        {getResource(resourceType)}
+      </div>
+    </ServerAuthProvider>
   );
 }

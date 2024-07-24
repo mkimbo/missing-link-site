@@ -1,4 +1,5 @@
 "use client";
+import { InfoTooltip } from "@/components/InfoTooltip";
 import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
@@ -20,12 +21,21 @@ function Search({ searchKey }: Props) {
     }
   }, [searchValue, router]);
   return (
-    <div>
-      <Input
+    <div className="flex flex-row w-full text-muted-foreground align-middle">
+      <input
         type="search"
-        placeholder="Search..."
-        className="md:w-[100px] lg:w-[300px]"
+        autoFocus={true}
+        value={search}
+        placeholder="Search Missing Persons"
+        className="w-full focus:outline-none py-1.5 bg-transparent"
         onChange={(e) => setSearch(e.target.value)}
+      />
+      <InfoTooltip
+        children={
+          <p className="text-sm text-muted-foreground">
+            If this list is too long, something is wrong.
+          </p>
+        }
       />
     </div>
   );

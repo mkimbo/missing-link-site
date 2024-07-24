@@ -62,3 +62,8 @@
     /* pointer-events: auto !important; */
   }
 }
+
+#mainContent {
+  scrollbar-color: transparent transparent !important;
+  scrollbar-width: thin;
+}

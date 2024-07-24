@@ -75,63 +75,61 @@ const Navbar = () => {
 
   return (
     <ServerAuthProvider>
-      <div className="border-b">
-        <header className="container px-4 sm:flex sm:justify-between py-3  sticky top-0 z-10 bg-background">
-          <div className="relative flex h-16 items-center justify-between w-full">
-            <div className="flex items-center">
-              <Sheet>
-                <SheetTrigger>
-                  <Menu className="h-6 md:hidden w-6 text-primary" />
-                </SheetTrigger>
-                <SheetContent side="left" className="w-[300px] sm:w-[400px]">
-                  <nav className="flex flex-col gap-4">
-                    {mobileRoutes?.map((route, i) => (
-                      <SheetClose key={i} asChild>
-                        <Link
-                          href={route.href}
-                          className="block px-2 py-1 text-lg"
-                        >
-                          {route.label}
-                        </Link>
-                      </SheetClose>
-                    ))}
-                  </nav>
-                </SheetContent>
-              </Sheet>
-              <Link href="/">
-                <span className="hidden lg:block text-xl text-primary ml-2 md:ml-0">
-                  {" "}
-                  ML
-                </span>
-              </Link>
-            </div>
-            <nav className="mx-6 items-center space-x-4 lg:space-x-6 hidden md:block">
-              {routes?.map((route, i) => (
-                <>
-                  {route.href == "/view" ? (
-                    <ViewListsButton key={i} />
-                  ) : (
-                    <Button key={i} asChild variant="ghost">
+      <header className="container border-b   px-4 sm:flex sm:justify-between py-2 w-full  fixed top-0 z-10 backdrop-blur-lg ">
+        <div className="relative flex h-8 items-center justify-between w-full max-w-[1400px] mx-auto">
+          <div className="flex items-center">
+            <Sheet>
+              <SheetTrigger>
+                <Menu className="h-6 md:hidden w-6 text-primary" />
+              </SheetTrigger>
+              <SheetContent side="left" className="w-[300px] sm:w-[400px]">
+                <nav className="flex flex-col gap-4">
+                  {mobileRoutes?.map((route, i) => (
+                    <SheetClose key={i} asChild>
                       <Link
-                        key={i}
                         href={route.href}
-                        className="text-sm font-medium transition-colors"
+                        className="block px-2 py-1 text-lg"
                       >
                         {route.label}
                       </Link>
-                    </Button>
-                  )}
-                </>
-              ))}
-            </nav>
-
-            <div className="flex items-center">
-              <NotificationsStatus />
-              <ProfileButton />
-            </div>
+                    </SheetClose>
+                  ))}
+                </nav>
+              </SheetContent>
+            </Sheet>
+            <Link href="/">
+              <span className="hidden lg:block text-xl text-primary ml-2 md:ml-0">
+                {" "}
+                ML
+              </span>
+            </Link>
           </div>
-        </header>
-      </div>
+          <nav className="mx-6 items-center space-x-4 lg:space-x-6 hidden md:block">
+            {routes?.map((route, i) => (
+              <>
+                {route.href == "/view" ? (
+                  <ViewListsButton key={i} />
+                ) : (
+                  <Button key={i} asChild variant="ghost">
+                    <Link
+                      key={i}
+                      href={route.href}
+                      className="text-sm font-medium transition-colors"
+                    >
+                      {route.label}
+                    </Link>
+                  </Button>
+                )}
+              </>
+            ))}
+          </nav>
+
+          <div className="flex items-center">
+            <NotificationsStatus />
+            <ProfileButton />
+          </div>
+        </div>
+      </header>
     </ServerAuthProvider>
   );
 };

@@ -40,6 +40,13 @@ export default function PoliceContactsList() {
       {policeContacts.map((item) => (
         <ContactCard key={item.value} station={item} />
       ))}
+      {policeContacts.length === 0 && (
+        <div className="flex flex-col items-center justify-center w-full">
+          <p className="text-center text-gray-500">
+            No results found {searchKey && `for "${searchKey}"`}
+          </p>
+        </div>
+      )}
     </div>
   );
 }

@@ -9,7 +9,7 @@ export async function generateStaticParams() {
 
 export default function Home() {
   return (
-    <main className="container mx-auto p-4 ">
+    <div className="container mx-auto p-4 ">
       <section className="w-full py-12 bg-primary text-white">
         <div className="space-y-8 text-center">
           <h1 className="text-5xl font-bold tracking-tighter sm:text-7xl">
@@ -79,6 +79,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

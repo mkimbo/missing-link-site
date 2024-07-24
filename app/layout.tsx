@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import Navbar from "@/components/Navbar";
 import { UserProvider } from "@/context/UserContext";
+import { TouchProvider } from "@/components/ui/hybrid-tooltip";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -64,18 +65,15 @@ export default async function RootLayout({
           <UserProvider>
             <div className="flex flex-col min-h-screen">
               <Navbar />
-              <main className="flex-1 overflow-y-auto">{children}</main>
-              <footer className="sticky bottom-0 z-10">
-                <div className="container mx-auto flex justify-center items-center">
-                  {/* <span className="text-primary/80">Code</span>
-                <a
-                  href="https://github.com/mkimbo/missing-link-site"
-                  target="_blank"
+              <TouchProvider>
+                <main
+                  id="mainContent"
+                  className="h-[calc(100vh-48px)]  overflow-y-auto w-full mt-[48px] max-w-[1400px] mx-auto"
                 >
-                  @mkimbo
-                </a> */}
-                </div>
-              </footer>
+                  {children}
+                </main>
+              </TouchProvider>
+
               <Toaster />
             </div>
           </UserProvider>

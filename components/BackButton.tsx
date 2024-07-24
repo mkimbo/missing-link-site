@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { ChevronsLeft } from "lucide-react";
+import { MoveLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export default function BackButton({ mutedText }: { mutedText?: boolean }) {
@@ -8,15 +8,10 @@ export default function BackButton({ mutedText }: { mutedText?: boolean }) {
   const mutedTextDefault = mutedText ?? true;
 
   return (
-    <Button
-      className={
-        mutedTextDefault == true ? "pl-0 text-muted-foreground" : "pl-0"
-      }
-      variant="ghost"
+    <MoveLeft
       onClick={() => router.back()}
-    >
-      Go Back
-      <ChevronsLeft />
-    </Button>
+      className="text-primary m-auto mr-2"
+      size={22}
+    />
   );
 }
