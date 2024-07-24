@@ -39,7 +39,7 @@ export default function ContactCard({ station }: Props) {
         <span className="text-sm px-2">{station.label}</span>
         <span
           onClick={() => handleCopyUrl(station.contact)}
-          className="text-sm text-muted-foreground px-2 mb-2 py-1 flex flex-row align-middle gap-2 w-fit rounded-md transition-all hover:bg-accent hover:text-accent-foreground shadow-[2px_2px_0px_0px_rgba(234,88,12,0.1)]"
+          className="text-sm text-muted-foreground px-2 mb-2 py-1 flex flex-row align-middle gap-2 w-fit rounded-md transition-all hover:bg-accent hover:text-accent-foreground shadow-[-10px_-10px_30px_4px_rgba(0,0,0,0.1),_10px_10px_30px_4px_rgba(234,88,12,0.15)]"
         >
           {`Tel: ${station.contact}`}
           {isCopied == station.contact ? (
@@ -52,7 +52,7 @@ export default function ContactCard({ station }: Props) {
         {station.contact2 && (
           <span
             onClick={() => station.contact2 && handleCopyUrl(station.contact2)}
-            className="text-sm text-muted-foreground px-2 py-1 flex flex-row align-middle gap-2 w-fit rounded-md transition-all hover:bg-accent hover:text-accent-foreground shadow-[2px_2px_0px_0px_rgba(234,88,12,0.1)]"
+            className="text-sm text-muted-foreground px-2 py-1 flex flex-row align-middle gap-2 w-fit rounded-md transition-all hover:bg-accent hover:text-accent-foreground shadow-[-10px_-10px_30px_4px_rgba(0,0,0,0.1),_10px_10px_30px_4px_rgba(234,88,12,0.15)]"
           >
             {`Tel2: ${station.contact2}`}{" "}
             {isCopied == station.contact2 ? (

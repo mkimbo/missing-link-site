@@ -10,7 +10,7 @@ export default function BackButton({ mutedText }: { mutedText?: boolean }) {
   return (
     <MoveLeft
       onClick={() => router.back()}
-      className="text-primary m-auto mr-2"
+      className="text-primary ml-0 m-auto mr-2"
       size={22}
     />
   );

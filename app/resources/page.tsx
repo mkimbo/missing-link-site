@@ -22,6 +22,7 @@ import PoliticalEducation from "./awareness/PoliticalAwareness";
 import { AmbulanceContacts } from "./emergency/AmbulanceContacts";
 import PoliceStationHeader from "./emergency/police/PoliceStationHeader";
 import AmbulancesHeader from "./emergency/AmbulancesHeader";
+import ResourceHeader from "./ResourceHeader";
 
 type Props = {};
 
@@ -78,43 +79,43 @@ export default function Resources({
   function getResourceHeader(resourceType: string) {
     switch (resourceType) {
       case "emergency":
-        return <></>;
+        return <ResourceHeader title="" />;
       case "police-contacts":
         return <PoliceStationHeader />;
       case "ambulance-contacts":
         return <AmbulancesHeader />;
       case "health":
-        return <></>;
+        return <ResourceHeader title="" />;
       case "personal-health":
-        return <></>;
+        return <ResourceHeader title="Personal Health" />;
       case "mental-health":
-        return <></>;
+        return <ResourceHeader title="Mental Health" />;
       case "sexual-health":
-        return <></>;
+        return <ResourceHeader title="Sexual Health" />;
       case "first-aid":
-        return <></>;
+        return <ResourceHeader title="First Aid" />;
       case "safety":
-        return <></>;
+        return <ResourceHeader title="" />;
       case "fire-safety":
-        return <></>;
+        return <ResourceHeader title="Fire Safety" />;
       case "personal-safety":
-        return <></>;
+        return <ResourceHeader title="Personal Safety" />;
       case "online-safety":
-        return <></>;
+        return <ResourceHeader title="Online Safety" />;
       case "child-safety":
-        return <></>;
+        return <ResourceHeader title="Child Safety" />;
       case "awareness":
-        return <></>;
+        return <ResourceHeader title="" />;
       case "financial-literacy":
-        return <></>;
+        return <ResourceHeader title="Financial Literacy" />;
       case "comprehensive-sexuality-education":
-        return <></>;
+        return <ResourceHeader title="What is CSE?" />;
       case "sexual-harrassment-and-gbv":
-        return <></>;
+        return <ResourceHeader title="Sexual Harassment and GBV" />;
       case "political-awareness":
-        return <></>;
+        return <ResourceHeader title="Political Education" />;
       default:
-        return <></>;
+        return <ResourceHeader title="" />;
     }
   }
 

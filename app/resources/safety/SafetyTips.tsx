@@ -2,6 +2,7 @@ import { Flame, Baby, Globe, User2 } from "lucide-react";
 
 import ResourceCard from "../ResourceCard";
 import BackButton from "@/components/BackButton";
+import ResourceTypeHeader from "../ResourceTypeHeader";
 
 export default function SafetyTips() {
   const safetyTips = [
@@ -37,23 +38,14 @@ export default function SafetyTips() {
     <section className="w-full mx-auto">
       <div className="grid gap-6 items-center">
         <div className="flex flex-col justify-center space-y-8 text-center">
-          <section className="w-full py-12 bg-primary ">
-            <div className="space-y-4 text-left md:text-center pl-4">
-              <div className="lg:hidden">
-                <BackButton mutedText={false} />
-              </div>
+          <ResourceTypeHeader
+            title={
               <h1 className="text-5xl font-bold tracking-tighter sm:text-7xl">
                 Safety<br className="md:hidden"></br> First
               </h1>
-              <div className="text-sm lg:text-xl">
-                Stay Safe: Be Proactive, Not Reactive.
-              </div>
-              <div className="hidden lg:block">
-                <BackButton mutedText={false} />
-              </div>
-            </div>
-          </section>
-
+            }
+            description="Stay Safe: Be Proactive, Not Reactive."
+          />
           <div className="w-full max-w-full space-y-4 mx-auto">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {safetyTips.map((alertOption, i) => (

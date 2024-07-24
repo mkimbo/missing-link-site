@@ -8,7 +8,7 @@ function Loading({}: Props) {
   return (
     <Container>
       <div className="w-full lg:w-6/12 px-4 mt-4 md:mt-8 mx-auto items-center justify-center">
-        <Skeleton className="w-full h-16" />
+        <Skeleton className="w-full h-16 mt-9" />
         <div className="w-full grid grid-cols-2 gap-6 md:gap-2 my-6">
           <Skeleton className="rounded-lg w-[200px] h-[200px] lg:w-[300px] lg:h-[300px]" />
           <div className="flex flex-col ml-4">

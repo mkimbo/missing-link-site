@@ -19,7 +19,7 @@ export default function Home() {
           <LinkButton href="/about" className="" label="Learn More" />
         </div>
       </section>
-      <section className="w-full py-12 flex justify-between items-center">
+      <section className="w-full py-12 flex justify-between items-center ">
         <PersonStandingIcon className="w-20 h-20 lg:h-24 lg:w-24 lg:ml-40" />
         <div className="space-y-8 w-3/4 lg:w-1/2">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-right">
@@ -35,7 +35,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="w-full py-12 flex justify-between items-center">
+      <section className="w-full py-12 flex justify-between items-center ">
         <div className="space-y-8 w-3/4 lg:w-1/2">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-left">
             Blood Donation Appeals
@@ -51,7 +51,7 @@ export default function Home() {
         </div>
         <DropletsIcon className="w-20 h-20 lg:h-24 lg:w-24 lg:mr-40" />
       </section>
-      <section className="w-full py-12 flex justify-between items-center">
+      <section className="w-full py-12 flex justify-between items-center ">
         <MotorIcon />
         <div className="space-y-8 w-3/4 lg:w-1/2">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-right">

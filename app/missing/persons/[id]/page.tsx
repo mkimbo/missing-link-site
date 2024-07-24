@@ -26,6 +26,7 @@ import MarkAsFoundButton from "@/components/MarkAsFoundButton";
 import { CalendarDays } from "lucide-react";
 import { SightingDialog } from "@/components/SightingDialog";
 import BackButton from "@/components/BackButton";
+import ResourceHeader from "@/app/resources/ResourceHeader";
 type Props = {
   params: { id: string };
 };
@@ -120,133 +121,131 @@ export default async function MissingPerson({ params }: Props) {
   }
 
   return (
-    <Container>
-      <ServerAuthProvider>
-        <div className="w-full lg:w-6/12 px-4 mx-auto items-center justify-center">
-          <div className="my-2 md:my-4">
-            <BackButton />
-          </div>
-          <div
-            className={`flex items-center justify-center   h-16  w-full ${
-              data?.found ? "bg-green-500" : "bg-primary"
-            }`}
-          >
-            <span className="text-xl">{data?.found ? "Found" : "Missing"}</span>
-          </div>
-          <div className="grid grid-cols-2 gap-2 my-6">
-            <Image
-              className="rounded-lg w-[200px] h-[200px] lg:w-[300px] lg:h-[300px]"
-              src={data?.images!.length! > 0 ? data?.images[0]! : sampleMissing}
-              alt={`${data?.fullname}`}
-              width={500}
-              height={500}
-              placeholder="blur"
-              blurDataURL={placeholderUrl}
-            />
-            <div className="flex flex-col text-xs md:text-base">
-              <span className="font-bold text-primary text-base md:text-lg">{`${
-                data?.fullname
-              }${data?.othername && ` (${data?.othername})`}`}</span>
-              <span>
-                Age: <span className="text-primary">{data?.age}</span>
-              </span>
-              <span>
-                Gender:{" "}
-                <span className="text-primary">{getGender(data?.gender!)}</span>
-              </span>
-              <span>
-                Complexion:{" "}
-                <span className="text-primary">{data?.complexion}</span>
-              </span>
-              <span className=" text-primary mt-2 md:mt-4">Last seen on</span>
-              <span>
-                {format(new Date(data?.lastSeenDate!), "do MMM yyyy")}
-              </span>
-              <span className="text-primary mt-2 md:mt-4">Location</span>
-              <span>{data?.lastSeenLocation}</span>
-              <span>
-                {data?.county ? data?.county : data?.formattedAddress}
-              </span>
-            </div>
-          </div>
-          <Card>
-            <CardHeader>
-              <CardDescription className="text-center text-base text-foreground">
-                {data?.lastSeenDescription}
-              </CardDescription>
-            </CardHeader>
+    <ServerAuthProvider>
+      <div className="sticky self-end top-0 z-50 backdrop-blur-lg w-full">
+        <ResourceHeader title="" />
+      </div>
 
-            <CardContent className="text-center">
-              <div className="mb-2">
-                {!data?.found
-                  ? `If you have any info please contact ${data?.secondaryContact}. You can also report to the nearest police station or directly on this platform by clicking the button below.`
-                  : `${data.fullname} was found! Thank you.`}
-              </div>
-              {!data?.found && (
-                <SightingDialog
+      <div className="w-full lg:w-6/12 px-4 mx-auto items-center justify-center">
+        {/* <div className="my-2 md:my-4">
+            <BackButton />
+          </div> */}
+        <div
+          className={`flex items-center justify-center   h-16  w-full ${
+            data?.found ? "bg-green-500" : "bg-primary"
+          }`}
+        >
+          <span className="text-xl">{data?.found ? "Found" : "Missing"}</span>
+        </div>
+        <div className="grid grid-cols-2 gap-2 my-6">
+          <Image
+            className="rounded-lg w-[200px] h-[200px] lg:w-[300px] lg:h-[300px]"
+            src={data?.images!.length! > 0 ? data?.images[0]! : sampleMissing}
+            alt={`${data?.fullname}`}
+            width={500}
+            height={500}
+            placeholder="blur"
+            blurDataURL={placeholderUrl}
+          />
+          <div className="flex flex-col text-xs md:text-base">
+            <span className="font-bold text-primary text-base md:text-lg">{`${
+              data?.fullname
+            }${data?.othername && ` (${data?.othername})`}`}</span>
+            <span>
+              Age: <span className="text-primary">{data?.age}</span>
+            </span>
+            <span>
+              Gender:{" "}
+              <span className="text-primary">{getGender(data?.gender!)}</span>
+            </span>
+            <span>
+              Complexion:{" "}
+              <span className="text-primary">{data?.complexion}</span>
+            </span>
+            <span className=" text-primary mt-2 md:mt-4">Last seen on</span>
+            <span>{format(new Date(data?.lastSeenDate!), "do MMM yyyy")}</span>
+            <span className="text-primary mt-2 md:mt-4">Location</span>
+            <span>{data?.lastSeenLocation}</span>
+            <span>{data?.county ? data?.county : data?.formattedAddress}</span>
+          </div>
+        </div>
+        <Card>
+          <CardHeader>
+            <CardDescription className="text-center text-base text-foreground">
+              {data?.lastSeenDescription}
+            </CardDescription>
+          </CardHeader>
+
+          <CardContent className="text-center">
+            <div className="mb-2">
+              {!data?.found
+                ? `If you have any info please contact ${data?.secondaryContact}. You can also report to the nearest police station or directly on this platform by clicking the button below.`
+                : `${data.fullname} was found! Thank you.`}
+            </div>
+            {!data?.found && (
+              <SightingDialog
+                type="person"
+                missingItem={{ ...data!, id: params.id }}
+                creatorId={`${data?.createdBy}`}
+              />
+            )}
+          </CardContent>
+
+          {!data?.found && (
+            <CardFooter className="flex flex-col">
+              <ShareButtons
+                url={`${process.env.NEXT_PUBLIC_URL!}/missing/persons/${
+                  params.id
+                }`}
+                title={data?.fullname!}
+                description={data?.lastSeenDescription!}
+              />
+              {tenant?.uid === data?.createdBy && (
+                <MarkAsFoundButton
                   type="person"
-                  missingItem={{ ...data!, id: params.id }}
-                  creatorId={`${data?.createdBy}`}
+                  found={data?.found}
+                  itemId={params.id!}
                 />
               )}
-            </CardContent>
-
-            {!data?.found && (
-              <CardFooter className="flex flex-col">
-                <ShareButtons
-                  url={`${process.env.NEXT_PUBLIC_URL!}/missing/persons/${
-                    params.id
-                  }`}
-                  title={data?.fullname!}
-                  description={data?.lastSeenDescription!}
-                />
-                {tenant?.uid === data?.createdBy && (
-                  <MarkAsFoundButton
-                    type="person"
-                    found={data?.found}
-                    itemId={params.id!}
-                  />
-                )}
-              </CardFooter>
-            )}
-          </Card>
-          {tenant?.uid === data?.createdBy && !data?.found && (
-            <Card className="my-6">
-              <CardHeader className="pb-3">
-                <CardTitle>Recent sightings</CardTitle>
-                <CardDescription>
-                  If someone reports sighting your loved one, you will receive a
-                  notification and from here you can see where and when.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="grid gap-1">
-                {data?.sightings?.map((sighting) => (
-                  <div
-                    key={sighting.sightingDate}
-                    className="-mx-2 flex items-start space-x-4 rounded-md p-2 transition-all hover:bg-accent hover:text-accent-foreground"
-                  >
-                    <CalendarDays className="mt-px h-5 w-5" />
-                    <div className="space-y-1">
-                      <p className="text-sm font-medium leading-none">
-                        {" "}
-                        {format(new Date(sighting.sightingDate), "do MMM yyyy")}
-                      </p>
-                      <p className="text-sm text-muted-foreground">
-                        {`${sighting.sightingLocation}, ${sighting.longAddress}`}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-                {(!data?.sightings || data?.sightings?.length === 0) && (
-                  <div className="text-base flex justify-center">
-                    <span> 0 Sightings</span>
-                  </div>
-                )}
-              </CardContent>
-            </Card>
+            </CardFooter>
           )}
-        </div>
-      </ServerAuthProvider>
-    </Container>
+        </Card>
+        {tenant?.uid === data?.createdBy && !data?.found && (
+          <Card className="my-6">
+            <CardHeader className="pb-3">
+              <CardTitle>Recent sightings</CardTitle>
+              <CardDescription>
+                If someone reports sighting your loved one, you will receive a
+                notification and from here you can see where and when.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="grid gap-1">
+              {data?.sightings?.map((sighting) => (
+                <div
+                  key={sighting.sightingDate}
+                  className="-mx-2 flex items-start space-x-4 rounded-md p-2 transition-all hover:bg-accent hover:text-accent-foreground"
+                >
+                  <CalendarDays className="mt-px h-5 w-5" />
+                  <div className="space-y-1">
+                    <p className="text-sm font-medium leading-none">
+                      {" "}
+                      {format(new Date(sighting.sightingDate), "do MMM yyyy")}
+                    </p>
+                    <p className="text-sm text-muted-foreground">
+                      {`${sighting.sightingLocation}, ${sighting.longAddress}`}
+                    </p>
+                  </div>
+                </div>
+              ))}
+              {(!data?.sightings || data?.sightings?.length === 0) && (
+                <div className="text-base flex justify-center">
+                  <span> 0 Sightings</span>
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        )}
+      </div>
+    </ServerAuthProvider>
   );
 }

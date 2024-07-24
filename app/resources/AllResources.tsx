@@ -35,8 +35,8 @@ export default function AllResources() {
     <section className="w-full mx-auto">
       <div className="grid gap-6 items-center">
         <div className="flex flex-col justify-center space-y-8 text-center">
-          <section className="w-full py-12 bg-primary ">
-            <div className="space-y-6 text-left md:text-center pl-4">
+          <section className="w-full py-4 ">
+            <div className="text-left md:text-center">
               <h1 className="text-5xl font-bold tracking-tighter sm:text-7xl">
                 Information <br className="md:hidden"></br>Hub
               </h1>

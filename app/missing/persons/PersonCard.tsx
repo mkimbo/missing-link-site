@@ -35,9 +35,9 @@ function PersonCard({ person }: PersonCardProps) {
   return (
     <Link
       href={`/missing/persons/${person.id}`}
-      className={"space-y-3  w-[150px] mx-2 my-2"}
+      className={"space-y-3  w-[150px] mx-2 my-2 "}
     >
-      <div className="overflow-hidden rounded-md">
+      <div className="overflow-hidden rounded-md shadow-[-10px_-10px_30px_4px_rgba(0,0,0,0.1),_10px_10px_30px_4px_rgba(234,88,12,0.15)]">
         <Image
           src={person.images!.length! > 0 ? person.images[0]! : sampleMissing}
           alt={person.fullname}

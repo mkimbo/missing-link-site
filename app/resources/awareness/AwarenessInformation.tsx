@@ -9,6 +9,7 @@ import {
 
 import ResourceCard from "../ResourceCard";
 import BackButton from "@/components/BackButton";
+import ResourceTypeHeader from "../ResourceTypeHeader";
 
 export default function AwarenessInformation() {
   const safetyTips = [
@@ -46,22 +47,14 @@ export default function AwarenessInformation() {
     <section className="w-full mx-auto">
       <div className="grid gap-6 items-center">
         <div className="flex flex-col justify-center space-y-8 text-center">
-          <section className="w-full py-12 bg-primary ">
-            <div className="space-y-4 text-left md:text-center pl-4">
-              <div className="lg:hidden">
-                <BackButton mutedText={false} />
-              </div>
+          <ResourceTypeHeader
+            title={
               <h1 className="text-5xl font-bold tracking-tighter sm:text-7xl">
                 Awareness <br className="md:hidden"></br> Is key
               </h1>
-              <div className="text-sm lg:text-xl">
-                Stay Informed and prepared.
-              </div>
-              <div className="hidden lg:block">
-                <BackButton mutedText={false} />
-              </div>
-            </div>
-          </section>
+            }
+            description="Stay Informed and prepared."
+          />
           <div className="w-full max-w-full space-y-4 mx-auto">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {safetyTips.map((alertOption, i) => (
